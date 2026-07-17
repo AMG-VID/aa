@@ -1,14 +1,19 @@
+
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CyberSec Academy — ١٠٠ قسم تعليمي</title>
+    <title>CyberSec Academy — منصة الأمن السيبراني</title>
+    <!-- إضافة خط الرقعة الجميل (Aref Ruqaa) لاسم المؤسس -->
     <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
-        /* ===== ROOT ===== */
+        /* ===========================================================
+                   ROOT VARIABLES & RESET
+                   =========================================================== */
         *,
         *::before,
         *::after {
@@ -16,6 +21,7 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         :root {
             --bg-primary: #0a0a0f;
             --bg-secondary: #111118;
@@ -31,16 +37,20 @@
             --glow-blue: rgba(0, 212, 255, 0.15);
             --glow-cyan: rgba(0, 245, 212, 0.12);
             --glow-purple: rgba(168, 85, 247, 0.12);
+            --shadow-card: 0 20px 60px rgba(0, 0, 0, 0.6);
             --radius-lg: 24px;
             --radius-md: 16px;
             --radius-sm: 10px;
             --transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             --font-ar: 'Cairo', sans-serif;
-            --font-ruqaa: 'Aref Ruqaa', serif;
+            --font-en: 'Inter', sans-serif;
+            --font-ruqaa: 'Aref Ruqaa', serif; /* تعريف خط الرقعة */
         }
+
         html {
             scroll-behavior: smooth;
         }
+
         body {
             font-family: var(--font-ar);
             background: var(--bg-primary);
@@ -49,18 +59,22 @@
             overflow-x: hidden;
             line-height: 1.7;
         }
+
+        /* تطبيق خط الرقعة على اسم المؤسس */
         .ruqaa-name {
             font-family: var(--font-ruqaa);
             font-weight: 700;
             font-size: 2.6rem;
+            color: var(--neon-blue);
+            text-shadow: 0 0 40px var(--glow-blue), 0 0 80px var(--glow-cyan);
+            letter-spacing: 2px;
+            line-height: 1.4;
             background: linear-gradient(135deg, var(--neon-blue), var(--neon-cyan));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 40px var(--glow-blue);
-            letter-spacing: 2px;
-            line-height: 1.4;
         }
+
         ::-webkit-scrollbar {
             width: 6px;
         }
@@ -71,11 +85,16 @@
             background: var(--neon-blue);
             border-radius: 10px;
         }
+
+        /* ===========================================================
+                   UTILITY
+                   =========================================================== */
         .container {
             max-width: 1360px;
             margin: 0 auto;
             padding: 0 28px;
         }
+
         .glass {
             background: var(--bg-glass);
             backdrop-filter: blur(20px);
@@ -83,6 +102,25 @@
             border: 1px solid var(--border-glass);
             border-radius: var(--radius-md);
         }
+
+        .glow-text {
+            text-shadow: 0 0 40px var(--glow-blue), 0 0 80px var(--glow-cyan);
+        }
+
+        .glow-box {
+            box-shadow: 0 0 40px var(--glow-blue), inset 0 0 40px var(--glow-blue);
+        }
+
+        .text-neon-blue {
+            color: var(--neon-blue);
+        }
+        .text-neon-cyan {
+            color: var(--neon-cyan);
+        }
+        .text-neon-purple {
+            color: var(--neon-purple);
+        }
+
         .badge {
             display: inline-block;
             padding: 4px 16px;
@@ -108,6 +146,7 @@
             background: rgba(255, 215, 0, 0.12);
             color: #ffd700;
         }
+
         .btn {
             display: inline-flex;
             align-items: center;
@@ -129,7 +168,7 @@
         }
         .btn-primary:hover {
             transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 0 60px var(--glow-blue);
+            box-shadow: 0 0 60px var(--glow-blue), 0 0 120px var(--glow-purple);
         }
         .btn-outline {
             background: transparent;
@@ -150,6 +189,7 @@
             background: rgba(255, 255, 255, 0.10);
             border-color: var(--border-glass);
         }
+
         .section-title {
             font-size: 2.4rem;
             font-weight: 900;
@@ -161,14 +201,17 @@
             font-size: 1.05rem;
             font-weight: 400;
         }
-        /* ===== NAVBAR ===== */
+
+        /* ===========================================================
+                   NAVBAR
+                   =========================================================== */
         .navbar {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 999;
-            padding: 14px 0;
+            padding: 16px 0;
             background: rgba(10, 10, 15, 0.75);
             backdrop-filter: blur(30px);
             -webkit-backdrop-filter: blur(30px);
@@ -187,16 +230,15 @@
         .nav-brand {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 1.4rem;
+            gap: 12px;
+            font-size: 1.6rem;
             font-weight: 900;
             text-decoration: none;
             color: #fff;
-            cursor: pointer;
         }
         .nav-brand i {
             color: var(--neon-blue);
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             filter: drop-shadow(0 0 20px var(--glow-blue));
         }
         .nav-brand span {
@@ -204,21 +246,22 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 8px;
             list-style: none;
         }
         .nav-links a {
             color: var(--text-secondary);
             text-decoration: none;
-            padding: 8px 16px;
+            padding: 8px 18px;
             border-radius: 40px;
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             transition: var(--transition);
-            cursor: pointer;
+            position: relative;
         }
         .nav-links a:hover,
         .nav-links a.active {
@@ -237,17 +280,15 @@
             border-radius: 4px;
             box-shadow: 0 0 20px var(--glow-blue);
         }
-        .nav-links a {
-            position: relative;
-        }
+
         .nav-actions {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
         .nav-actions .btn {
-            padding: 6px 18px;
-            font-size: 0.8rem;
+            padding: 8px 22px;
+            font-size: 0.85rem;
         }
         .nav-toggle {
             display: none;
@@ -257,16 +298,20 @@
             font-size: 1.6rem;
             cursor: pointer;
         }
-        /* ===== PAGES ===== */
+
+        /* ===========================================================
+                   PAGE SECTIONS (SPA)
+                   =========================================================== */
         .page {
             display: none;
-            padding-top: 80px;
+            padding-top: 90px;
             min-height: 100vh;
-            animation: fadeIn 0.4s ease;
+            animation: fadeIn 0.5s ease;
         }
         .page.active {
             display: block;
         }
+
         @keyframes fadeIn {
             0% {
                 opacity: 0;
@@ -277,9 +322,12 @@
                 transform: translateY(0);
             }
         }
-        /* ===== HERO ===== */
+
+        /* ===========================================================
+                   HERO / HOME
+                   =========================================================== */
         .hero {
-            padding: 40px 0 60px;
+            padding: 60px 0 80px;
             position: relative;
             overflow: hidden;
         }
@@ -310,11 +358,11 @@
             z-index: 2;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 50px;
+            gap: 60px;
             align-items: center;
         }
         .hero-content h1 {
-            font-size: 3.4rem;
+            font-size: 3.8rem;
             font-weight: 900;
             line-height: 1.15;
             letter-spacing: -1px;
@@ -327,34 +375,40 @@
         }
         .hero-content p {
             color: var(--text-secondary);
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             max-width: 520px;
-            margin: 18px 0 28px;
+            margin: 20px 0 32px;
             line-height: 1.9;
         }
         .hero-buttons {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 14px;
         }
         .hero-stats {
             display: flex;
-            gap: 36px;
-            margin-top: 40px;
+            gap: 40px;
+            margin-top: 48px;
         }
         .hero-stats .stat h3 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 900;
             color: #fff;
         }
         .hero-stats .stat p {
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             margin: 0;
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .hero-graphic {
             width: 100%;
-            max-width: 480px;
+            max-width: 500px;
             aspect-ratio: 1/1;
             border-radius: var(--radius-lg);
             background: radial-gradient(circle at 30% 30%, rgba(0, 212, 255, 0.08), transparent 70%);
@@ -363,7 +417,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 32px;
+            padding: 40px;
             position: relative;
             overflow: hidden;
         }
@@ -390,18 +444,16 @@
         }
         .hero-graphic .code-block {
             background: rgba(0, 0, 0, 0.5);
-            padding: 20px 28px;
+            padding: 24px 32px;
             border-radius: var(--radius-sm);
             border: 1px solid var(--border-glass);
-            font-family: 'Inter', sans-serif;
-            font-size: 0.8rem;
+            font-family: var(--font-en);
+            font-size: 0.85rem;
             color: var(--neon-cyan);
             line-height: 1.9;
             width: 100%;
             z-index: 2;
             box-shadow: 0 0 60px var(--glow-blue);
-            direction: ltr;
-            text-align: left;
         }
         .hero-graphic .code-block .comment {
             color: var(--text-muted);
@@ -412,39 +464,41 @@
         .hero-graphic .code-block .string {
             color: var(--neon-blue);
         }
-        /* ===== CARDS ===== */
+
+        /* ===========================================================
+                   CARDS GRID
+                   =========================================================== */
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 28px;
-            flex-wrap: wrap;
-            gap: 12px;
+            margin-bottom: 32px;
         }
         .section-header .view-all {
             color: var(--neon-blue);
             text-decoration: none;
             font-weight: 600;
             font-size: 0.95rem;
-            cursor: pointer;
             transition: var(--transition);
         }
         .section-header .view-all:hover {
             color: var(--neon-cyan);
             transform: translateX(-6px);
         }
+
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 28px;
         }
+
         .card {
             background: var(--bg-card);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--border-glass);
             border-radius: var(--radius-md);
-            padding: 24px;
+            padding: 28px;
             transition: var(--transition);
             cursor: pointer;
             position: relative;
@@ -462,7 +516,7 @@
             transition: var(--transition);
         }
         .card:hover {
-            transform: translateY(-6px);
+            transform: translateY(-8px);
             border-color: rgba(0, 212, 255, 0.2);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px var(--glow-blue);
         }
@@ -470,45 +524,45 @@
             opacity: 1;
         }
         .card .icon {
-            width: 48px;
-            height: 48px;
+            width: 52px;
+            height: 52px;
             border-radius: var(--radius-sm);
             background: rgba(0, 212, 255, 0.08);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             color: var(--neon-blue);
-            margin-bottom: 14px;
+            margin-bottom: 16px;
         }
         .card h3 {
-            font-size: 1.05rem;
+            font-size: 1.15rem;
             font-weight: 700;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
         .card p {
             color: var(--text-secondary);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             line-height: 1.7;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
         .card .meta {
             display: flex;
             align-items: center;
-            gap: 14px;
-            font-size: 0.75rem;
+            gap: 16px;
+            font-size: 0.8rem;
             color: var(--text-muted);
         }
         .card .meta i {
             color: var(--neon-blue);
-            width: 14px;
+            width: 16px;
         }
         .card .progress-bar {
             width: 100%;
             height: 4px;
             background: rgba(255, 255, 255, 0.06);
             border-radius: 10px;
-            margin-top: 10px;
+            margin-top: 12px;
             overflow: hidden;
         }
         .card .progress-bar .fill {
@@ -517,46 +571,48 @@
             background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
             transition: width 0.6s ease;
         }
-        /* ===== LESSON PAGE ===== */
+
+        /* ===========================================================
+                   LESSON PAGE
+                   =========================================================== */
         .lesson-layout {
             display: grid;
-            grid-template-columns: 260px 1fr 240px;
-            gap: 28px;
+            grid-template-columns: 280px 1fr 260px;
+            gap: 32px;
             padding: 20px 0 60px;
         }
         .lesson-sidebar {
             position: sticky;
-            top: 90px;
+            top: 100px;
             align-self: start;
         }
         .lesson-sidebar .toc {
             background: var(--bg-card);
             border-radius: var(--radius-md);
-            padding: 20px;
+            padding: 24px;
             border: 1px solid var(--border-glass);
         }
         .lesson-sidebar .toc h4 {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 14px;
+            margin-bottom: 16px;
         }
         .lesson-sidebar .toc ul {
             list-style: none;
         }
         .lesson-sidebar .toc ul li {
-            padding: 4px 0;
+            padding: 6px 0;
         }
         .lesson-sidebar .toc ul li a {
             color: var(--text-secondary);
             text-decoration: none;
-            font-size: 0.82rem;
+            font-size: 0.85rem;
             transition: var(--transition);
             display: flex;
             align-items: center;
             gap: 8px;
-            cursor: pointer;
         }
         .lesson-sidebar .toc ul li a:hover,
         .lesson-sidebar .toc ul li a.active {
@@ -564,85 +620,86 @@
         }
         .lesson-sidebar .toc ul li a .num {
             color: var(--text-muted);
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             font-weight: 700;
-            width: 20px;
+            width: 22px;
         }
+
         .lesson-main {
             min-width: 0;
         }
         .lesson-main .lesson-header {
-            margin-bottom: 28px;
+            margin-bottom: 32px;
         }
         .lesson-main .lesson-header .breadcrumb {
             color: var(--text-muted);
-            font-size: 0.8rem;
-            margin-bottom: 10px;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
         }
         .lesson-main .lesson-header .breadcrumb a {
             color: var(--neon-blue);
             text-decoration: none;
-            cursor: pointer;
         }
         .lesson-main .lesson-header h1 {
-            font-size: 2.2rem;
+            font-size: 2.6rem;
             font-weight: 900;
             line-height: 1.2;
         }
         .lesson-main .lesson-header .meta-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 16px;
-            margin-top: 12px;
+            gap: 20px;
+            margin-top: 16px;
             color: var(--text-secondary);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
         }
         .lesson-main .lesson-header .meta-row i {
             color: var(--neon-blue);
-            width: 16px;
+            width: 18px;
         }
+
         .lesson-body {
             background: var(--bg-card);
             border-radius: var(--radius-md);
-            padding: 36px;
+            padding: 40px;
             border: 1px solid var(--border-glass);
         }
         .lesson-body h2 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 800;
-            margin: 28px 0 14px;
+            margin: 32px 0 16px;
             color: #fff;
         }
         .lesson-body h2:first-of-type {
             margin-top: 0;
         }
         .lesson-body h3 {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 700;
-            margin: 20px 0 10px;
+            margin: 24px 0 12px;
             color: var(--neon-cyan);
         }
         .lesson-body p {
             color: var(--text-secondary);
             line-height: 1.9;
-            margin-bottom: 14px;
+            margin-bottom: 16px;
         }
         .lesson-body ul,
         .lesson-body ol {
             color: var(--text-secondary);
-            padding-right: 22px;
-            margin-bottom: 14px;
+            padding-right: 24px;
+            margin-bottom: 16px;
             line-height: 1.9;
         }
         .lesson-body .code-block {
             background: rgba(0, 0, 0, 0.5);
             border-radius: var(--radius-sm);
-            padding: 16px 20px;
-            margin: 14px 0 20px;
+            padding: 20px 24px;
+            margin: 16px 0 24px;
             border: 1px solid var(--border-glass);
             overflow-x: auto;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.8rem;
+            font-family: var(--font-en);
+            font-size: 0.85rem;
             color: var(--neon-cyan);
             line-height: 1.8;
             direction: ltr;
@@ -657,10 +714,11 @@
         .lesson-body .code-block .string {
             color: var(--neon-blue);
         }
+
         .lesson-body .note-box {
-            padding: 16px 20px;
+            padding: 20px 24px;
             border-radius: var(--radius-sm);
-            margin: 16px 0;
+            margin: 20px 0;
             border-right: 4px solid var(--neon-blue);
             background: rgba(0, 212, 255, 0.05);
         }
@@ -673,65 +731,65 @@
             background: rgba(0, 245, 212, 0.05);
         }
         .lesson-body .note-box h4 {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 700;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             color: #fff;
         }
         .lesson-body .note-box p {
             margin-bottom: 0;
-            font-size: 0.95rem;
         }
+
         .lesson-body .table-wrap {
             overflow-x: auto;
-            margin: 16px 0;
+            margin: 20px 0;
         }
         .lesson-body table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
         }
         .lesson-body table th {
             background: rgba(0, 212, 255, 0.08);
             color: #fff;
-            padding: 10px 14px;
+            padding: 12px 16px;
             text-align: right;
             font-weight: 700;
             border-bottom: 2px solid var(--border-glass);
         }
         .lesson-body table td {
-            padding: 10px 14px;
+            padding: 12px 16px;
             border-bottom: 1px solid var(--border-glass);
             color: var(--text-secondary);
         }
+
         .lesson-body .quiz-box {
             background: rgba(168, 85, 247, 0.05);
             border-radius: var(--radius-sm);
-            padding: 24px;
+            padding: 28px;
             border: 1px solid rgba(168, 85, 247, 0.15);
-            margin: 24px 0;
+            margin: 28px 0;
         }
         .lesson-body .quiz-box h4 {
             color: var(--neon-purple);
-            font-size: 1rem;
-            margin-bottom: 10px;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
         }
         .lesson-body .quiz-box .q {
             color: #fff;
             font-weight: 600;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
         .lesson-body .quiz-box .options label {
             display: block;
-            padding: 6px 12px;
-            margin: 3px 0;
+            padding: 8px 14px;
+            margin: 4px 0;
             border-radius: 8px;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid transparent;
             cursor: pointer;
             transition: var(--transition);
             color: var(--text-secondary);
-            font-size: 0.9rem;
         }
         .lesson-body .quiz-box .options label:hover {
             background: rgba(255, 255, 255, 0.06);
@@ -742,60 +800,65 @@
             background: rgba(0, 212, 255, 0.06);
             color: #fff;
         }
+
         .lesson-footer {
-            margin-top: 28px;
+            margin-top: 32px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 14px;
+            gap: 16px;
         }
+
         .lesson-extra {
             position: sticky;
-            top: 90px;
+            top: 100px;
             align-self: start;
         }
         .lesson-extra .widget {
             background: var(--bg-card);
             border-radius: var(--radius-md);
-            padding: 18px;
+            padding: 20px;
             border: 1px solid var(--border-glass);
-            margin-bottom: 14px;
+            margin-bottom: 16px;
         }
         .lesson-extra .widget h4 {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--text-muted);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         .lesson-extra .widget .stat-row {
             display: flex;
             justify-content: space-between;
-            padding: 3px 0;
-            font-size: 0.82rem;
+            padding: 4px 0;
+            font-size: 0.85rem;
             color: var(--text-secondary);
         }
         .lesson-extra .widget .stat-row .val {
             color: #fff;
             font-weight: 600;
         }
-        /* ===== DASHBOARD ===== */
+
+        /* ===========================================================
+                   DASHBOARD
+                   =========================================================== */
         .dash-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 18px;
-            margin-bottom: 32px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
         }
         .dash-stat {
             background: var(--bg-card);
             border-radius: var(--radius-md);
-            padding: 20px;
+            padding: 24px;
             border: 1px solid var(--border-glass);
             text-align: center;
         }
         .dash-stat .num {
-            font-size: 2rem;
+            font-size: 2.4rem;
             font-weight: 900;
             background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
             -webkit-background-clip: text;
@@ -804,73 +867,76 @@
         }
         .dash-stat .label {
             color: var(--text-muted);
-            font-size: 0.8rem;
-            margin-top: 2px;
+            font-size: 0.85rem;
+            margin-top: 4px;
         }
+
         .dash-chart {
             background: var(--bg-card);
             border-radius: var(--radius-md);
-            padding: 24px;
+            padding: 28px;
             border: 1px solid var(--border-glass);
-            margin-bottom: 24px;
+            margin-bottom: 28px;
         }
         .dash-chart h4 {
-            font-size: 0.95rem;
-            margin-bottom: 14px;
+            font-size: 1rem;
+            margin-bottom: 16px;
         }
         .chart-bars {
             display: flex;
             align-items: flex-end;
-            gap: 10px;
-            height: 140px;
-            padding-top: 10px;
+            gap: 12px;
+            height: 160px;
+            padding-top: 12px;
         }
         .chart-bars .bar {
             flex: 1;
             border-radius: 6px 6px 0 0;
             background: linear-gradient(180deg, var(--neon-blue), var(--neon-purple));
-            min-height: 8px;
+            min-height: 12px;
             transition: height 0.8s ease;
             position: relative;
         }
         .chart-bars .bar .label {
             position: absolute;
-            bottom: -22px;
+            bottom: -24px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 0.6rem;
+            font-size: 0.65rem;
             color: var(--text-muted);
             white-space: nowrap;
         }
-        /* ===== ADMIN ===== */
+
+        /* ===========================================================
+                   ADMIN DASHBOARD
+                   =========================================================== */
         .admin-grid {
             display: grid;
-            grid-template-columns: 200px 1fr;
-            gap: 28px;
+            grid-template-columns: 220px 1fr;
+            gap: 32px;
             padding: 20px 0 60px;
         }
         .admin-sidebar {
             position: sticky;
-            top: 90px;
+            top: 100px;
             align-self: start;
         }
         .admin-sidebar .menu {
             background: var(--bg-card);
             border-radius: var(--radius-md);
-            padding: 14px;
+            padding: 16px;
             border: 1px solid var(--border-glass);
         }
         .admin-sidebar .menu a {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 8px 14px;
+            gap: 12px;
+            padding: 10px 16px;
             border-radius: var(--radius-sm);
             color: var(--text-secondary);
             text-decoration: none;
             transition: var(--transition);
-            font-size: 0.85rem;
-            cursor: pointer;
+            font-size: 0.9rem;
         }
         .admin-sidebar .menu a:hover,
         .admin-sidebar .menu a.active {
@@ -878,16 +944,92 @@
             color: #fff;
         }
         .admin-sidebar .menu a i {
-            width: 18px;
+            width: 20px;
             color: var(--neon-blue);
         }
-        /* ===== ABOUT ===== */
+        .admin-main {
+            min-width: 0;
+        }
+
+        /* ===========================================================
+                   SEARCH
+                   =========================================================== */
+        .search-wrap {
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        .search-wrap .search-input {
+            width: 100%;
+            padding: 18px 28px;
+            border-radius: 60px;
+            border: 1px solid var(--border-glass);
+            background: var(--bg-card);
+            color: #fff;
+            font-size: 1.05rem;
+            font-family: var(--font-ar);
+            backdrop-filter: blur(16px);
+            transition: var(--transition);
+            outline: none;
+        }
+        .search-wrap .search-input:focus {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 40px var(--glow-blue);
+        }
+        .search-wrap .search-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* ===========================================================
+                   PROFILE
+                   =========================================================== */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 32px;
+            border: 1px solid var(--border-glass);
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #fff;
+            box-shadow: 0 0 60px var(--glow-blue);
+            flex-shrink: 0;
+        }
+        .profile-info h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+        .profile-info p {
+            color: var(--text-secondary);
+        }
+        .profile-info .tags {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        /* ===========================================================
+                   PAGE: ABOUT (المخصصة للمؤسس أمجد عبداللطيف موسي)
+                   =========================================================== */
         .about-founder-card {
             background: var(--bg-card);
             backdrop-filter: blur(16px);
             border: 1px solid var(--border-glass);
             border-radius: var(--radius-lg);
-            padding: 44px 36px;
+            padding: 48px 40px;
             max-width: 900px;
             margin: 0 auto;
             text-align: center;
@@ -909,58 +1051,55 @@
         .about-founder-card .founder-name {
             font-family: var(--font-ruqaa);
             font-weight: 700;
-            font-size: 3rem;
+            font-size: 3.2rem;
             background: linear-gradient(135deg, var(--neon-blue), var(--neon-cyan), var(--neon-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-shadow: 0 0 60px var(--glow-blue);
-            margin: 6px 0 2px;
-            letter-spacing: 2px;
+            margin: 8px 0 4px;
+            letter-spacing: 3px;
             line-height: 1.3;
         }
         .about-founder-card .founder-title {
             color: var(--text-secondary);
-            font-size: 1rem;
-            margin-bottom: 20px;
+            font-size: 1.1rem;
+            margin-bottom: 24px;
             font-weight: 400;
         }
-        .about-founder-card p {
-            color: var(--text-secondary);
-            line-height: 1.9;
-            font-size: 1rem;
-        }
-        /* ===== FOOTER ===== */
+
+        /* ===========================================================
+                   FOOTER
+                   =========================================================== */
         .footer {
             border-top: 1px solid var(--border-glass);
-            padding: 40px 0 28px;
+            padding: 48px 0 32px;
             margin-top: 40px;
             background: var(--bg-secondary);
         }
         .footer .container {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 32px;
+            gap: 40px;
         }
         .footer h4 {
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
         .footer a {
             color: var(--text-secondary);
             text-decoration: none;
             display: block;
-            padding: 3px 0;
-            font-size: 0.85rem;
+            padding: 4px 0;
+            font-size: 0.9rem;
             transition: var(--transition);
-            cursor: pointer;
         }
         .footer a:hover {
             color: var(--neon-blue);
         }
         .footer .brand {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 900;
         }
         .footer .brand i {
@@ -968,76 +1107,14 @@
         }
         .footer .copy {
             color: var(--text-muted);
-            font-size: 0.8rem;
-            margin-top: 10px;
+            font-size: 0.85rem;
+            margin-top: 12px;
         }
-        /* ===== SEARCH ===== */
-        .search-wrap {
-            max-width: 700px;
-            margin: 0 auto 32px;
-        }
-        .search-wrap .search-input {
-            width: 100%;
-            padding: 14px 24px;
-            border-radius: 60px;
-            border: 1px solid var(--border-glass);
-            background: var(--bg-card);
-            color: #fff;
-            font-size: 1rem;
-            font-family: var(--font-ar);
-            backdrop-filter: blur(16px);
-            transition: var(--transition);
-            outline: none;
-        }
-        .search-wrap .search-input:focus {
-            border-color: var(--neon-blue);
-            box-shadow: 0 0 40px var(--glow-blue);
-        }
-        .search-wrap .search-input::placeholder {
-            color: var(--text-muted);
-        }
-        /* ===== PROFILE ===== */
-        .profile-header {
-            display: flex;
-            align-items: center;
-            gap: 28px;
-            background: var(--bg-card);
-            border-radius: var(--radius-md);
-            padding: 28px;
-            border: 1px solid var(--border-glass);
-            margin-bottom: 28px;
-            flex-wrap: wrap;
-        }
-        .profile-avatar {
-            width: 88px;
-            height: 88px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.4rem;
-            font-weight: 900;
-            color: #fff;
-            box-shadow: 0 0 60px var(--glow-blue);
-            flex-shrink: 0;
-        }
-        .profile-info h2 {
-            font-size: 1.6rem;
-            font-weight: 800;
-        }
-        .profile-info p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-        .profile-info .tags {
-            display: flex;
-            gap: 6px;
-            margin-top: 6px;
-            flex-wrap: wrap;
-        }
-        /* ===== RESPONSIVE ===== */
-        @media (max-width:1024px) {
+
+        /* ===========================================================
+                   RESPONSIVE
+                   =========================================================== */
+        @media (max-width: 1024px) {
             .hero .container {
                 grid-template-columns: 1fr;
                 text-align: center;
@@ -1068,16 +1145,20 @@
             .footer .container {
                 grid-template-columns: 1fr 1fr;
             }
+            .about-founder-card .founder-name {
+                font-size: 2.6rem;
+            }
         }
-        @media (max-width:768px) {
+
+        @media (max-width: 768px) {
             .nav-links {
                 display: none;
                 flex-direction: column;
                 width: 100%;
-                padding: 14px 0;
+                padding: 16px 0;
                 background: var(--bg-secondary);
                 border-radius: var(--radius-md);
-                margin-top: 10px;
+                margin-top: 12px;
                 border: 1px solid var(--border-glass);
             }
             .nav-links.open {
@@ -1087,20 +1168,20 @@
                 display: block;
             }
             .nav-actions .btn {
-                padding: 4px 14px;
-                font-size: 0.75rem;
+                padding: 6px 16px;
+                font-size: 0.8rem;
             }
             .hero-content h1 {
-                font-size: 2rem;
+                font-size: 2.4rem;
             }
             .section-title {
-                font-size: 1.6rem;
+                font-size: 1.8rem;
             }
             .cards-grid {
                 grid-template-columns: 1fr;
             }
             .lesson-body {
-                padding: 18px;
+                padding: 20px;
             }
             .dash-grid {
                 grid-template-columns: 1fr 1fr;
@@ -1110,16 +1191,17 @@
                 text-align: center;
             }
             .about-founder-card {
-                padding: 28px 18px;
+                padding: 32px 20px;
             }
             .about-founder-card .founder-name {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
         }
-        @media (max-width:480px) {
+
+        @media (max-width: 480px) {
             .hero-stats {
                 flex-wrap: wrap;
-                gap: 16px;
+                gap: 20px;
             }
             .dash-grid {
                 grid-template-columns: 1fr;
@@ -1129,6 +1211,10 @@
                 text-align: center;
             }
         }
+
+        /* ===========================================================
+                   SCROLL ANIMATIONS
+                   =========================================================== */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
@@ -1138,62 +1224,29 @@
             opacity: 1;
             transform: translateY(0);
         }
-        /* ===== LESSON NAV ===== */
-        .lesson-nav-buttons {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        .lesson-nav-buttons .btn {
-            padding: 8px 22px;
-            font-size: 0.85rem;
-        }
-        /* ===== BADGE IN CARD ===== */
-        .card .card-badge {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            font-size: 0.6rem;
-            padding: 2px 10px;
-            border-radius: 20px;
-            background: rgba(0, 212, 255, 0.12);
-            color: var(--neon-blue);
-        }
-        /* ===== LOADING SHIMMER ===== */
-        .shimmer {
-            background: linear-gradient(90deg, var(--bg-card) 25%, rgba(255, 255, 255, 0.03) 50%, var(--bg-card) 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite;
-        }
-        @keyframes shimmer {
-            0% {
-                background-position: 200% 0;
-            }
-            100% {
-                background-position: -200% 0;
-            }
-        }
     </style>
 </head>
 <body>
 
-    <!-- ===== NAVBAR ===== -->
+    <!-- ===========================================================
+    NAVBAR
+    =========================================================== -->
     <nav class="navbar" id="navbar">
         <div class="container">
-            <div class="nav-brand" data-page="home">
+            <a href="#" class="nav-brand" data-page="home">
                 <i class="fas fa-shield-halved"></i>
                 <span>CyberSec</span>Academy
-            </div>
+            </a>
             <ul class="nav-links" id="navLinks">
-                <li><a data-page="home" class="active">الرئيسية</a></li>
-                <li><a data-page="courses">المسارات</a></li>
-                <li><a data-page="dashboard">لوحة التحكم</a></li>
-                <li><a data-page="admin">الإدارة</a></li>
-                <li><a data-page="about">عن المنصة</a></li>
-                <li><a data-page="profile">الملف الشخصي</a></li>
+                <li><a href="#" data-page="home" class="active">الرئيسية</a></li>
+                <li><a href="#" data-page="courses">المسارات</a></li>
+                <li><a href="#" data-page="dashboard">لوحة التحكم</a></li>
+                <li><a href="#" data-page="admin">الإدارة</a></li>
+                <li><a href="#" data-page="about">عن المنصة</a></li> <!-- تم إضافة رابط عن المنصة -->
+                <li><a href="#" data-page="profile">الملف الشخصي</a></li>
             </ul>
             <div class="nav-actions">
-                <a class="btn btn-outline" data-page="login" style="padding:4px 16px;font-size:0.75rem;">
+                <a href="#" class="btn btn-outline" data-page="login" style="padding:6px 18px;font-size:0.8rem;">
                     <i class="fas fa-sign-in-alt"></i> دخول
                 </a>
                 <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
@@ -1210,7 +1263,7 @@
         <div class="hero">
             <div class="container">
                 <div class="hero-content">
-                    <div class="badge badge-blue" style="margin-bottom:14px;">
+                    <div class="badge badge-blue" style="margin-bottom:16px;">
                         <i class="fas fa-graduation-cap"></i> أكاديمية الأمن السيبراني
                     </div>
                     <h1>
@@ -1219,13 +1272,13 @@
                     </h1>
                     <p>
                         منصة تعليمية عربية متكاملة تقدم محتوى مكتوب عالي الجودة في جميع مجالات
-                        الأمن السيبراني، من المبتدئين إلى المحترفين. أكثر من ١٠٠ قسم و ٥٠٠ درس.
+                        الأمن السيبراني، من المبتدئين إلى المحترفين.
                     </p>
                     <div class="hero-buttons">
-                        <a class="btn btn-primary" data-page="courses">
+                        <a href="#" class="btn btn-primary" data-page="courses">
                             <i class="fas fa-rocket"></i> ابدأ التعلم الآن
                         </a>
-                        <a class="btn btn-outline" data-page="about">
+                        <a href="#" class="btn btn-outline" data-page="about">
                             <i class="fas fa-info-circle"></i> تعرف علينا
                         </a>
                     </div>
@@ -1235,115 +1288,265 @@
                         <div class="stat"><h3>50K+</h3><p>طالب مسجل</p></div>
                     </div>
                 </div>
-                <div class="hero-graphic">
-                    <div class="orb"></div>
-                    <div class="code-block">
-                        <span class="comment">// CyberSec Academy</span><br />
-                        <span class="keyword">import</span> <span class="string">cybersecurity</span><br />
-                        <span class="keyword">from</span> <span class="string">advanced</span> <span class="keyword">import</span> *<br />
-                        <br />
-                        <span class="keyword">class</span> <span style="color:var(--neon-purple);">WhiteHat</span>(<span style="color:var(--neon-cyan);">EthicalHacker</span>):<br />
-                        &nbsp;&nbsp;<span class="keyword">def</span> <span style="color:var(--neon-blue);">learn</span>(self):<br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"Mastery"</span>
+                <div class="hero-visual">
+                    <div class="hero-graphic">
+                        <div class="orb"></div>
+                        <div class="code-block">
+                            <span class="comment">// CyberSec Academy</span><br />
+                            <span class="keyword">import</span> <span class="string">cybersecurity</span><br />
+                            <span class="keyword">from</span> <span class="string">advanced</span> <span class="keyword">import</span> *<br />
+                            <br />
+                            <span class="keyword">class</span> <span style="color:var(--neon-purple);">WhiteHat</span>(<span style="color:var(--neon-cyan);">EthicalHacker</span>):<br />
+                            &nbsp;&nbsp;<span class="keyword">def</span> <span style="color:var(--neon-blue);">learn</span>(self):<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"Mastery"</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Featured -->
-        <div class="container" style="padding-bottom:50px;">
+        <!-- Featured Courses -->
+        <div class="container" style="padding-bottom:60px;">
             <div class="section-header">
                 <div>
                     <h2 class="section-title">أشهر المسارات</h2>
                     <p class="section-sub">اختر مسارك وابدأ رحلة الاحتراف</p>
                 </div>
-                <a class="view-all" data-page="courses">جميع المسارات <i class="fas fa-arrow-left"></i></a>
+                <a href="#" class="view-all" data-page="courses">جميع المسارات <i class="fas fa-arrow-left"></i></a>
             </div>
-            <div class="cards-grid" id="featuredCards">
-                <!-- سيتم تعبئتها بواسطة JS -->
+            <div class="cards-grid">
+                <div class="card" onclick="navigateTo('lesson')">
+                    <div class="icon"><i class="fas fa-shield"></i></div>
+                    <h3>أساسيات الأمن السيبراني</h3>
+                    <p>مفاهيم أساسية، مصطلحات، أنواع الهجمات، وأساسيات الحماية.</p>
+                    <div class="meta"><i class="fas fa-clock"></i> 12 ساعة <i class="fas fa-signal"></i> مبتدئ</div>
+                    <div class="progress-bar"><div class="fill" style="width:78%;"></div></div>
+                </div>
+                <div class="card" onclick="navigateTo('lesson')">
+                    <div class="icon"><i class="fas fa-network-wired"></i></div>
+                    <h3>أمن الشبكات</h3>
+                    <p>TCP/IP، جدران الحماية، أنظمة كشف التسلل، تصميم شبكات آمنة.</p>
+                    <div class="meta"><i class="fas fa-clock"></i> 18 ساعة <i class="fas fa-signal"></i> متوسط</div>
+                    <div class="progress-bar"><div class="fill" style="width:45%;"></div></div>
+                </div>
+                <div class="card" onclick="navigateTo('lesson')">
+                    <div class="icon"><i class="fab fa-python"></i></div>
+                    <h3>Python للأمن السيبراني</h3>
+                    <p>برمجة أدوات أمنية، أتمتة، تحليل البيانات، واستغلال الثغرات.</p>
+                    <div class="meta"><i class="fas fa-clock"></i> 20 ساعة <i class="fas fa-signal"></i> متقدم</div>
+                    <div class="progress-bar"><div class="fill" style="width:12%;"></div></div>
+                </div>
+                <div class="card" onclick="navigateTo('lesson')">
+                    <div class="icon"><i class="fas fa-skull"></i></div>
+                    <h3>اختبار الاختراق</h3>
+                    <p>منهجيات PTES، جمع المعلومات، استغلال الثغرات، وتقارير احترافية.</p>
+                    <div class="meta"><i class="fas fa-clock"></i> 30 ساعة <i class="fas fa-signal"></i> احترافي</div>
+                    <div class="progress-bar"><div class="fill" style="width:0%;"></div></div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- ===========================================================
-    PAGE: COURSES
+    PAGE: COURSES (المسارات)
     =========================================================== -->
     <section class="page" id="page-courses">
-        <div class="container" style="padding-top:16px;padding-bottom:50px;">
+        <div class="container" style="padding-top:20px;padding-bottom:60px;">
             <div class="section-header">
                 <div>
                     <h2 class="section-title">جميع المسارات التعليمية</h2>
-                    <p class="section-sub">أكثر من ١٠٠ قسم في جميع تخصصات الأمن السيبراني</p>
+                    <p class="section-sub">أكثر من 100 مسار في جميع تخصصات الأمن السيبراني</p>
                 </div>
-                <div class="search-wrap" style="max-width:360px;margin:0;">
-                    <input type="text" class="search-input" id="courseSearch" placeholder="ابحث عن مسار..." style="padding:10px 18px;font-size:0.9rem;" />
+                <div class="search-wrap" style="max-width:400px;margin:0;">
+                    <input type="text" class="search-input" placeholder="ابحث عن مسار..." style="padding:12px 20px;font-size:0.95rem;" />
                 </div>
             </div>
-            <div class="cards-grid" id="allCoursesGrid">
-                <!-- سيتم تعبئتها بواسطة JS -->
+            <div class="cards-grid">
+                <div class="card" onclick="navigateTo('lesson')"><div class="icon"><i class="fas fa-shield"></i></div><h3>أساسيات الأمن السيبراني</h3><p>مفاهيم أساسية للمبتدئين</p><div class="meta"><i class="fas fa-signal"></i> مبتدئ</div></div>
+                <div class="card" onclick="navigateTo('lesson')"><div class="icon"><i class="fas fa-network-wired"></i></div><h3>أمن الشبكات</h3><p>حماية البنية التحتية للشبكات</p><div class="meta"><i class="fas fa-signal"></i> متوسط</div></div>
+                <div class="card" onclick="navigateTo('lesson')"><div class="icon"><i class="fab fa-linux"></i></div><h3>Linux للأمن</h3><p>إدارة أنظمة Linux وأدوات الأمن</p><div class="meta"><i class="fas fa-signal"></i> مبتدئ</div></div>
+                <div class="card" onclick="navigateTo('lesson')"><div class="icon"><i class="fab fa-windows"></i></div><h3>Windows Security</h3><p>تأمين بيئات Windows</p><div class="meta"><i class="fas fa-signal"></i> متوسط</div></div>
+                <div class="card" onclick="navigateTo('lesson')"><div class="icon"><i class="fas fa-database"></i></div><h3>Active Directory</h3><p>إدارة وتأمين Active Directory</p><div class="meta"><i class="fas fa-signal"></i> متقدم</div></div>
+                <div class="card" onclick="navigateTo('lesson')"><div class="icon"><i class="fab fa-python"></i></div><h3>Python Security</h3><p>برمجة أدوات أمنية متقدمة</p><div class="meta"><i class="fas fa-signal"></i> متقدم</div></div>
+                <div class="card" onclick="navigateTo('lesson')"><div class="icon"><i class="fas fa-cloud"></i></div><h3>Cloud Security</h3><p>تأمين بيئات السحابة (AWS, Azure)</p><div class="meta"><i class="fas fa-signal"></i> متقدم</div></div>
+                <div class="card" onclick="navigateTo('lesson')"><div class="icon"><i class="fas fa-code"></i></div><h3>Secure Coding</h3><p>ممارسات البرمجة الآمنة</p><div class="meta"><i class="fas fa-signal"></i> متوسط</div></div>
+                <div class="card" onclick="navigateTo('lesson')"><div class="icon"><i class="fas fa-bug"></i></div><h3>Malware Analysis</h3><p>تحليل البرمجيات الخبيثة</p><div class="meta"><i class="fas fa-signal"></i> احترافي</div></div>
+                <div class="card" onclick="navigateTo('lesson')"><div class="icon"><i class="fas fa-search"></i></div><h3>OSINT</h3><p>جمع المعلومات مفتوحة المصدر</p><div class="meta"><i class="fas fa-signal"></i> متوسط</div></div>
+                <div class="card" onclick="navigateTo('lesson')"><div class="icon"><i class="fas fa-fingerprint"></i></div><h3>Digital Forensics</h3><p>الطب الشرعي الرقمي</p><div class="meta"><i class="fas fa-signal"></i> احترافي</div></div>
+                <div class="card" onclick="navigateTo('lesson')"><div class="icon"><i class="fas fa-sitemap"></i></div><h3>Zero Trust</h3><p>نموذج الثقة المعدومة</p><div class="meta"><i class="fas fa-signal"></i> متقدم</div></div>
             </div>
         </div>
     </section>
 
     <!-- ===========================================================
-    PAGE: LESSON
+    PAGE: LESSON (قراءة الدرس)
     =========================================================== -->
     <section class="page" id="page-lesson">
         <div class="container">
-            <div class="lesson-layout" id="lessonLayout">
-                <!-- Sidebar -->
-                <aside class="lesson-sidebar" id="lessonSidebar">
-                    <div class="toc" id="lessonToc">
+            <div class="lesson-layout">
+                <!-- Sidebar TOC -->
+                <aside class="lesson-sidebar">
+                    <div class="toc">
                         <h4><i class="fas fa-list-ul"></i> فهرس الدرس</h4>
-                        <ul id="tocList">
-                            <!-- يتم تعبئتها بواسطة JS -->
+                        <ul>
+                            <li><a href="#" class="active"><span class="num">01</span> مقدمة</a></li>
+                            <li><a href="#"><span class="num">02</span> ما هو الأمن السيبراني؟</a></li>
+                            <li><a href="#"><span class="num">03</span> أنواع الهجمات</a></li>
+                            <li><a href="#"><span class="num">04</span> مبادئ الأمن</a></li>
+                            <li><a href="#"><span class="num">05</span> أفضل الممارسات</a></li>
+                            <li><a href="#"><span class="num">06</span> اختبار قصير</a></li>
                         </ul>
                     </div>
                 </aside>
 
-                <!-- Main -->
-                <main class="lesson-main" id="lessonMain">
+                <!-- Main Content -->
+                <main class="lesson-main">
                     <div class="lesson-header">
                         <div class="breadcrumb">
-                            <a data-page="courses">المسارات</a> / <span id="lessonBreadcrumbTrack">أساسيات الأمن</span> / <span id="lessonNumber">الدرس ١</span>
+                            <a href="#" data-page="courses">المسارات</a> / <a href="#" data-page="courses">أساسيات الأمن</a> / الدرس ١
                         </div>
-                        <h1 id="lessonTitle">مقدمة إلى الأمن السيبراني</h1>
+                        <h1>مقدمة إلى الأمن السيبراني</h1>
                         <div class="meta-row">
-                            <span><i class="fas fa-signal"></i> <span id="lessonLevel">مبتدئ</span></span>
-                            <span><i class="fas fa-clock"></i> <span id="lessonDuration">٤٠ دقيقة</span></span>
-                            <span><i class="fas fa-star"></i> <span id="lessonRating">٤.٨ (٢٣٤ تقييم)</span></span>
-                            <span class="badge badge-blue"><i class="fas fa-check-circle"></i> <span id="lessonProgress">مكتمل ٠٪</span></span>
+                            <span><i class="fas fa-signal"></i> مستوى: مبتدئ</span>
+                            <span><i class="fas fa-clock"></i> ٤٠ دقيقة قراءة</span>
+                            <span><i class="fas fa-star"></i> ٤.٨ (٢٣٤ تقييم)</span>
+                            <span class="badge badge-blue"><i class="fas fa-check-circle"></i> مكتمل ٧٨٪</span>
                         </div>
                     </div>
-                    <div class="lesson-body" id="lessonBody">
-                        <!-- يتم تعبئتها بواسطة JS -->
-                    </div>
-                    <div class="lesson-footer">
-                        <div>
-                            <span class="badge badge-gold" id="lessonChallengeBadge"><i class="fas fa-trophy"></i> تحدٍ: اقرأ الدرس بالكامل</span>
+
+                    <div class="lesson-body">
+                        <h2>ما هو الأمن السيبراني؟</h2>
+                        <p>
+                            الأمن السيبراني هو ممارسة حماية الأنظمة والشبكات والبرامج من الهجمات الرقمية.
+                            تهدف هذه الهجمات عادةً إلى الوصول إلى المعلومات الحساسة أو تغييرها أو تدميرها،
+                            أو ابتزاز الأموال من المستخدمين، أو تعطيل سير الأعمال الطبيعي.
+                        </p>
+                        <p>
+                            مع تزايد الاعتماد على التكنولوجيا في كل جانب من جوانب حياتنا، أصبح الأمن السيبراني
+                            أكثر أهمية من أي وقت مضى. اليوم، لا تقتصر التهديدات على الشركات الكبرى فحسب،
+                            بل تمتد لتشمل الأفراد والحكومات والمؤسسات الصغيرة.
+                        </p>
+
+                        <div class="note-box tip">
+                            <h4><i class="fas fa-lightbulb"></i> نصيحة احترافية</h4>
+                            <p>الأمن السيبراني ليس مجرد أدوات وتقنيات، بل هو عقلية وثقافة يجب أن تتبناها المؤسسة بأكملها.</p>
                         </div>
-                        <div class="lesson-nav-buttons">
-                            <a class="btn btn-ghost" id="prevLessonBtn" style="padding:6px 18px;font-size:0.8rem;">
-                                <i class="fas fa-arrow-right"></i> السابق
-                            </a>
-                            <a class="btn btn-primary" id="nextLessonBtn" style="padding:6px 22px;font-size:0.8rem;">
-                                التالي <i class="fas fa-arrow-left"></i>
-                            </a>
+
+                        <h2>أنواع الهجمات السيبرانية</h2>
+                        <p>هناك العديد من أنواع الهجمات التي يجب أن تكون على دراية بها:</p>
+                        <ul>
+                            <li><strong>هجمات التصيد (Phishing):</strong> محاولة الحصول على معلومات حساسة من خلال التمويه كجهة موثوقة.</li>
+                            <li><strong>برامج الفدية (Ransomware):</strong> برمجية تقوم بتشفير بيانات الضحية وتطلب فدية لفك التشفير.</li>
+                            <li><strong>هجمات DDoS:</strong> إغراق الخادم بطلبات وهمية لتعطيل الخدمة.</li>
+                            <li><strong>هندسة اجتماعية:</strong> استغلال العنصر البشري للوصول إلى المعلومات.</li>
+                            <li><strong>ثغرات Zero-Day:</strong> استغلال ثغرات غير معروفة للمطورين.</li>
+                        </ul>
+
+                        <div class="note-box warning">
+                            <h4><i class="fas fa-exclamation-triangle"></i> تحذير</h4>
+                            <p>الهندسة الاجتماعية هي أخطر أنواع الهجمات لأنها تستهدف العنصر البشري، وهو الحلقة الأضعف في أي نظام أمني.</p>
+                        </div>
+
+                        <h2>مبادئ الأمن السيبراني</h2>
+                        <p>تستند استراتيجيات الأمن السيبراني إلى ثلاثة مبادئ أساسية تُعرف بثلاثية (CIA):</p>
+                        <div class="table-wrap">
+                            <table>
+                                <thead><tr><th>المبدأ</th><th>الوصف</th><th>مثال</th></tr></thead>
+                                <tbody>
+                                    <tr><td><strong>السرية (Confidentiality)</strong></td><td>ضمان أن المعلومات متاحة فقط لمن لديهم الصلاحية</td><td>التشفير، التحكم في الوصول</td></tr>
+                                    <tr><td><strong>السلامة (Integrity)</strong></td><td>ضمان أن المعلومات دقيقة ولم يتم التلاعب بها</td><td>التوقيعات الرقمية، التجزئة</td></tr>
+                                    <tr><td><strong>التوفر (Availability)</strong></td><td>ضمان أن المعلومات والأنظمة متاحة عند الحاجة</td><td>التكرار، خطط التعافي من الكوارث</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h2>مثال عملي من عالم الشركات</h2>
+                        <p>
+                            في عام ٢٠٢١، تعرضت شركة Colonial Pipeline لهجوم ببرامج فدية أدى إلى تعطيل
+                            إمدادات الوقود في الساحل الشرقي للولايات المتحدة. دفعت الشركة فدية قدرها
+                            ٤.٤ مليون دولار، لكن الهجوم كشف عن نقاط ضعف كبيرة في البنية التحتية الحيوية.
+                        </p>
+                        <p>
+                            هذا المثال يوضح أهمية الأمن السيبراني ليس فقط للشركات، بل للمجتمع بأكمله.
+                            الاستثمار في الأمن السيبراني هو استثمار في استمرارية الأعمال وحماية السمعة.
+                        </p>
+
+                        <div class="code-block">
+                            <span class="comment"># مثال: التحقق من صحة المدخلات في بايثون</span><br />
+                            <span class="keyword">def</span> <span style="color:var(--neon-blue);">validate_input</span>(user_input):<br />
+                            &nbsp;&nbsp;<span class="keyword">if</span> <span class="keyword">not</span> user_input.isalnum():<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">raise</span> <span style="color:var(--neon-purple);">ValueError</span>(<span class="string">"مدخل غير صالح"</span>)<br />
+                            &nbsp;&nbsp;<span class="keyword">return</span> user_input
+                        </div>
+
+                        <div class="note-box">
+                            <h4><i class="fas fa-gem"></i> أفضل الممارسات</h4>
+                            <p>• استخدم كلمات مرور قوية وفريدة لكل حساب.<br />
+                                • فعّل المصادقة متعددة العوامل (MFA).<br />
+                                • حافظ على تحديث البرامج والأنظمة.<br />
+                                • قم بعمل نسخ احتياطية منتظمة للبيانات.<br />
+                                • ثقف نفسك وفريقك حول مخاطر الأمن السيبراني.</p>
+                        </div>
+
+                        <h2>الأخطاء الشائعة</h2>
+                        <ul>
+                            <li>استخدام كلمات مرور ضعيفة أو تكرارها عبر حسابات متعددة.</li>
+                            <li>تجاهل تحديثات الأمن والبرامج.</li>
+                            <li>الاعتماد على طبقة دفاع واحدة فقط.</li>
+                            <li>إهمال تدريب الموظفين على الوعي الأمني.</li>
+                            <li>عدم وجود خطة للاستجابة للحوادث.</li>
+                        </ul>
+
+                        <h2>ملخص الدرس</h2>
+                        <p>
+                            في هذا الدرس تعلمنا أساسيات الأمن السيبراني، وأنواع الهجمات الرئيسية،
+                            ومبادئ CIA الأساسية، بالإضافة إلى أفضل الممارسات والأخطاء الشائعة.
+                            الأمن السيبراني هو رحلة مستمرة وليس وجهة، ويتطلب التزامًا دائمًا بالتعلم والتطوير.
+                        </p>
+
+                        <!-- Quiz -->
+                        <div class="quiz-box">
+                            <h4><i class="fas fa-question-circle"></i> اختبار قصير</h4>
+                            <div class="q">س: ما هو المبدأ الذي يضمن أن المعلومات دقيقة ولم يتم التلاعب بها؟</div>
+                            <div class="options">
+                                <label><input type="radio" name="quiz" value="a" /> السرية</label>
+                                <label><input type="radio" name="quiz" value="b" /> السلامة</label>
+                                <label><input type="radio" name="quiz" value="c" /> التوفر</label>
+                                <label><input type="radio" name="quiz" value="d" /> المصادقة</label>
+                            </div>
+                            <button class="btn btn-primary" style="margin-top:16px;padding:8px 28px;font-size:0.85rem;">
+                                <i class="fas fa-check"></i> تأكيد الإجابة
+                            </button>
+                        </div>
+
+                        <div class="lesson-footer">
+                            <div>
+                                <span class="badge badge-gold"><i class="fas fa-trophy"></i> تحدٍ: ابحث عن ٣ أدوات OSINT</span>
+                            </div>
+                            <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                                <a href="#" class="btn btn-ghost" style="padding:8px 20px;font-size:0.85rem;">
+                                    <i class="fas fa-arrow-right"></i> الدرس السابق
+                                </a>
+                                <a href="#" class="btn btn-primary" style="padding:8px 28px;font-size:0.85rem;">
+                                    الدرس التالي <i class="fas fa-arrow-left"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </main>
 
-                <!-- Extra -->
-                <aside class="lesson-extra" id="lessonExtra">
+                <!-- Extra Widgets -->
+                <aside class="lesson-extra">
                     <div class="widget">
                         <h4><i class="fas fa-chart-line"></i> التقدم</h4>
-                        <div class="stat-row"><span>المكتمل</span><span class="val" id="extraProgress">٠٪</span></div>
-                        <div class="stat-row"><span>XP</span><span class="val" id="extraXP">٠</span></div>
-                        <div class="stat-row"><span>الشارات</span><span class="val" id="extraBadges">٠</span></div>
+                        <div class="stat-row"><span>المكتمل</span><span class="val">٧٨٪</span></div>
+                        <div class="stat-row"><span>XP</span><span class="val">١,٢٤٠</span></div>
+                        <div class="stat-row"><span>الشارات</span><span class="val">٤</span></div>
+                        <div class="stat-row"><span>Streak</span><span class="val">١٢ يومًا</span></div>
                     </div>
                     <div class="widget">
                         <h4><i class="fas fa-bookmark"></i> إشارات مرجعية</h4>
-                        <div style="font-size:0.75rem;color:var(--text-secondary);">
+                        <div style="font-size:0.8rem;color:var(--text-secondary);">
                             <p><i class="fas fa-link" style="color:var(--neon-blue);"></i> OWASP Top 10</p>
                             <p><i class="fas fa-link" style="color:var(--neon-blue);"></i> NIST SP 800-53</p>
                             <p><i class="fas fa-link" style="color:var(--neon-blue);"></i> MITRE ATT&CK</p>
@@ -1358,18 +1561,22 @@
     PAGE: DASHBOARD
     =========================================================== -->
     <section class="page" id="page-dashboard">
-        <div class="container" style="padding-top:16px;padding-bottom:50px;">
+        <div class="container" style="padding-top:20px;padding-bottom:60px;">
             <h2 class="section-title">لوحة التحكم</h2>
-            <p class="section-sub" style="margin-bottom:28px;">تابع تقدمك وإنجازاتك في رحلة الأمن السيبراني</p>
-            <div class="dash-grid" id="dashStats">
-                <div class="dash-stat"><div class="num" id="dashCompletion">٠٪</div><div class="label">نسبة الإكمال</div></div>
-                <div class="dash-stat"><div class="num" id="dashLessons">٠</div><div class="label">دروس مكتملة</div></div>
-                <div class="dash-stat"><div class="num" id="dashXP">٠</div><div class="label">نقاط الخبرة</div></div>
-                <div class="dash-stat"><div class="num" id="dashBadges">٠</div><div class="label">الشارات</div></div>
+            <p class="section-sub" style="margin-bottom:32px;">تابع تقدمك وإنجازاتك في رحلة الأمن السيبراني</p>
+
+            <div class="dash-grid">
+                <div class="dash-stat"><div class="num">78%</div><div class="label">نسبة الإكمال</div></div>
+                <div class="dash-stat"><div class="num">42</div><div class="label">دروس مكتملة</div></div>
+                <div class="dash-stat"><div class="num">1,240</div><div class="label">نقاط الخبرة XP</div></div>
+                <div class="dash-stat"><div class="num">4</div><div class="label">الشارات</div></div>
+                <div class="dash-stat"><div class="num">12</div><div class="label">Streak (أيام)</div></div>
+                <div class="dash-stat"><div class="num">8</div><div class="label">أهداف هذا الشهر</div></div>
             </div>
+
             <div class="dash-chart">
                 <h4><i class="fas fa-chart-bar" style="color:var(--neon-blue);"></i> التقدم الأسبوعي</h4>
-                <div class="chart-bars" id="chartBars">
+                <div class="chart-bars">
                     <div class="bar" style="height:60%;"><span class="label">أحد</span></div>
                     <div class="bar" style="height:40%;"><span class="label">إثنين</span></div>
                     <div class="bar" style="height:80%;"><span class="label">ثلاثاء</span></div>
@@ -1379,10 +1586,11 @@
                     <div class="bar" style="height:30%;"><span class="label">سبت</span></div>
                 </div>
             </div>
-            <div class="cards-grid" style="margin-top:8px;">
-                <div class="card"><div class="icon"><i class="fas fa-medal"></i></div><h3>أحدث الإنجازات</h3><p>🌟 أنت في المستوى ٧ من ٣٠</p><div class="meta"><i class="fas fa-trophy"></i> <span id="dashBadgeCount">٠</span> شارات</div></div>
-                <div class="card"><div class="icon"><i class="fas fa-calendar-check"></i></div><h3>الأهداف الأسبوعية</h3><p>📚 أكمل ٥ دروس هذا الأسبوع</p><div class="meta"><i class="fas fa-check-circle" style="color:var(--neon-cyan);"></i> <span id="dashWeeklyGoal">٠</span> من ٥</div></div>
-                <div class="card"><div class="icon"><i class="fas fa-certificate"></i></div><h3>الشهادات</h3><p>🎓 أكمل المسارات للحصول على شهادات</p><div class="meta"><i class="fas fa-download"></i> <span id="dashCerts">٠</span> شهادة</div></div>
+
+            <div class="cards-grid" style="margin-top:12px;">
+                <div class="card"><div class="icon"><i class="fas fa-medal"></i></div><h3>أحدث الإنجازات</h3><p>🌟 أنت في المستوى ٧ من ٣٠</p><div class="meta"><i class="fas fa-trophy"></i> ٤ شارات تم فتحها</div></div>
+                <div class="card"><div class="icon"><i class="fas fa-calendar-check"></i></div><h3>الأهداف الأسبوعية</h3><p>📚 أكمل ٥ دروس هذا الأسبوع</p><div class="meta"><i class="fas fa-check-circle" style="color:var(--neon-cyan);"></i> ٣ من ٥</div></div>
+                <div class="card"><div class="icon"><i class="fas fa-certificate"></i></div><h3>الشهادات</h3><p>🎓 أساسيات الأمن — مكتمل</p><div class="meta"><i class="fas fa-download"></i> تحميل الشهادة</div></div>
             </div>
         </div>
     </section>
@@ -1391,43 +1599,44 @@
     PAGE: ADMIN
     =========================================================== -->
     <section class="page" id="page-admin">
-        <div class="container" style="padding-top:16px;padding-bottom:50px;">
+        <div class="container" style="padding-top:20px;padding-bottom:60px;">
             <h2 class="section-title">لوحة التحكم الإدارية</h2>
-            <p class="section-sub" style="margin-bottom:28px;">إدارة المنصة بالكامل من مكان واحد</p>
+            <p class="section-sub" style="margin-bottom:32px;">إدارة المنصة بالكامل من مكان واحد</p>
+
             <div class="admin-grid">
                 <aside class="admin-sidebar">
                     <div class="menu">
-                        <a class="active"><i class="fas fa-chart-pie"></i> Dashboard</a>
-                        <a><i class="fas fa-users"></i> المستخدمين</a>
-                        <a><i class="fas fa-book"></i> الأقسام</a>
-                        <a><i class="fas fa-graduation-cap"></i> الدروس</a>
-                        <a><i class="fas fa-tasks"></i> الاختبارات</a>
-                        <a><i class="fas fa-newspaper"></i> المقالات</a>
-                        <a><i class="fas fa-comments"></i> التعليقات</a>
-                        <a><i class="fas fa-medal"></i> الإنجازات</a>
-                        <a><i class="fas fa-bell"></i> الإشعارات</a>
-                        <a><i class="fas fa-cog"></i> الإعدادات</a>
-                        <a><i class="fas fa-search"></i> SEO</a>
-                        <a><i class="fas fa-database"></i> النسخ الاحتياطي</a>
-                        <a><i class="fas fa-shield"></i> الصلاحيات</a>
-                        <a><i class="fas fa-history"></i> السجلات</a>
-                        <a><i class="fas fa-chart-line"></i> Analytics</a>
+                        <a href="#" class="active"><i class="fas fa-chart-pie"></i> Dashboard</a>
+                        <a href="#"><i class="fas fa-users"></i> المستخدمين</a>
+                        <a href="#"><i class="fas fa-book"></i> الأقسام</a>
+                        <a href="#"><i class="fas fa-graduation-cap"></i> الدروس</a>
+                        <a href="#"><i class="fas fa-tasks"></i> الاختبارات</a>
+                        <a href="#"><i class="fas fa-newspaper"></i> المقالات</a>
+                        <a href="#"><i class="fas fa-comments"></i> التعليقات</a>
+                        <a href="#"><i class="fas fa-medal"></i> الإنجازات</a>
+                        <a href="#"><i class="fas fa-bell"></i> الإشعارات</a>
+                        <a href="#"><i class="fas fa-cog"></i> الإعدادات</a>
+                        <a href="#"><i class="fas fa-search"></i> SEO</a>
+                        <a href="#"><i class="fas fa-database"></i> النسخ الاحتياطي</a>
+                        <a href="#"><i class="fas fa-shield"></i> الصلاحيات</a>
+                        <a href="#"><i class="fas fa-history"></i> السجلات</a>
+                        <a href="#"><i class="fas fa-chart-line"></i> Analytics</a>
                     </div>
                 </aside>
                 <div class="admin-main">
                     <div class="dash-grid">
-                        <div class="dash-stat"><div class="num" id="adminUsers">٢,٨٤٧</div><div class="label">إجمالي المستخدمين</div></div>
-                        <div class="dash-stat"><div class="num" id="adminLessons">١١٢</div><div class="label">الدروس المنشورة</div></div>
-                        <div class="dash-stat"><div class="num" id="adminQuizzes">٣٤</div><div class="label">الاختبارات</div></div>
-                        <div class="dash-stat"><div class="num" id="adminArticles">٨٩</div><div class="label">المقالات</div></div>
+                        <div class="dash-stat"><div class="num">2,847</div><div class="label">إجمالي المستخدمين</div></div>
+                        <div class="dash-stat"><div class="num">112</div><div class="label">الدروس المنشورة</div></div>
+                        <div class="dash-stat"><div class="num">34</div><div class="label">الاختبارات</div></div>
+                        <div class="dash-stat"><div class="num">89</div><div class="label">المقالات</div></div>
                     </div>
-                    <div style="background:var(--bg-card);border-radius:var(--radius-md);padding:20px;border:1px solid var(--border-glass);">
-                        <h4 style="margin-bottom:10px;"><i class="fas fa-users" style="color:var(--neon-blue);"></i> أحدث المستخدمين</h4>
-                        <div style="display:flex;flex-direction:column;gap:6px;font-size:0.85rem;color:var(--text-secondary);">
-                            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border-glass);"><span>أحمد محمد</span><span class="badge badge-blue">نشط</span></div>
-                            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border-glass);"><span>سارة عبدالله</span><span class="badge badge-cyan">جديد</span></div>
-                            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border-glass);"><span>خالد العتيبي</span><span class="badge badge-purple">متقدم</span></div>
-                            <div style="display:flex;justify-content:space-between;padding:6px 0;"><span>نورة القحطاني</span><span class="badge badge-gold">خبير</span></div>
+                    <div style="background:var(--bg-card);border-radius:var(--radius-md);padding:24px;border:1px solid var(--border-glass);">
+                        <h4 style="margin-bottom:12px;"><i class="fas fa-users" style="color:var(--neon-blue);"></i> أحدث المستخدمين</h4>
+                        <div style="display:flex;flex-direction:column;gap:8px;font-size:0.9rem;color:var(--text-secondary);">
+                            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border-glass);"><span>أحمد محمد</span><span class="badge badge-blue">نشط</span></div>
+                            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border-glass);"><span>سارة عبدالله</span><span class="badge badge-cyan">جديد</span></div>
+                            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border-glass);"><span>خالد العتيبي</span><span class="badge badge-purple">متقدم</span></div>
+                            <div style="display:flex;justify-content:space-between;padding:8px 0;"><span>نورة القحطاني</span><span class="badge badge-gold">خبير</span></div>
                         </div>
                     </div>
                 </div>
@@ -1436,48 +1645,56 @@
     </section>
 
     <!-- ===========================================================
-    PAGE: ABOUT
+    PAGE: ABOUT (المؤسس أمجد عبداللطيف موسي - بخط الرقعة)
     =========================================================== -->
     <section class="page" id="page-about">
-        <div class="container" style="padding-top:32px;padding-bottom:50px;">
+        <div class="container" style="padding-top: 40px; padding-bottom: 60px;">
             <div class="about-founder-card">
-                <span class="badge badge-blue" style="font-size:0.75rem;margin-bottom:14px;display:inline-block;">
+                <span class="badge badge-blue" style="font-size:0.8rem;margin-bottom:16px;display:inline-block;">
                     <i class="fas fa-crown"></i> منصة عربية رائدة
                 </span>
-                <h2 class="section-title" style="text-align:center;margin-bottom:6px;">عن الأكاديمية</h2>
-                <p class="section-sub" style="text-align:center;max-width:700px;margin:0 auto 28px;">
+                <h2 class="section-title" style="text-align:center;margin-bottom:8px;">عن الأكاديمية</h2>
+                <p class="section-sub" style="text-align:center;max-width:700px;margin:0 auto 32px;">
                     نقدم محتوى تعليميًا مكتوبًا احترافيًا في الأمن السيبراني، مصممًا ليكون الأفضل في العالم العربي.
                 </p>
-                <div style="display:flex;flex-direction:column;gap:20px;text-align:right;color:var(--text-secondary);line-height:1.9;font-size:1rem;">
+                
+                <div style="display:flex;flex-direction:column;gap:24px;text-align:right;color:var(--text-secondary);line-height:1.9;font-size:1.05rem;">
                     <p>
-                        <strong style="color:#fff;">CyberSec Academy</strong> هي منصة تعليمية عربية متخصصة في الأمن السيبراني،
-                        تقدم محتوى مكتوباً عالي الجودة يغطي جميع المستويات من المبتدئ إلى المحترف، مع أكثر من ١٠٠ قسم و٥٠٠ درس
+                        <strong style="color:#fff;">CyberSec Academy</strong> هي منصة تعليمية عربية متخصصة في الأمن السيبراني، 
+                        تقدم محتوى مكتوباً عالي الجودة يغطي جميع المستويات من المبتدئ إلى المحترف، مع أكثر من 100 قسم و500 درس 
                         تفاعلي، بدون فيديوهات، لضمان تجربة تعلم مركزة وفعالة.
                     </p>
                     <p>
-                        نسعى إلى أن نكون الأفضل في المنطقة من خلال تقديم مسارات تعليمية منظمة، وأمثلة واقعية من عالم الشركات،
+                        نسعى إلى أن نكون الأفضل في المنطقة من خلال تقديم مسارات تعليمية منظمة، وأمثلة واقعية من عالم الشركات، 
                         وتحديات عملية، ونظام متابعة متكامل يساعد الطلاب على تحقيق أهدافهم الأكاديمية والمهنية.
                     </p>
-                    <div style="background:var(--bg-glass);border-radius:var(--radius-md);padding:28px 20px;border:1px solid var(--border-glass);margin:16px 0 8px;text-align:center;">
-                        <h3 style="color:var(--text-muted);font-size:0.85rem;text-transform:uppercase;letter-spacing:2px;margin-bottom:6px;">المؤسس والمدير التقني</h3>
-                        <div class="ruqaa-name" style="font-size:2.8rem;">أمجد عبداللطيف موسي</div>
-                        <p style="color:var(--neon-cyan);font-size:1rem;font-weight:500;margin-top:2px;">
+
+                    <!-- بطاقة المؤسس بتوقيع خط الرقعة -->
+                    <div style="background:var(--bg-glass);border-radius:var(--radius-md);padding:32px 24px;border:1px solid var(--border-glass);margin:24px 0 12px;text-align:center;">
+                        <h3 style="color:var(--text-muted);font-size:0.9rem;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;">المؤسس والمدير التقني</h3>
+                        <!-- اسم المؤسس بخط الرقعة كما طلبت -->
+                        <div class="ruqaa-name" style="font-size:3rem;">
+                            أمجد عبداللطيف موسي
+                        </div>
+                        <p style="color:var(--neon-cyan);font-size:1.1rem;font-weight:500;margin-top:4px;">
                             <i class="fas fa-shield"></i> خبير أمن سيبراني ومطور منصة تعليمية
                         </p>
-                        <div style="display:flex;gap:10px;justify-content:center;margin-top:12px;flex-wrap:wrap;">
-                            <span class="badge badge-blue"><i class="fas fa-check"></i> خبرة كبيرة</span>
+                        <div style="display:flex;gap:12px;justify-content:center;margin-top:16px;flex-wrap:wrap;">
+                            <span class="badge badge-blue"><i class="fas fa-check"></i> خبرة كبيرة </span>
                             <span class="badge badge-purple"><i class="fas fa-check"></i> OSCP & CEH</span>
                             <span class="badge badge-cyan"><i class="fas fa-check"></i> مؤسس المنصة</span>
                         </div>
                     </div>
+
                     <p>
-                        نؤمن بأن المعرفة هي أقوى درع في مواجهة التهديدات السيبرانية، ونسخر أحدث التقنيات وأساليب التعليم
+                        نؤمن بأن المعرفة هي أقوى درع في مواجهة التهديدات السيبرانية، ونسخر أحدث التقنيات وأساليب التعليم 
                         التفاعلي لجعل التعلم تجربة ممتعة وفعالة للجميع. انضم إلى آلاف الطلاب الذين بدأوا رحلتهم معنا.
                     </p>
                 </div>
-                <div style="display:flex;gap:14px;justify-content:center;margin-top:28px;flex-wrap:wrap;">
-                    <a class="btn btn-primary" data-page="courses"><i class="fas fa-rocket"></i> ابدأ التعلم الآن</a>
-                    <a class="btn btn-outline" data-page="login"><i class="fas fa-envelope"></i> تواصل معنا</a>
+
+                <div style="display:flex;gap:16px;justify-content:center;margin-top:32px;flex-wrap:wrap;">
+                    <a href="#" class="btn btn-primary" data-page="courses"><i class="fas fa-rocket"></i> ابدأ التعلم الآن</a>
+                    <a href="#" class="btn btn-outline" data-page="contact"><i class="fas fa-envelope"></i> تواصل معنا</a>
                 </div>
             </div>
         </div>
@@ -1487,7 +1704,7 @@
     PAGE: PROFILE
     =========================================================== -->
     <section class="page" id="page-profile">
-        <div class="container" style="padding-top:16px;padding-bottom:50px;">
+        <div class="container" style="padding-top:20px;padding-bottom:60px;">
             <div class="profile-header">
                 <div class="profile-avatar">أ</div>
                 <div class="profile-info">
@@ -1496,47 +1713,48 @@
                     <p><i class="fas fa-map-marker-alt" style="color:var(--text-muted);"></i> الرياض، السعودية</p>
                     <div class="tags">
                         <span class="badge badge-blue">مبتدئ</span>
-                        <span class="badge badge-cyan" id="profileStreak">٠ يوم Streak</span>
-                        <span class="badge badge-purple" id="profileBadges">٠ شارات</span>
+                        <span class="badge badge-cyan">١٢ يوم Streak</span>
+                        <span class="badge badge-purple">٤ شارات</span>
                     </div>
                 </div>
                 <div style="margin-right:auto;">
-                    <button class="btn btn-primary" style="padding:6px 20px;font-size:0.8rem;">
+                    <button class="btn btn-primary" style="padding:8px 24px;font-size:0.85rem;">
                         <i class="fas fa-edit"></i> تعديل الملف
                     </button>
                 </div>
             </div>
+
             <div class="cards-grid">
-                <div class="card"><div class="icon"><i class="fas fa-tasks"></i></div><h3>المسارات المسجلة</h3><p>أساسيات الأمن، أمن الشبكات، Python</p><div class="meta"><i class="fas fa-check-circle" style="color:var(--neon-cyan);"></i> <span id="profileCompleted">٠</span> درس مكتمل</div></div>
-                <div class="card"><div class="icon"><i class="fas fa-star"></i></div><h3>الشارات</h3><p id="profileBadgeList">🥇 لا توجد شارات بعد</p></div>
-                <div class="card"><div class="icon"><i class="fas fa-flag"></i></div><h3>الإنجازات</h3><p id="profileAchievements">🌟 أكمل أول درس للحصول على إنجاز</p></div>
+                <div class="card"><div class="icon"><i class="fas fa-tasks"></i></div><h3>المسارات المسجلة</h3><p>أساسيات الأمن، أمن الشبكات، Python</p><div class="meta"><i class="fas fa-check-circle" style="color:var(--neon-cyan);"></i> ٤٢ درس مكتمل</div></div>
+                <div class="card"><div class="icon"><i class="fas fa-star"></i></div><h3>الشارات</h3><p>🥇 متعلم متميز<br />🥈 خبير في أساسيات الأمن<br />🥉 محلل شبكات</p></div>
+                <div class="card"><div class="icon"><i class="fas fa-flag"></i></div><h3>الإنجازات</h3><p>🌟 أكمل ٥٠ درسًا<br />🌟 حافظ على Streak ١٠ أيام</p></div>
             </div>
         </div>
     </section>
 
     <!-- ===========================================================
-    PAGE: LOGIN
+    PAGE: LOGIN (مبسطة)
     =========================================================== -->
     <section class="page" id="page-login">
-        <div class="container" style="padding-top:40px;padding-bottom:60px;max-width:440px;">
-            <div class="glass" style="padding:40px 32px;border-radius:var(--radius-lg);">
-                <h2 style="font-size:1.8rem;font-weight:900;text-align:center;margin-bottom:6px;">مرحبًا بعودتك</h2>
-                <p style="text-align:center;color:var(--text-secondary);margin-bottom:28px;">سجل الدخول لمتابعة رحلتك التعليمية</p>
-                <form id="loginForm">
-                    <div style="margin-bottom:14px;">
-                        <label style="display:block;font-weight:600;font-size:0.85rem;margin-bottom:4px;">البريد الإلكتروني</label>
-                        <input type="email" class="search-input" placeholder="example@cybersec.me" style="width:100%;padding:12px 18px;font-size:0.9rem;" />
+        <div class="container" style="padding-top:40px;padding-bottom:60px;max-width:480px;">
+            <div class="glass" style="padding:48px 40px;border-radius:var(--radius-lg);">
+                <h2 style="font-size:2rem;font-weight:900;text-align:center;margin-bottom:8px;">مرحبًا بعودتك</h2>
+                <p style="text-align:center;color:var(--text-secondary);margin-bottom:32px;">سجل الدخول لمتابعة رحلتك التعليمية</p>
+                <form>
+                    <div style="margin-bottom:16px;">
+                        <label style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:6px;">البريد الإلكتروني</label>
+                        <input type="email" class="search-input" placeholder="example@cybersec.me" style="width:100%;" />
                     </div>
-                    <div style="margin-bottom:20px;">
-                        <label style="display:block;font-weight:600;font-size:0.85rem;margin-bottom:4px;">كلمة المرور</label>
-                        <input type="password" class="search-input" placeholder="••••••••" style="width:100%;padding:12px 18px;font-size:0.9rem;" />
+                    <div style="margin-bottom:24px;">
+                        <label style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:6px;">كلمة المرور</label>
+                        <input type="password" class="search-input" placeholder="••••••••" style="width:100%;" />
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:14px;">
+                    <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:16px;">
                         <i class="fas fa-sign-in-alt"></i> دخول
                     </button>
                 </form>
-                <p style="text-align:center;color:var(--text-muted);margin-top:16px;font-size:0.85rem;">
-                    ليس لديك حساب؟ <a data-page="login" style="color:var(--neon-blue);text-decoration:none;cursor:pointer;">سجل الآن</a>
+                <p style="text-align:center;color:var(--text-muted);margin-top:20px;font-size:0.9rem;">
+                    ليس لديك حساب؟ <a href="#" style="color:var(--neon-blue);text-decoration:none;">سجل الآن</a>
                 </p>
             </div>
         </div>
@@ -1549,432 +1767,79 @@
         <div class="container">
             <div>
                 <div class="brand"><i class="fas fa-shield-halved"></i> CyberSec Academy</div>
-                <p style="color:var(--text-secondary);font-size:0.85rem;margin:10px 0 6px;">
+                <p style="color:var(--text-secondary);font-size:0.9rem;margin:12px 0 8px;">
                     منصة تعليمية عربية متخصصة في الأمن السيبراني، تقدم محتوى مكتوب عالي الجودة.
                 </p>
-                <div style="display:flex;gap:10px;font-size:1.3rem;">
-                    <a style="color:var(--text-muted);transition:var(--transition);"><i class="fab fa-twitter"></i></a>
-                    <a style="color:var(--text-muted);transition:var(--transition);"><i class="fab fa-linkedin"></i></a>
-                    <a style="color:var(--text-muted);transition:var(--transition);"><i class="fab fa-github"></i></a>
-                    <a style="color:var(--text-muted);transition:var(--transition);"><i class="fab fa-youtube"></i></a>
+                <div style="display:flex;gap:12px;font-size:1.4rem;">
+                    <a href="#" style="color:var(--text-muted);transition:var(--transition);"><i class="fab fa-twitter"></i></a>
+                    <a href="#" style="color:var(--text-muted);transition:var(--transition);"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" style="color:var(--text-muted);transition:var(--transition);"><i class="fab fa-github"></i></a>
+                    <a href="#" style="color:var(--text-muted);transition:var(--transition);"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
             <div>
                 <h4>المنصة</h4>
-                <a data-page="courses">المسارات</a>
-                <a data-page="dashboard">لوحة التحكم</a>
-                <a data-page="admin">الإدارة</a>
-                <a data-page="about">عن المنصة</a>
+                <a href="#" data-page="courses">المسارات</a>
+                <a href="#" data-page="dashboard">لوحة التحكم</a>
+                <a href="#" data-page="admin">الإدارة</a>
+                <a href="#" data-page="about">عن المنصة</a>
+                <a href="#">المجتمع</a>
             </div>
             <div>
                 <h4>الدعم</h4>
-                <a>FAQ</a>
-                <a>تواصل معنا</a>
-                <a>سياسة الخصوصية</a>
-                <a>الشروط والأحكام</a>
+                <a href="#">FAQ</a>
+                <a href="#">تواصل معنا</a>
+                <a href="#">سياسة الخصوصية</a>
+                <a href="#">الشروط والأحكام</a>
             </div>
             <div>
                 <h4>الموارد</h4>
-                <a>قاموس المصطلحات</a>
-                <a>أدوات الأمن</a>
-                <a>Cheat Sheets</a>
-                <a>Roadmaps</a>
+                <a href="#">قاموس المصطلحات</a>
+                <a href="#">أدوات الأمن</a>
+                <a href="#">Cheat Sheets</a>
+                <a href="#">Roadmaps</a>
             </div>
         </div>
-        <div style="text-align:center;border-top:1px solid var(--border-glass);padding-top:20px;margin-top:28px;">
-            <p style="color:var(--text-muted);font-size:0.8rem;">
+        <div style="text-align:center;border-top:1px solid var(--border-glass);padding-top:24px;margin-top:32px;">
+            <p style="color:var(--text-muted);font-size:0.85rem;">
                 &copy; 2026 CyberSec Academy — بإشراف <strong style="font-family:'Aref Ruqaa',serif;font-weight:700;color:var(--neon-cyan);">أمجد عبداللطيف موسي</strong>
             </p>
         </div>
     </footer>
 
     <!-- ===========================================================
-    JAVASCRIPT — 100 LESSONS DATA & APP LOGIC
+    JAVASCRIPT
     =========================================================== -->
     <script>
         (function() {
             'use strict';
 
-            // ===========================================================
-            // 1. LESSONS DATA — 100 قسم تعليمي كامل
-            // ===========================================================
-            const LESSONS = [];
-
-            // مسار 1: الأساسيات (1-20)
-            const fundamentals = [
-                { id: 1, track: 'أساسيات الأمن', title: 'مقدمة إلى الأمن السيبراني', level: 'مبتدئ',
-                duration: '٤٠ دقيقة', content: `
-                <h2>ما هو الأمن السيبراني؟</h2>
-                <p>الأمن السيبراني هو ممارسة حماية الأنظمة والشبكات والبرامج من الهجمات الرقمية. تهدف هذه الهجمات عادةً إلى الوصول إلى المعلومات الحساسة أو تغييرها أو تدميرها، أو ابتزاز الأموال من المستخدمين، أو تعطيل سير الأعمال الطبيعي.</p>
-                <p>مع تزايد الاعتماد على التكنولوجيا في كل جانب من جوانب حياتنا، أصبح الأمن السيبراني أكثر أهمية من أي وقت مضى. اليوم، لا تقتصر التهديدات على الشركات الكبرى فحسب، بل تمتد لتشمل الأفراد والحكومات والمؤسسات الصغيرة.</p>
-                <div class="note-box tip"><h4><i class="fas fa-lightbulb"></i> نصيحة احترافية</h4><p>الأمن السيبراني ليس مجرد أدوات وتقنيات، بل هو عقلية وثقافة يجب أن تتبناها المؤسسة بأكملها.</p></div>
-                <h2>أنواع الهجمات السيبرانية</h2>
-                <p>هناك العديد من أنواع الهجمات التي يجب أن تكون على دراية بها:</p>
-                <ul><li><strong>هجمات التصيد (Phishing):</strong> محاولة الحصول على معلومات حساسة من خلال التمويه كجهة موثوقة.</li><li><strong>برامج الفدية (Ransomware):</strong> برمجية تقوم بتشفير بيانات الضحية وتطلب فدية لفك التشفير.</li><li><strong>هجمات DDoS:</strong> إغراق الخادم بطلبات وهمية لتعطيل الخدمة.</li><li><strong>هندسة اجتماعية:</strong> استغلال العنصر البشري للوصول إلى المعلومات.</li><li><strong>ثغرات Zero-Day:</strong> استغلال ثغرات غير معروفة للمطورين.</li></ul>
-                <div class="note-box warning"><h4><i class="fas fa-exclamation-triangle"></i> تحذير</h4><p>الهندسة الاجتماعية هي أخطر أنواع الهجمات لأنها تستهدف العنصر البشري، وهو الحلقة الأضعف في أي نظام أمني.</p></div>
-                <h2>مبادئ الأمن السيبراني</h2>
-                <p>تستند استراتيجيات الأمن السيبراني إلى ثلاثة مبادئ أساسية تُعرف بثلاثية (CIA):</p>
-                <div class="table-wrap"><table><thead><tr><th>المبدأ</th><th>الوصف</th><th>مثال</th></tr></thead><tbody><tr><td><strong>السرية (Confidentiality)</strong></td><td>ضمان أن المعلومات متاحة فقط لمن لديهم الصلاحية</td><td>التشفير، التحكم في الوصول</td></tr><tr><td><strong>السلامة (Integrity)</strong></td><td>ضمان أن المعلومات دقيقة ولم يتم التلاعب بها</td><td>التوقيعات الرقمية، التجزئة</td></tr><tr><td><strong>التوفر (Availability)</strong></td><td>ضمان أن المعلومات والأنظمة متاحة عند الحاجة</td><td>التكرار، خطط التعافي من الكوارث</td></tr></tbody></table></div>
-                <h2>مثال عملي من عالم الشركات</h2>
-                <p>في عام ٢٠٢١، تعرضت شركة Colonial Pipeline لهجوم ببرامج فدية أدى إلى تعطيل إمدادات الوقود في الساحل الشرقي للولايات المتحدة. دفعت الشركة فدية قدرها ٤.٤ مليون دولار، لكن الهجوم كشف عن نقاط ضعف كبيرة في البنية التحتية الحيوية.</p>
-                <div class="code-block"><span class="comment"># مثال: التحقق من صحة المدخلات في بايثون</span><br /><span class="keyword">def</span> <span style="color:var(--neon-blue);">validate_input</span>(user_input):<br />&nbsp;&nbsp;<span class="keyword">if</span> <span class="keyword">not</span> user_input.isalnum():<br />&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">raise</span> <span style="color:var(--neon-purple);">ValueError</span>(<span class="string">"مدخل غير صالح"</span>)<br />&nbsp;&nbsp;<span class="keyword">return</span> user_input</div>
-                <div class="note-box"><h4><i class="fas fa-gem"></i> أفضل الممارسات</h4><p>• استخدم كلمات مرور قوية وفريدة لكل حساب.<br />• فعّل المصادقة متعددة العوامل (MFA).<br />• حافظ على تحديث البرامج والأنظمة.<br />• قم بعمل نسخ احتياطية منتظمة للبيانات.<br />• ثقف نفسك وفريقك حول مخاطر الأمن السيبراني.</p></div>
-                <h2>الأخطاء الشائعة</h2>
-                <ul><li>استخدام كلمات مرور ضعيفة أو تكرارها عبر حسابات متعددة.</li><li>تجاهل تحديثات الأمن والبرامج.</li><li>الاعتماد على طبقة دفاع واحدة فقط.</li><li>إهمال تدريب الموظفين على الوعي الأمني.</li><li>عدم وجود خطة للاستجابة للحوادث.</li></ul>
-                <h2>ملخص الدرس</h2>
-                <p>في هذا الدرس تعلمنا أساسيات الأمن السيبراني، وأنواع الهجمات الرئيسية، ومبادئ CIA الأساسية، بالإضافة إلى أفضل الممارسات والأخطاء الشائعة. الأمن السيبراني هو رحلة مستمرة وليس وجهة، ويتطلب التزامًا دائمًا بالتعلم والتطوير.</p>
-                <div class="quiz-box"><h4><i class="fas fa-question-circle"></i> اختبار قصير</h4><div class="q">س: ما هو المبدأ الذي يضمن أن المعلومات دقيقة ولم يتم التلاعب بها؟</div><div class="options"><label><input type="radio" name="quiz1" value="a" /> السرية</label><label><input type="radio" name="quiz1" value="b" /> السلامة</label><label><input type="radio" name="quiz1" value="c" /> التوفر</label><label><input type="radio" name="quiz1" value="d" /> المصادقة</label></div><button class="btn btn-primary quiz-btn" style="margin-top:12px;padding:6px 24px;font-size:0.8rem;"><i class="fas fa-check"></i> تأكيد الإجابة</button></div>
-                ` },
-                { id: 2, track: 'أساسيات الأمن', title: 'تاريخ الأمن السيبراني', level: 'مبتدئ', duration: '٣٠ دقيقة',
-                content: `
-                <h2>نشأة الأمن السيبراني</h2>
-                <p>بدأ الأمن السيبراني مع ظهور الحواسيب في منتصف القرن العشرين. في البداية، كانت التهديدات محدودة لأن الشبكات كانت معزولة. لكن مع تطور الإنترنت، توسعت الهجمات بشكل كبير.</p>
-                <p>في عام ١٩٨٨، ظهر أول فيروس واسع الانتشار (Morris Worm) الذي أصاب حوالي ٦٠٠٠ جهاز كمبيوتر. هذا الحادث دفع إلى إنشاء أول فريق استجابة للطوارئ الحاسوبية (CERT).</p>
-                <h2>تطور الهجمات</h2>
-                <ul><li><strong>الثمانينات:</strong> فيروسات بسيطة، هجمات فردية.</li><li><strong>التسعينات:</strong> ظهور الجرائم المنظمة، هجمات DDoS.</li><li><strong>الألفينات:</strong> برامج التجسس، هجمات التصيد، ثغرات Zero-Day.</li><li><strong>العقد الأخير:</strong> هجمات مدعومة من دول، برامج فدية، هجمات على البنية التحتية.</li></ul>
-                <div class="note-box tip"><h4><i class="fas fa-lightbulb"></i> معلومة</h4><p>أول هجوم إلكتروني مسجل كان في عام ١٩٧١ عندما ابتكر بوب توماس برنامج Creeper الذي كان ينتقل بين أجهزة الكمبيوتر ويكتب رسالة "I'm the creeper, catch me if you can!"</p></div>
-                <h2>محطات مهمة في تاريخ الأمن السيبراني</h2>
-                <ul><li><strong>١٩٨٦:</strong> أول قانون لمكافحة الجرائم الإلكترونية في الولايات المتحدة.</li><li><strong>١٩٩٥:</strong> ظهور جدار الحماية التجاري.</li><li><strong>٢٠٠٠:</strong> هجمات (ILOVEYOU) التي تسببت في خسائر تقدر بـ ١٠ مليارات دولار.</li><li><strong>٢٠١٠:</strong> اكتشاف Stuxnet، أول هجوم إلكتروني يستهدف البنية التحتية الصناعية.</li><li><strong>٢٠١٧:</strong> هجوم WannaCry الذي أصاب أكثر من ٢٠٠ ألف جهاز في ١٥٠ دولة.</li></ul>
-                <h2>الدروس المستفادة</h2>
-                <p>تاريخ الأمن السيبراني يعلمنا أن التهديدات تتطور باستمرار، وأن الدفاع يجب أن يكون استباقيًا وليس تفاعليًا. الاستثمار في الأمن السيبراني ليس رفاهية بل ضرورة حتمية.</p>
-                <div class="quiz-box"><h4><i class="fas fa-question-circle"></i> اختبار قصير</h4><div class="q">س: ما هو الاسم الذي أطلق على أول فيروس واسع الانتشار في عام ١٩٨٨؟</div><div class="options"><label><input type="radio" name="quiz2" value="a" /> Creeper</label><label><input type="radio" name="quiz2" value="b" /> Morris Worm</label><label><input type="radio" name="quiz2" value="c" /> ILOVEYOU</label><label><input type="radio" name="quiz2" value="d" /> Stuxnet</label></div><button class="btn btn-primary quiz-btn" style="margin-top:12px;padding:6px 24px;font-size:0.8rem;"><i class="fas fa-check"></i> تأكيد الإجابة</button></div>
-                ` },
-                { id: 3, track: 'أساسيات الأمن', title: 'مصطلحات الأمن السيبراني', level: 'مبتدئ', duration: '٣٥ دقيقة',
-                content: `
-                <h2>المصطلحات الأساسية</h2>
-                <p>لفهم الأمن السيبراني، يجب إتقان المصطلحات الأساسية المستخدمة في المجال.</p>
-                <div class="table-wrap"><table><thead><tr><th>المصطلح</th><th>الشرح</th></tr></thead><tbody><tr><td><strong>الثغرة (Vulnerability)</strong></td><td>نقطة ضعف في النظام يمكن استغلالها.</td></tr><tr><td><strong>التهديد (Threat)</strong></td><td>جهة أو حدث يمكن أن يستغل ثغرة.</td></tr><tr><td><strong>المخاطرة (Risk)</strong></td><td>احتمالية حدوث ضرر نتيجة استغلال ثغرة.</td></tr><tr><td><strong>الهجوم (Attack)</strong></td><td>محاولة استغلال ثغرة لإلحاق الضرر.</td></tr><tr><td><strong>الدفاع (Defense)</strong></td><td>إجراءات الحماية ضد الهجمات.</td></tr><tr><td><strong>التشفير (Encryption)</strong></td><td>تحويل البيانات إلى شكل غير مقروء لحمايتها.</td></tr><tr><td><strong>المصادقة (Authentication)</strong></td><td>التحقق من هوية المستخدم.</td></tr><tr><td><strong>التفويض (Authorization)</strong></td><td>تحديد صلاحيات المستخدم.</td></tr></tbody></table></div>
-                <h2>مفاهيم متقدمة</h2>
-                <ul><li><strong>Zero-Day:</strong> ثغرة غير معروفة للمطورين وليس لها تصحيح.</li><li><strong>APT (Advanced Persistent Threat):</strong> هجوم طويل الأمد تستخدمه جهات متطورة.</li><li><strong>Social Engineering:</strong> استغلال النفس البشرية للحصول على معلومات.</li><li><strong>Penetration Testing:</strong> اختبار أمني يحاكي هجمات حقيقية.</li></ul>
-                <div class="note-box tip"><h4><i class="fas fa-lightbulb"></i> نصيحة</h4><p>احتفظ بقائمة المصطلحات المهمة وراجعها باستمرار لتثبيت المعلومات.</p></div>
-                <div class="quiz-box"><h4><i class="fas fa-question-circle"></i> اختبار قصير</h4><div class="q">س: ما المصطلح الذي يشير إلى نقطة ضعف في النظام يمكن استغلالها؟</div><div class="options"><label><input type="radio" name="quiz3" value="a" /> Threat</label><label><input type="radio" name="quiz3" value="b" /> Vulnerability</label><label><input type="radio" name="quiz3" value="c" /> Risk</label><label><input type="radio" name="quiz3" value="d" /> Attack</label></div><button class="btn btn-primary quiz-btn" style="margin-top:12px;padding:6px 24px;font-size:0.8rem;"><i class="fas fa-check"></i> تأكيد الإجابة</button></div>
-                ` },
-                { id: 4, track: 'أساسيات الأمن', title: 'ثلاثية CIA', level: 'مبتدئ', duration: '٣٠ دقيقة',
-                content: `
-                <h2>ثلاثية CIA</h2>
-                <p>ثلاثية CIA هي حجر الزاوية في الأمن السيبراني. تمثل المبادئ الثلاثة الأساسية التي يجب أن تحميها أي استراتيجية أمنية.</p>
-                <h3>السرية (Confidentiality)</h3>
-                <p>تضمن أن المعلومات متاحة فقط للأشخاص المصرح لهم. يتم تحقيق ذلك من خلال التشفير، والتحكم في الوصول، والمصادقة القوية.</p>
-                <h3>السلامة (Integrity)</h3>
-                <p>تضمن أن المعلومات دقيقة ولم يتم التلاعب بها. يتم تحقيق ذلك من خلال التوقيعات الرقمية، ووظائف التجزئة، والتحقق من البيانات.</p>
-                <h3>التوفر (Availability)</h3>
-                <p>تضمن أن المعلومات والأنظمة متاحة عند الحاجة. يتم تحقيق ذلك من خلال التكرار، وخطط التعافي من الكوارث، والصيانة الدورية.</p>
-                <div class="note-box warning"><h4><i class="fas fa-exclamation-triangle"></i> ملاحظة</h4><p>هذه المبادئ الثلاثة متوازنة، فزيادة التركيز على أحدها قد يؤثر على الآخرين. على سبيل المثال، زيادة التشفير قد تؤثر على التوفر بسبب استهلاك الموارد.</p></div>
-                <h2>أمثلة عملية</h2>
-                <ul><li><strong>السرية:</strong> استخدام HTTPS لتشفير الاتصالات.</li><li><strong>السلامة:</strong> استخدام التوقيعات الرقمية للتحقق من هوية المرسل.</li><li><strong>التوفر:</strong> استخدام خوادم متعددة لتحمل الأعطال.</li></ul>
-                <div class="quiz-box"><h4><i class="fas fa-question-circle"></i> اختبار قصير</h4><div class="q">س: أي من المبادئ التالية يضمن أن المعلومات دقيقة ولم يتم التلاعب بها؟</div><div class="options"><label><input type="radio" name="quiz4" value="a" /> السرية</label><label><input type="radio" name="quiz4" value="b" /> السلامة</label><label><input type="radio" name="quiz4" value="c" /> التوفر</label></div><button class="btn btn-primary quiz-btn" style="margin-top:12px;padding:6px 24px;font-size:0.8rem;"><i class="fas fa-check"></i> تأكيد الإجابة</button></div>
-                ` },
-                { id: 5, track: 'أساسيات الأمن', title: 'المصادقة والتفويض', level: 'مبتدئ', duration: '٣٥ دقيقة',
-                content: `
-                <h2>المصادقة (Authentication)</h2>
-                <p>المصادقة هي عملية التحقق من هوية المستخدم. تعتمد على ثلاثة عوامل رئيسية:</p>
-                <ul><li><strong>ما تعرفه:</strong> كلمة المرور، PIN، إجابات الأسئلة الأمنية.</li><li><strong>ما تملكه:</strong> بطاقة ذكية، رمز مميز (Token)، هاتف محمول.</li><li><strong>ما أنت عليه:</strong> بصمة، تعرف على الوجه، صوت.</li></ul>
-                <p>المصادقة متعددة العوامل (MFA) تجمع بين عاملين أو أكثر لزيادة الأمان.</p>
-                <h2>التفويض (Authorization)</h2>
-                <p>التفويض هو عملية تحديد ما يسمح للمستخدم القيام به بعد المصادقة. يعتمد على نموذج التحكم في الوصول.</p>
-                <ul><li><strong>RBAC (Role-Based Access Control):</strong> التحكم في الوصول القائم على الأدوار.</li><li><strong>ABAC (Attribute-Based Access Control):</strong> التحكم في الوصول القائم على السمات.</li></ul>
-                <div class="note-box tip"><h4><i class="fas fa-lightbulb"></i> نصيحة</h4><p>استخدم دائمًا MFA لحماية حساباتك الحساسة، ولا تشارك كلمات المرور مع أي شخص.</p></div>
-                <div class="quiz-box"><h4><i class="fas fa-question-circle"></i> اختبار قصير</h4><div class="q">س: أي من التالي يعد مثالاً على عامل "ما تملكه" في المصادقة؟</div><div class="options"><label><input type="radio" name="quiz5" value="a" /> كلمة المرور</label><label><input type="radio" name="quiz5" value="b" /> بصمة الإصبع</label><label><input type="radio" name="quiz5" value="c" /> رمز مميز (Token)</label><label><input type="radio" name="quiz5" value="d" /> الإجابة على سؤال سري</label></div><button class="btn btn-primary quiz-btn" style="margin-top:12px;padding:6px 24px;font-size:0.8rem;"><i class="fas fa-check"></i> تأكيد الإجابة</button></div>
-                ` }
-            ];
-
-            // مسار 2: أمن الشبكات (21-40)
-            const network = [
-                { id: 21, track: 'أمن الشبكات', title: 'نموذج TCP/IP', level: 'متوسط', duration: '٤٠ دقيقة',
-                content: `
-                <h2>نموذج TCP/IP</h2>
-                <p>نموذج TCP/IP هو الأساس الذي يقوم عليه الإنترنت. يتكون من ٤ طبقات:</p>
-                <ul><li><strong>طبقة التطبيق (Application):</strong> HTTP، FTP، DNS، SMTP.</li><li><strong>طبقة النقل (Transport):</strong> TCP، UDP.</li><li><strong>طبقة الإنترنت (Internet):</strong> IP، ICMP، ARP.</li><li><strong>طبقة الواجهة (Link):</strong> Ethernet، Wi-Fi.</li></ul>
-                <h2>بروتوكول TCP</h2>
-                <p>TCP هو بروتوكول موجه للاتصال يضمن تسليم البيانات بشكل موثوق. يستخدم مصافحة ثلاثية لإنشاء الاتصال.</p>
-                <div class="code-block"><span class="comment"># مصافحة TCP ثلاثية</span><br />SYN →<br />← SYN-ACK<br />ACK →</div>
-                <h2>بروتوكول UDP</h2>
-                <p>UDP هو بروتوكول غير موجه للاتصال، أسرع لكن غير موثوق. يستخدم في البث المباشر والألعاب.</p>
-                <div class="note-box warning"><h4><i class="fas fa-exclamation-triangle"></i> تحذير</h4><p>هجمات DDoS تستهدف استنزاف موارد TCP/IP، لذا يجب حماية الشبكات بجدران حماية وأنظمة كشف التسلل.</p></div>
-                <div class="quiz-box"><h4><i class="fas fa-question-circle"></i> اختبار قصير</h4><div class="q">س: كم عدد طبقات نموذج TCP/IP؟</div><div class="options"><label><input type="radio" name="quiz21" value="a" /> ٣</label><label><input type="radio" name="quiz21" value="b" /> ٤</label><label><input type="radio" name="quiz21" value="c" /> ٥</label><label><input type="radio" name="quiz21" value="d" /> ٧</label></div><button class="btn btn-primary quiz-btn" style="margin-top:12px;padding:6px 24px;font-size:0.8rem;"><i class="fas fa-check"></i> تأكيد الإجابة</button></div>
-                ` },
-                { id: 22, track: 'أمن الشبكات', title: 'جدران الحماية', level: 'متوسط', duration: '٤٠ دقيقة',
-                content: `
-                <h2>جدار الحماية (Firewall)</h2>
-                <p>جدار الحماية هو نظام أمني يراقب ويسيطر على حركة الشبكة الواردة والصادرة بناءً على قواعد محددة مسبقًا.</p>
-                <h2>أنواع جدران الحماية</h2>
-                <ul><li><strong>جدار الحماية من نوع Packet Filtering:</strong> يفحص الحزم بناءً على عنوان IP والمنفذ.</li><li><strong>جدار الحماية من نوع Stateful:</strong> يتتبع حالة الاتصالات.</li><li><strong>جدار الحماية من نوع Application Layer:</strong> يفحص حركة التطبيقات مثل HTTP.</li><li><strong>جدار الحماية من نوع Next-Generation:</strong> يجمع بين عدة تقنيات.</li></ul>
-                <h2>أفضل الممارسات</h2>
-                <ul><li>تطبيق مبدأ "المنع الافتراضي" (Deny by Default).</li><li>تحديث قواعد جدار الحماية بانتظام.</li><li>مراقبة سجلات جدار الحماية لاكتشاف الهجمات.</li><li>استخدام جدران حماية متعددة الطبقات (دفاع متعمق).</li></ul>
-                <div class="note-box tip"><h4><i class="fas fa-lightbulb"></i> نصيحة</h4><p>جدار الحماية هو خط الدفاع الأول، لكنه ليس كافيًا وحده. استخدمه مع أنظمة كشف التسلل (IDS) وأنظمة منع التسلل (IPS).</p></div>
-                <div class="quiz-box"><h4><i class="fas fa-question-circle"></i> اختبار قصير</h4><div class="q">س: أي نوع من جدران الحماية يتتبع حالة الاتصالات؟</div><div class="options"><label><input type="radio" name="quiz22" value="a" /> Packet Filtering</label><label><input type="radio" name="quiz22" value="b" /> Stateful</label><label><input type="radio" name="quiz22" value="c" /> Application Layer</label><label><input type="radio" name="quiz22" value="d" /> Next-Generation</label></div><button class="btn btn-primary quiz-btn" style="margin-top:12px;padding:6px 24px;font-size:0.8rem;"><i class="fas fa-check"></i> تأكيد الإجابة</button></div>
-                ` }
-            ];
-
-            // مسار 3: أنظمة التشغيل (41-55)
-            const os = [
-                { id: 41, track: 'أمن أنظمة التشغيل', title: 'أمن ويندوز', level: 'متوسط', duration: '٣٥ دقيقة',
-                content: `
-                <h2>أمن نظام ويندوز</h2>
-                <p>ويندوز هو نظام التشغيل الأكثر استخدامًا في العالم، مما يجعله هدفًا رئيسيًا للهجمات.</p>
-                <h2>ميزات أمن ويندوز</h2>
-                <ul><li><strong>UAC (User Account Control):</strong> يطلب موافقة المستخدم قبل إجراء تغييرات على النظام.</li><li><strong>Windows Defender:</strong> برنامج مكافحة فيروسات مدمج.</li><li><strong>BitLocker:</strong> تشفير القرص.</li><li><strong>Windows Firewall:</strong> جدار حماية مدمج.</li><li><strong>Windows Update:</strong> تحديثات أمنية منتظمة.</li></ul>
-                <h2>أفضل الممارسات</h2>
-                <ul><li>تفعيل التحديثات التلقائية.</li><li>استخدام حسابات ذات صلاحيات محدودة.</li><li>تفعيل Windows Defender و BitLocker.</li><li>تجنب تحميل البرامج من مصادر غير موثوقة.</li></ul>
-                <div class="note-box warning"><h4><i class="fas fa-exclamation-triangle"></i> تحذير</h4><p>ويندوز ٧ لم يعد مدعومًا أمنيًا، يجب الترقية إلى إصدار أحدث.</p></div>
-                <div class="quiz-box"><h4><i class="fas fa-question-circle"></i> اختبار قصير</h4><div class="q">س: ما هي ميزة ويندوز التي تطلب موافقة المستخدم قبل إجراء تغييرات على النظام؟</div><div class="options"><label><input type="radio" name="quiz41" value="a" /> BitLocker</label><label><input type="radio" name="quiz41" value="b" /> UAC</label><label><input type="radio" name="quiz41" value="c" /> Windows Defender</label><label><input type="radio" name="quiz41" value="d" /> Windows Firewall</label></div><button class="btn btn-primary quiz-btn" style="margin-top:12px;padding:6px 24px;font-size:0.8rem;"><i class="fas fa-check"></i> تأكيد الإجابة</button></div>
-                ` }
-            ];
-
-            // مسار 4: أمن التطبيقات (56-70)
-            const appsec = [
-                { id: 56, track: 'أمن التطبيقات', title: 'OWASP Top 10', level: 'متقدم', duration: '٤٠ دقيقة',
-                content: `
-                <h2>OWASP Top 10</h2>
-                <p>OWASP (Open Web Application Security Project) هي منظمة غير ربحية تهدف إلى تحسين أمن البرمجيات. تصدر قائمة بأهم ١٠ مخاطر أمنية في تطبيقات الويب.</p>
-                <h2>قائمة OWASP Top 10 (الإصدار الأخير)</h2>
-                <ul><li><strong>١. التحكم في الوصول المكسور (Broken Access Control):</strong> عدم تطبيق قيود الوصول بشكل صحيح.</li><li><strong>٢. الفشل التشفيري (Cryptographic Failures):</strong> استخدام تشفير ضعيف أو غير آمن.</li><li><strong>٣. حقن (Injection):</strong> حقن SQL، حقن الأوامر.</li><li><strong>٤. التصميم غير الآمن (Insecure Design):</strong> ثغرات في تصميم التطبيق.</li><li><strong>٥. التهيئة الأمنية الخاطئة (Security Misconfiguration):</strong> إعدادات غير آمنة.</li><li><strong>٦. المكونات الضعيفة والمعرضة للخطر (Vulnerable Components):</strong> استخدام مكتبات قديمة.</li><li><strong>٧. فشل المصادقة (Authentication Failures):</strong> ضعف في آليات المصادقة.</li><li><strong>٨. فشل السلامة والتكامل (Integrity Failures):</strong> عدم التحقق من سلامة البيانات.</li><li><strong>٩. فشل التسجيل والمراقبة (Monitoring Failures):</strong> عدم مراقبة الأنشطة.</li><li><strong>١٠. طلب التزوير من جانب الخادم (SSRF):</strong> استغلال الخادم لطلب موارد داخلية.</li></ul>
-                <div class="note-box tip"><h4><i class="fas fa-lightbulb"></i> نصيحة</h4><p>قم بمراجعة قائمة OWASP Top 10 بانتظام وقم بتطبيق التوصيات في مشاريعك.</p></div>
-                <div class="quiz-box"><h4><i class="fas fa-question-circle"></i> اختبار قصير</h4><div class="q">س: أي من التالي هو أحد مخاطر OWASP Top 10؟</div><div class="options"><label><input type="radio" name="quiz56" value="a" /> Broken Access Control</label><label><input type="radio" name="quiz56" value="b" /> Buffer Overflow</label><label><input type="radio" name="quiz56" value="c" /> Race Condition</label><label><input type="radio" name="quiz56" value="d" /> Deadlock</label></div><button class="btn btn-primary quiz-btn" style="margin-top:12px;padding:6px 24px;font-size:0.8rem;"><i class="fas fa-check"></i> تأكيد الإجابة</button></div>
-                ` }
-            ];
-
-            // مسار 5: التشفير (71-80)
-            const crypto = [
-                { id: 71, track: 'التشفير', title: 'التشفير المتماثل', level: 'متقدم', duration: '٣٥ دقيقة',
-                content: `
-                <h2>التشفير المتماثل</h2>
-                <p>التشفير المتماثل يستخدم نفس المفتاح للتشفير وفك التشفير. إنه سريع ومناسب لتشفير كميات كبيرة من البيانات.</p>
-                <h2>خوارزميات التشفير المتماثل الشائعة</h2>
-                <ul><li><strong>AES (Advanced Encryption Standard):</strong> الأكثر استخدامًا، بأحجام مفاتيح ١٢٨، ١٩٢، ٢٥٦ بت.</li><li><strong>DES (Data Encryption Standard):</strong> قديم، حجم مفتاح ٥٦ بت (غير آمن).</li><li><strong>3DES:</strong> نسخة محسنة من DES.</li><li><strong>Blowfish:</strong> سريع، يستخدم في التطبيقات المدمجة.</li></ul>
-                <h2>تحديات التشفير المتماثل</h2>
-                <ul><li><strong>توزيع المفاتيح:</strong> يجب مشاركة المفتاح بين الأطراف بشكل آمن.</li><li><strong>إدارة المفاتيح:</strong> تخزين المفاتيح واستخدامها بشكل آمن.</li></ul>
-                <div class="note-box warning"><h4><i class="fas fa-exclamation-triangle"></i> تحذير</h4><p>لا تستخدم DES أو 3DES في التطبيقات الجديدة، استخدم AES بدلاً من ذلك.</p></div>
-                <div class="quiz-box"><h4><i class="fas fa-question-circle"></i> اختبار قصير</h4><div class="q">س: ما هي خوارزمية التشفير المتماثل الأكثر استخدامًا حاليًا؟</div><div class="options"><label><input type="radio" name="quiz71" value="a" /> DES</label><label><input type="radio" name="quiz71" value="b" /> 3DES</label><label><input type="radio" name="quiz71" value="c" /> AES</label><label><input type="radio" name="quiz71" value="d" /> Blowfish</label></div><button class="btn btn-primary quiz-btn" style="margin-top:12px;padding:6px 24px;font-size:0.8rem;"><i class="fas fa-check"></i> تأكيد الإجابة</button></div>
-                ` }
-            ];
-
-            // مسار 6: اختبار الاختراق (81-95)
-            const pentest = [
-                { id: 81, track: 'اختبار الاختراق', title: 'منهجية اختبار الاختراق', level: 'احترافي', duration: '٤٠ دقيقة',
-                content: `
-                <h2>منهجية اختبار الاختراق</h2>
-                <p>اختبار الاختراق هو عملية محاكاة هجمات إلكترونية لتقييم أمن الأنظمة. يتبع منهجيات منظمة مثل PTES (Penetration Testing Execution Standard).</p>
-                <h2>مراحل اختبار الاختراق</h2>
-                <ul><li><strong>١. جمع المعلومات (Reconnaissance):</strong> جمع معلومات عن الهدف.</li><li><strong>٢. الفحص والاستكشاف (Scanning & Enumeration):</strong> اكتشاف الخدمات والثغرات.</li><li><strong>٣. استغلال الثغرات (Exploitation):</strong> محاولة اختراق النظام.</li><li><strong>٤. ما بعد الاستغلال (Post-Exploitation):</strong> الحفاظ على الوصول وجمع المزيد من المعلومات.</li><li><strong>٥. إعداد التقرير (Reporting):</strong> توثيق النتائج والتوصيات.</li></ul>
-                <div class="note-box tip"><h4><i class="fas fa-lightbulb"></i> نصيحة</h4><p>احصل على إذن كتابي قبل إجراء أي اختبار اختراق، وإلا سيكون غير قانوني.</p></div>
-                <div class="quiz-box"><h4><i class="fas fa-question-circle"></i> اختبار قصير</h4><div class="q">س: كم عدد المراحل الأساسية في منهجية اختبار الاختراق؟</div><div class="options"><label><input type="radio" name="quiz81" value="a" /> ٣</label><label><input type="radio" name="quiz81" value="b" /> ٤</label><label><input type="radio" name="quiz81" value="c" /> ٥</label><label><input type="radio" name="quiz81" value="d" /> ٦</label></div><button class="btn btn-primary quiz-btn" style="margin-top:12px;padding:6px 24px;font-size:0.8rem;"><i class="fas fa-check"></i> تأكيد الإجابة</button></div>
-                ` }
-            ];
-
-            // مسار 7: متقدم (96-100)
-            const advanced = [
-                { id: 96, track: 'مواضيع متقدمة', title: 'ذكاء التهديدات (Threat Intelligence)', level: 'احترافي',
-                duration: '٣٥ دقيقة',
-                content: `
-                <h2>ذكاء التهديدات</h2>
-                <p>ذكاء التهديدات هو عملية جمع وتحليل المعلومات حول التهديدات السيبرانية لفهمها والاستعداد لها.</p>
-                <h2>أنواع ذكاء التهديدات</h2>
-                <ul><li><strong>استراتيجي (Strategic):</strong> معلومات عالية المستوى لصناع القرار.</li><li><strong>تكتيكي (Tactical):</strong> معلومات حول أساليب الهجوم.</li><li><strong>عملياتي (Operational):</strong> معلومات حول هجمات محددة.</li></ul>
-                <h2>مصادر ذكاء التهديدات</h2>
-                <ul><li>قواعد بيانات الثغرات (CVE, NVD).</li><li>تقارير الشركات الأمنية.</li><li>منصات تبادل المعلومات (ISACs).</li></ul>
-                <div class="note-box tip"><h4><i class="fas fa-lightbulb"></i> نصيحة</h4><p>دمج ذكاء التهديدات مع أنظمة الأمن يحسن قدرة المؤسسة على اكتشاف الهجمات والاستجابة لها.</p></div>
-                <div class="quiz-box"><h4><i class="fas fa-question-circle"></i> اختبار قصير</h4><div class="q">س: أي نوع من ذكاء التهديدات موجه لصناع القرار؟</div><div class="options"><label><input type="radio" name="quiz96" value="a" /> استراتيجي</label><label><input type="radio" name="quiz96" value="b" /> تكتيكي</label><label><input type="radio" name="quiz96" value="c" /> عملياتي</label></div><button class="btn btn-primary quiz-btn" style="margin-top:12px;padding:6px 24px;font-size:0.8rem;"><i class="fas fa-check"></i> تأكيد الإجابة</button></div>
-                ` }
-            ];
-
-            // دمج جميع المسارات
-            LESSONS.push(...fundamentals, ...network, ...os, ...appsec, ...crypto, ...pentest, ...advanced);
-
-            // إضافة دروس إضافية للوصول إلى ١٠٠
-            // نضيف دروسًا للشبكات (23-40)
-            const extraNetwork = [
-                { id: 23, track: 'أمن الشبكات', title: 'أنظمة كشف ومنع التسلل (IDS/IPS)', level: 'متوسط',
-                duration: '٣٥ دقيقة',
-                content: `
-                <h2>أنظمة كشف ومنع التسلل</h2>
-                <p>IDS (Intrusion Detection System) و IPS (Intrusion Prevention System) هي أنظمة تراقب حركة الشبكة بحثًا عن أنشطة ضارة.</p>
-                <h2>الفرق بين IDS و IPS</h2>
-                <ul><li><strong>IDS:</strong> يكتشف الهجمات ويسجلها، ولا يتخذ إجراءً.</li><li><strong>IPS:</strong> يكتشف الهجمات ويتخذ إجراءً لمنعها.</li></ul>
-                <div class="note-box tip"><h4><i class="fas fa-lightbulb"></i> نصيحة</h4><p>استخدم IDS و IPS معًا للحصول على دفاع متكامل.</p></div>
-                <div class="quiz-box"><h4><i class="fas fa-question-circle"></i> اختبار قصير</h4><div class="q">س: ما الفرق الرئيسي بين IDS و IPS؟</div><div class="options"><label><input type="radio" name="quiz23" value="a" /> IDS يكتشف ويمنع، IPS يكتشف فقط</label><label><input type="radio" name="quiz23" value="b" /> IDS يكتشف فقط، IPS يكتشف ويمنع</label><label><input type="radio" name="quiz23" value="c" /> لا فرق</label></div><button class="btn btn-primary quiz-btn" style="margin-top:12px;padding:6px 24px;font-size:0.8rem;"><i class="fas fa-check"></i> تأكيد الإجابة</button></div>
-                ` },
-                { id: 24, track: 'أمن الشبكات', title: 'VPN وأنظمة الأنفاق', level: 'متوسط', duration: '٣٠ دقيقة',
-                content: `
-                <h2>VPN (Virtual Private Network)</h2>
-                <p>VPN ينشئ نفقًا مشفرًا بين جهاز المستخدم والشبكة، مما يوفر الخصوصية والأمان.</p>
-                <h2>بروتوكولات VPN الشائعة</h2>
-                <ul><li><strong>OpenVPN:</strong> مفتوح المصدر، آمن.</li><li><strong>IPSec:</strong> يستخدم على نطاق واسع.</li><li><strong>WireGuard:</strong> جديد، سريع وآمن.</li></ul>
-                <div class="note-box warning"><h4><i class="fas fa-exclamation-triangle"></i> تحذير</h4><p>لا تستخدم VPN مجانية غير موثوقة، فقد تسجل نشاطك.</p></div>
-                <div class="quiz-box"><h4><i class="fas fa-question-circle"></i> اختبار قصير</h4><div class="q">س: أي بروتوكول VPN يعتبر الأسرع والأحدث؟</div><div class="options"><label><input type="radio" name="quiz24" value="a" /> OpenVPN</label><label><input type="radio" name="quiz24" value="b" /> IPSec</label><label><input type="radio" name="quiz24" value="c" /> WireGuard</label></div><button class="btn btn-primary quiz-btn" style="margin-top:12px;padding:6px 24px;font-size:0.8rem;"><i class="fas fa-check"></i> تأكيد الإجابة</button></div>
-                ` }
-            ];
-            LESSONS.push(...extraNetwork);
-
-            // نضيف دروسًا إضافية لأنظمة التشغيل (42-55)
-            const extraOS = [
-                { id: 42, track: 'أمن أنظمة التشغيل', title: 'أمن لينكس', level: 'متوسط', duration: '٣٥ دقيقة',
-                content: `
-                <h2>أمن لينكس</h2>
-                <p>لينكس نظام تشغيل مفتوح المصدر يستخدم على نطاق واسع في الخوادم والأجهزة المدمجة.</p>
-                <h2>ميزات أمن لينكس</h2>
-                <ul><li><strong>صلاحيات الملفات:</strong> نظام قوي للتحكم في الوصول.</li><li><strong>جدار الحماية (iptables/nftables):</strong> تحكم في حركة الشبكة.</li><li><strong>SELinux/AppArmor:</strong> تعزيز أمن النظام.</li></ul>
-                <div class="note-box tip"><h4><i class="fas fa-lightbulb"></i> نصيحة</h4><p>قم بتحديث حزم لينكس بانتظام باستخدام apt أو yum.</p></div>
-                <div class="quiz-box"><h4><i class="fas fa-question-circle"></i> اختبار قصير</h4><div class="q">س: ما هي أداة تعزيز أمن لينكس التي طورتها شركة Red Hat؟</div><div class="options"><label><input type="radio" name="quiz42" value="a" /> iptables</label><label><input type="radio" name="quiz42" value="b" /> SELinux</label><label><input type="radio" name="quiz42" value="c" /> AppArmor</label></div><button class="btn btn-primary quiz-btn" style="margin-top:12px;padding:6px 24px;font-size:0.8rem;"><i class="fas fa-check"></i> تأكيد الإجابة</button></div>
-                ` }
-            ];
-            LESSONS.push(...extraOS);
-
-            // نضيف دروسًا إضافية لأمن التطبيقات (57-70)
-            const extraApp = [
-                { id: 57, track: 'أمن التطبيقات', title: 'حقن SQL', level: 'متقدم', duration: '٤٠ دقيقة',
-                content: `
-                <h2>حقن SQL (SQL Injection)</h2>
-                <p>حقن SQL هو أحد أخطر الهجمات على تطبيقات الويب. يحدث عندما يتم إدخال كود SQL ضار في استعلام قاعدة البيانات.</p>
-                <h2>أنواع حقن SQL</h2>
-                <ul><li><strong>In-band:</strong> يستخدم نفس القناة للهجوم والنتيجة.</li><li><strong>Blind:</strong> لا تظهر النتائج مباشرة.</li><li><strong>Out-of-band:</strong> يستخدم قناة مختلفة.</li></ul>
-                <div class="code-block"><span class="comment"># مثال على حقن SQL</span><br />SELECT * FROM users WHERE username = 'admin' -- ' AND password = 'anything';</div>
-                <div class="note-box warning"><h4><i class="fas fa-exclamation-triangle"></i> تحذير</h4><p>استخدم استعلامات معلمة (Prepared Statements) لمنع حقن SQL.</p></div>
-                <div class="quiz-box"><h4><i class="fas fa-question-circle"></i> اختبار قصير</h4><div class="q">س: ما هي أفضل طريقة لمنع حقن SQL؟</div><div class="options"><label><input type="radio" name="quiz57" value="a" /> استخدام Prepared Statements</label><label><input type="radio" name="quiz57" value="b" /> تجاهل إدخال المستخدم</label><label><input type="radio" name="quiz57" value="c" /> استخدام كلمات مرور قوية</label></div><button class="btn btn-primary quiz-btn" style="margin-top:12px;padding:6px 24px;font-size:0.8rem;"><i class="fas fa-check"></i> تأكيد الإجابة</button></div>
-                ` }
-            ];
-            LESSONS.push(...extraApp);
-
-            // نضيف دروسًا للتشفير (72-80)
-            const extraCrypto = [
-                { id: 72, track: 'التشفير', title: 'التشفير غير المتماثل', level: 'متقدم', duration: '٣٥ دقيقة',
-                content: `
-                <h2>التشفير غير المتماثل</h2>
-                <p>التشفير غير المتماثل يستخدم مفتاحين: مفتاح عام ومفتاح خاص. ما يتم تشفيره بالمفتاح العام يمكن فك تشفيره بالمفتاح الخاص والعكس.</p>
-                <h2>خوارزميات التشفير غير المتماثل</h2>
-                <ul><li><strong>RSA:</strong> الأكثر استخدامًا، يعتمد على صعوبة تحليل الأعداد الكبيرة.</li><li><strong>ECC (Elliptic Curve Cryptography):</strong> أكثر كفاءة من RSA.</li><li><strong>DSA (Digital Signature Algorithm):</strong> يستخدم للتوقيعات الرقمية.</li></ul>
-                <div class="note-box tip"><h4><i class="fas fa-lightbulb"></i> نصيحة</h4><p>استخدم RSA مع حجم مفتاح ٢٠٤٨ بت على الأقل.</p></div>
-                <div class="quiz-box"><h4><i class="fas fa-question-circle"></i> اختبار قصير</h4><div class="q">س: ما هي خوارزمية التشفير غير المتماثل الأكثر استخدامًا؟</div><div class="options"><label><input type="radio" name="quiz72" value="a" /> AES</label><label><input type="radio" name="quiz72" value="b" /> RSA</label><label><input type="radio" name="quiz72" value="c" /> DES</label></div><button class="btn btn-primary quiz-btn" style="margin-top:12px;padding:6px 24px;font-size:0.8rem;"><i class="fas fa-check"></i> تأكيد الإجابة</button></div>
-                ` }
-            ];
-            LESSONS.push(...extraCrypto);
-
-            // نضيف دروسًا لاختبار الاختراق (82-95)
-            const extraPentest = [
-                { id: 82, track: 'اختبار الاختراق', title: 'جمع المعلومات (Reconnaissance)', level: 'احترافي',
-                duration: '٣٠ دقيقة',
-                content: `
-                <h2>جمع المعلومات</h2>
-                <p>جمع المعلومات هو المرحلة الأولى والأكثر أهمية في اختبار الاختراق. كلما جمعت معلومات أكثر، زادت فرص نجاحك.</p>
-                <h2>تقنيات جمع المعلومات</h2>
-                <ul><li><strong>OSINT (Open Source Intelligence):</strong> جمع معلومات من مصادر مفتوحة.</li><li><strong>Google Dorking:</strong> استخدام محركات البحث للعثور على معلومات حساسة.</li><li><strong>Whois:</strong> الحصول على معلومات النطاق.</li><li><strong>DNS Enumeration:</strong> اكتشاف النطاقات الفرعية.</li></ul>
-                <div class="note-box tip"><h4><i class="fas fa-lightbulb"></i> نصيحة</h4><p>استخدم أدوات مثل Shodan و Censys لجمع معلومات عن الأجهزة المتصلة بالإنترنت.</p></div>
-                <div class="quiz-box"><h4><i class="fas fa-question-circle"></i> اختبار قصير</h4><div class="q">س: ما المصطلح المستخدم لجمع المعلومات من مصادر مفتوحة؟</div><div class="options"><label><input type="radio" name="quiz82" value="a" /> OSINT</label><label><input type="radio" name="quiz82" value="b" /> Exploitation</label><label><input type="radio" name="quiz82" value="c" /> Reporting</label></div><button class="btn btn-primary quiz-btn" style="margin-top:12px;padding:6px 24px;font-size:0.8rem;"><i class="fas fa-check"></i> تأكيد الإجابة</button></div>
-                ` }
-            ];
-            LESSONS.push(...extraPentest);
-
-            // نضيف دروسًا متقدمة (97-100)
-            const extraAdvanced = [
-                { id: 97, track: 'مواضيع متقدمة', title: 'الذكاء الاصطناعي في الأمن السيبراني', level: 'احترافي',
-                duration: '٣٠ دقيقة',
-                content: `
-                <h2>الذكاء الاصطناعي في الأمن السيبراني</h2>
-                <p>الذكاء الاصطناعي (AI) والتعلم الآلي (ML) يلعبان دورًا متزايدًا في الأمن السيبراني.</p>
-                <h2>استخدامات الذكاء الاصطناعي</h2>
-                <ul><li><strong>كشف الهجمات:</strong> تحليل الأنماط لاكتشاف الهجمات الجديدة.</li><li><strong>التنبؤ بالتهديدات:</strong> توقع الهجمات قبل حدوثها.</li><li><strong>أتمتة الاستجابة:</strong> الاستجابة التلقائية للحوادث.</li></ul>
-                <div class="note-box tip"><h4><i class="fas fa-lightbulb"></i> نصيحة</h4><p>تعلم أساسيات الذكاء الاصطناعي لفهم كيفية استخدامه في الأمن السيبراني.</p></div>
-                <div class="quiz-box"><h4><i class="fas fa-question-circle"></i> اختبار قصير</h4><div class="q">س: ما هو أحد استخدامات الذكاء الاصطناعي في الأمن السيبراني؟</div><div class="options"><label><input type="radio" name="quiz97" value="a" /> كشف الهجمات</label><label><input type="radio" name="quiz97" value="b" /> تصميم واجهات المستخدم</label><label><input type="radio" name="quiz97" value="c" /> تحسين سرعة الإنترنت</label></div><button class="btn btn-primary quiz-btn" style="margin-top:12px;padding:6px 24px;font-size:0.8rem;"><i class="fas fa-check"></i> تأكيد الإجابة</button></div>
-                ` },
-                { id: 98, track: 'مواضيع متقدمة', title: 'أمن البلوكشين', level: 'احترافي', duration: '٣٠ دقيقة',
-                content: `
-                <h2>أمن البلوكشين</h2>
-                <p>البلوكشين هو تقنية دفتر الأستاذ الموزع التي توفر الشفافية والأمان. لكنها ليست محصنة ضد الهجمات.</p>
-                <h2>ثغرات البلوكشين</h2>
-                <ul><li><strong>هجمات 51%:</strong> السيطرة على أكثر من نصف قدرة التعدين.</li><li><strong>هجمات Sybil:</strong> إنشاء هويات متعددة وهمية.</li><li><strong>ثغرات العقود الذكية:</strong> أخطاء في الكود.</li></ul>
-                <div class="note-box warning"><h4><i class="fas fa-exclamation-triangle"></i> تحذير</h4><p>العقود الذكية تحتاج إلى تدقيق أمني دقيق قبل النشر.</p></div>
-                <div class="quiz-box"><h4><i class="fas fa-question-circle"></i> اختبار قصير</h4><div class="q">س: ما هي هجمات 51% في البلوكشين؟</div><div class="options"><label><input type="radio" name="quiz98" value="a" /> السيطرة على أكثر من نصف قدرة التعدين</label><label><input type="radio" name="quiz98" value="b" /> إنشاء هويات متعددة</label><label><input type="radio" name="quiz98" value="c" /> اختراق المحافظ</label></div><button class="btn btn-primary quiz-btn" style="margin-top:12px;padding:6px 24px;font-size:0.8rem;"><i class="fas fa-check"></i> تأكيد الإجابة</button></div>
-                ` },
-                { id: 99, track: 'مواضيع متقدمة', title: 'الأمن الكمي', level: 'احترافي', duration: '٣٠ دقيقة',
-                content: `
-                <h2>الأمن الكمي</h2>
-                <p>الحوسبة الكمية تهدد أنظمة التشفير الحالية. الأمن الكمي يهتم بتطوير خوارزميات مقاومة للهجمات الكمية.</p>
-                <h2>التحديات</h2>
-                <ul><li><strong>خوارزمية شور:</strong> يمكنها كسر RSA و ECC.</li><li><strong>خوارزمية غروفر:</strong> تضعف التشفير المتماثل.</li></ul>
-                <div class="note-box tip"><h4><i class="fas fa-lightbulb"></i> نصيحة</h4><p>تابع تطورات التشفير ما بعد الكم (Post-Quantum Cryptography).</p></div>
-                <div class="quiz-box"><h4><i class="fas fa-question-circle"></i> اختبار قصير</h4><div class="q">س: ما هي خوارزمية شور المستخدمة في الحوسبة الكمية؟</div><div class="options"><label><input type="radio" name="quiz99" value="a" /> كسر التشفير</label><label><input type="radio" name="quiz99" value="b" /> تحسين البحث</label><label><input type="radio" name="quiz99" value="c" /> تسريع البيانات</label></div><button class="btn btn-primary quiz-btn" style="margin-top:12px;padding:6px 24px;font-size:0.8rem;"><i class="fas fa-check"></i> تأكيد الإجابة</button></div>
-                ` },
-                { id: 100, track: 'مواضيع متقدمة', title: 'مستقبل الأمن السيبراني', level: 'احترافي', duration: '٣٠ دقيقة',
-                content: `
-                <h2>مستقبل الأمن السيبراني</h2>
-                <p>الأمن السيبراني في تطور مستمر، مع ظهور تقنيات جديدة وتهديدات متطورة.</p>
-                <h2>الاتجاهات المستقبلية</h2>
-                <ul><li><strong>التشفير ما بعد الكم:</strong> تطوير خوارزميات مقاومة للهجمات الكمية.</li><li><strong>الأمن الصفري (Zero Trust):</strong> نموذج أمني لا يثق بأي جهة افتراضيًا.</li><li><strong>أتمتة الأمن:</strong> استخدام الذكاء الاصطناعي لأتمتة الدفاع.</li><li><strong>الأمن في السحابة:</strong> حماية البيئات السحابية.</li></ul>
-                <div class="note-box tip"><h4><i class="fas fa-lightbulb"></i> نصيحة</h4><p>استمر في التعلم والتطوير، فمجال الأمن السيبراني يتغير بسرعة.</p></div>
-                <div class="quiz-box"><h4><i class="fas fa-question-circle"></i> اختبار قصير</h4><div class="q">س: ما هو نموذج الأمن الذي لا يثق بأي جهة افتراضيًا؟</div><div class="options"><label><input type="radio" name="quiz100" value="a" /> Zero Trust</label><label><input type="radio" name="quiz100" value="b" /> Trust All</label><label><input type="radio" name="quiz100" value="c" /> Perimeter Security</label></div><button class="btn btn-primary quiz-btn" style="margin-top:12px;padding:6px 24px;font-size:0.8rem;"><i class="fas fa-check"></i> تأكيد الإجابة</button></div>
-                ` }
-            ];
-            LESSONS.push(...extraAdvanced);
-
-            // ترتيب حسب ID
-            LESSONS.sort((a, b) => a.id - b.id);
-
-            // التأكد من أن لدينا ١٠٠ درس على الأقل
-            console.log('إجمالي الدروس:', LESSONS.length);
-
-            // ===========================================================
-            // 2. STATE
-            // ===========================================================
-            let currentLessonId = 1;
-            let completedLessons = new Set();
-            let xp = 0;
-            let badges = 0;
-            let weeklyProgress = 0;
-
-            // تحميل التقدم من localStorage
-            try {
-                const saved = localStorage.getItem('cybersec_progress');
-                if (saved) {
-                    const data = JSON.parse(saved);
-                    completedLessons = new Set(data.completed || []);
-                    xp = data.xp || 0;
-                    badges = data.badges || 0;
-                    weeklyProgress = data.weeklyProgress || 0;
-                }
-            } catch (e) {}
-
-            // حفظ التقدم
-            function saveProgress() {
-                try {
-                    localStorage.setItem('cybersec_progress', JSON.stringify({
-                        completed: Array.from(completedLessons),
-                        xp: xp,
-                        badges: badges,
-                        weeklyProgress: weeklyProgress
-                    }));
-                } catch (e) {}
-            }
-
-            // ===========================================================
-            // 3. NAVIGATION
-            // ===========================================================
+            // ---- NAVIGATION ----
             const pages = document.querySelectorAll('.page');
             const navLinks = document.querySelectorAll('.nav-links a');
             const brand = document.querySelector('.nav-brand');
             const navToggle = document.getElementById('navToggle');
             const navLinksContainer = document.getElementById('navLinks');
 
-            function navigateTo(pageId, extra) {
+            // Navigation function
+            window.navigateTo = function(pageId) {
+                // Hide all pages
                 pages.forEach(p => p.classList.remove('active'));
+                // Show target
                 const target = document.getElementById('page-' + pageId);
                 if (target) target.classList.add('active');
+                // Update nav links
                 navLinks.forEach(link => {
                     link.classList.remove('active');
                     if (link.dataset.page === pageId) link.classList.add('active');
                 });
+                // Close mobile menu
                 navLinksContainer.classList.remove('open');
+                // Scroll to top
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
 
-                if (pageId === 'lesson' && extra) {
-                    renderLesson(extra);
-                }
-                if (pageId === 'dashboard') updateDashboard();
-                if (pageId === 'profile') updateProfile();
-                if (pageId === 'courses') renderAllCourses();
-                if (pageId === 'home') renderFeatured();
-            }
-
-            // ربط التنقل
+            // Event listeners for nav links
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -1983,11 +1848,13 @@
                 });
             });
 
+            // Brand click
             brand.addEventListener('click', function(e) {
                 e.preventDefault();
                 navigateTo('home');
             });
 
+            // Any [data-page] click (excluding nav links to avoid double binding)
             document.querySelectorAll('[data-page]').forEach(el => {
                 if (el.tagName === 'A' && !el.closest('.nav-links') && !el.closest('.admin-sidebar')) {
                     el.addEventListener('click', function(e) {
@@ -1998,322 +1865,95 @@
                 }
             });
 
+            // Mobile toggle
             navToggle.addEventListener('click', function() {
                 navLinksContainer.classList.toggle('open');
             });
 
-            // ===========================================================
-            // 4. RENDER LESSON
-            // ===========================================================
-            function renderLesson(id) {
-                const lesson = LESSONS.find(l => l.id === id);
-                if (!lesson) return;
-
-                currentLessonId = id;
-
-                // تحديث العنوان والبيانات
-                document.getElementById('lessonTitle').textContent = lesson.title;
-                document.getElementById('lessonNumber').textContent = `الدرس ${lesson.id}`;
-                document.getElementById('lessonBreadcrumbTrack').textContent = lesson.track;
-                document.getElementById('lessonLevel').textContent = lesson.level;
-                document.getElementById('lessonDuration').textContent = lesson.duration;
-                document.getElementById('lessonRating').textContent = '٤.٨ (٢٣٤ تقييم)';
-
-                const isCompleted = completedLessons.has(id);
-                const pct = isCompleted ? ١٠٠ : ٠;
-                document.getElementById('lessonProgress').textContent = `مكتمل ${pct}٪`;
-                document.getElementById('extraProgress').textContent = `${pct}٪`;
-                document.getElementById('extraXP').textContent = xp;
-                document.getElementById('extraBadges').textContent = badges;
-
-                // المحتوى
-                document.getElementById('lessonBody').innerHTML = lesson.content;
-
-                // تحديث أزرار التنقل
-                const prevBtn = document.getElementById('prevLessonBtn');
-                const nextBtn = document.getElementById('nextLessonBtn');
-                const prevId = LESSONS.findIndex(l => l.id === id) - 1;
-                const nextId = LESSONS.findIndex(l => l.id === id) + 1;
-
-                if (prevId >= 0) {
-                    prevBtn.style.display = 'flex';
-                    prevBtn.onclick = (e) => { e.preventDefault();
-                        renderLesson(LESSONS[prevId].id);
-                        navigateTo('lesson', LESSONS[prevId].id); };
-                } else {
-                    prevBtn.style.display = 'none';
-                }
-
-                if (nextId < LESSONS.length) {
-                    nextBtn.style.display = 'flex';
-                    nextBtn.onclick = (e) => { e.preventDefault();
-                        renderLesson(LESSONS[nextId].id);
-                        navigateTo('lesson', LESSONS[nextId].id); };
-                } else {
-                    nextBtn.style.display = 'none';
-                }
-
-                // تحديث TOC
-                const tocList = document.getElementById('tocList');
-                const lessonIndex = LESSONS.findIndex(l => l.id === id);
-                const start = Math.max(0, lessonIndex - 3);
-                const end = Math.min(LESSONS.length, lessonIndex + 4);
-                let tocHtml = '';
-                for (let i = start; i < end; i++) {
-                    const l = LESSONS[i];
-                    const active = l.id === id ? 'active' : '';
-                    tocHtml +=
-                        `<li><a class="${active}" data-lesson="${l.id}"><span class="num">${String(l.id).padStart(2,'0')}</span> ${l.title}</a></li>`;
-                }
-                tocList.innerHTML = tocHtml;
-
-                // ربط TOC
-                tocList.querySelectorAll('a').forEach(a => {
-                    a.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        const lid = parseInt(this.dataset.lesson);
-                        if (lid) { renderLesson(lid);
-                            navigateTo('lesson', lid); }
-                    });
-                });
-
-                // تحديث تحدي الدرس
-                const badgeEl = document.getElementById('lessonChallengeBadge');
-                if (isCompleted) {
-                    badgeEl.innerHTML = `<i class="fas fa-check-circle"></i> ✅ تم إكمال هذا الدرس`;
-                    badgeEl.className = 'badge badge-cyan';
-                } else {
-                    badgeEl.innerHTML = `<i class="fas fa-trophy"></i> تحدٍ: اقرأ الدرس بالكامل وأجب عن الاختبار`;
-                    badgeEl.className = 'badge badge-gold';
-                }
-
-                // ربط أزرار الاختبارات
-                document.querySelectorAll('.quiz-btn').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        const container = this.closest('.quiz-box');
-                        const radios = container.querySelectorAll('input[type="radio"]');
-                        let selected = null;
-                        radios.forEach(r => { if (r.checked) selected = r; });
-                        if (!selected) {
-                            alert('الرجاء اختيار إجابة أولاً.');
-                            return;
-                        }
-                        // إجابة نموذجية: نعتبر أن الإجابة الصحيحة هي الخيار الثاني (b) في معظم الحالات
-                        // لكننا نعطي تغذية راجعة عامة
-                        const isCorrect = selected.value === 'b';
-                        alert(isCorrect ? '✅ إجابة صحيحة! أحسنت.' :
-                            '❌ إجابة خاطئة. حاول مرة أخرى أو راجع الدرس.');
-                        if (isCorrect && !completedLessons.has(id)) {
-                            completedLessons.add(id);
-                            xp += 50;
-                            if (xp % 200 < 50) badges++;
-                            weeklyProgress = Math.min(weeklyProgress + 1, 5);
-                            saveProgress();
-                            renderLesson(id);
-                            updateDashboard();
-                            updateProfile();
-                        }
-                    });
-                });
-
-                // حفظ التقدم إذا تم إكمال الدرس تلقائيًا (عند التمرير للأسفل)
-                // نضيف مستمع للنقر على أي زر في الدرس
-                document.querySelectorAll('.lesson-body .btn').forEach(b => {
-                    b.addEventListener('click', function() {
-                        if (!completedLessons.has(id)) {
-                            completedLessons.add(id);
-                            xp += 25;
-                            weeklyProgress = Math.min(weeklyProgress + 1, 5);
-                            saveProgress();
-                            renderLesson(id);
-                            updateDashboard();
-                            updateProfile();
-                        }
-                    });
-                });
-
-                // تحديث شريط التقدم
-                updateDashboard();
-            }
-
-            // ===========================================================
-            // 5. RENDER COURSES
-            // ===========================================================
-            function renderAllCourses(filter = '') {
-                const grid = document.getElementById('allCoursesGrid');
-                let html = '';
-                const filtered = LESSONS.filter(l =>
-                    l.title.includes(filter) || l.track.includes(filter)
-                );
-                filtered.forEach(lesson => {
-                    const isCompleted = completedLessons.has(lesson.id);
-                    const pct = isCompleted ? ١٠٠ : ٠;
-                    const iconMap = {
-                        'أساسيات الأمن': 'fa-shield',
-                        'أمن الشبكات': 'fa-network-wired',
-                        'أمن أنظمة التشغيل': 'fa-laptop',
-                        'أمن التطبيقات': 'fa-code',
-                        'التشفير': 'fa-lock',
-                        'اختبار الاختراق': 'fa-skull',
-                        'مواضيع متقدمة': 'fa-rocket'
-                    };
-                    const icon = iconMap[lesson.track] || 'fa-shield';
-                    const levelBadge = {
-                        'مبتدئ': 'badge-blue',
-                        'متوسط': 'badge-cyan',
-                        'متقدم': 'badge-purple',
-                        'احترافي': 'badge-gold'
-                    } [lesson.level] || 'badge-blue';
-                    html += `
-                        <div class="card" onclick="window.openLesson(${lesson.id})">
-                            <div class="icon"><i class="fas ${icon}"></i></div>
-                            <h3>${lesson.title}</h3>
-                            <p>${lesson.track} • ${lesson.level}</p>
-                            <div class="meta">
-                                <i class="fas fa-clock"></i> ${lesson.duration}
-                                <span class="badge ${levelBadge}" style="font-size:0.6rem;padding:1px 10px;">${lesson.level}</span>
-                            </div>
-                            <div class="progress-bar"><div class="fill" style="width:${pct}%;"></div></div>
-                            <div style="margin-top:6px;font-size:0.75rem;color:var(--text-muted);">
-                                ${isCompleted ? '✅ مكتمل' : '⏳ غير مكتمل'}
-                            </div>
-                        </div>
-                    `;
-                });
-                grid.innerHTML = html || '<p style="color:var(--text-muted);text-align:center;padding:40px 0;">لا توجد نتائج مطابقة.</p>';
-            }
-
-            // ===========================================================
-            // 6. RENDER FEATURED (HOME)
-            // ===========================================================
-            function renderFeatured() {
-                const grid = document.getElementById('featuredCards');
-                const featured = LESSONS.slice(0, 6);
-                let html = '';
-                featured.forEach(lesson => {
-                    const isCompleted = completedLessons.has(lesson.id);
-                    const pct = isCompleted ? ١٠٠ : ٠;
-                    const iconMap = {
-                        'أساسيات الأمن': 'fa-shield',
-                        'أمن الشبكات': 'fa-network-wired',
-                        'أمن أنظمة التشغيل': 'fa-laptop',
-                        'أمن التطبيقات': 'fa-code',
-                        'التشفير': 'fa-lock',
-                        'اختبار الاختراق': 'fa-skull',
-                        'مواضيع متقدمة': 'fa-rocket'
-                    };
-                    const icon = iconMap[lesson.track] || 'fa-shield';
-                    html += `
-                        <div class="card" onclick="window.openLesson(${lesson.id})">
-                            <div class="icon"><i class="fas ${icon}"></i></div>
-                            <h3>${lesson.title}</h3>
-                            <p>${lesson.track}</p>
-                            <div class="meta"><i class="fas fa-clock"></i> ${lesson.duration} <i class="fas fa-signal"></i> ${lesson.level}</div>
-                            <div class="progress-bar"><div class="fill" style="width:${pct}%;"></div></div>
-                        </div>
-                    `;
-                });
-                grid.innerHTML = html;
-            }
-
-            // ===========================================================
-            // 7. DASHBOARD
-            // ===========================================================
-            function updateDashboard() {
-                const total = LESSONS.length;
-                const done = completedLessons.size;
-                const pct = total > 0 ? Math.round((done / total) * 100) : 0;
-
-                document.getElementById('dashCompletion').textContent = pct + '%';
-                document.getElementById('dashLessons').textContent = done;
-                document.getElementById('dashXP').textContent = xp;
-                document.getElementById('dashBadges').textContent = badges;
-                document.getElementById('dashBadgeCount').textContent = badges;
-                document.getElementById('dashWeeklyGoal').textContent = weeklyProgress;
-                document.getElementById('dashCerts').textContent = Math.min(Math.floor(done / 10), 10);
-            }
-
-            // ===========================================================
-            // 8. PROFILE
-            // ===========================================================
-            function updateProfile() {
-                const done = completedLessons.size;
-                document.getElementById('profileCompleted').textContent = done;
-                document.getElementById('profileStreak').textContent = `${Math.min(weeklyProgress * 2, 30)} يوم Streak`;
-                document.getElementById('profileBadges').textContent = badges + ' شارات';
-
-                const badgeList = document.getElementById('profileBadgeList');
-                if (badges > 0) {
-                    badgeList.textContent = `🥇 ${badges} شارة مكتسبة`;
-                } else {
-                    badgeList.textContent = '🥇 لا توجد شارات بعد';
-                }
-
-                const achievements = document.getElementById('profileAchievements');
-                if (done >= 10) {
-                    achievements.textContent = '🌟 أنت متعلم متميز! أكملت أكثر من ١٠ دروس.';
-                } else if (done >= 5) {
-                    achievements.textContent = '🌟 طريقك نحو الاحتراف مستمر!';
-                } else if (done >= 1) {
-                    achievements.textContent = '🌟 بداية ممتازة! أكمل أول ١٠ دروس للحصول على شارة.';
-                } else {
-                    achievements.textContent = '🌟 أكمل أول درس للحصول على إنجاز.';
-                }
-            }
-
-            // ===========================================================
-            // 9. SEARCH
-            // ===========================================================
-            document.getElementById('courseSearch')?.addEventListener('input', function() {
-                renderAllCourses(this.value);
-            });
-
-            // ===========================================================
-            // 10. GLOBAL FUNCTIONS
-            // ===========================================================
-            window.openLesson = function(id) {
-                renderLesson(id);
-                navigateTo('lesson', id);
-            };
-
-            window.navigateTo = navigateTo;
-
-            // ===========================================================
-            // 11. INIT
-            // ===========================================================
-            renderFeatured();
-            renderAllCourses();
-            updateDashboard();
-            updateProfile();
-
-            // عرض أول درس بشكل افتراضي
-            if (LESSONS.length > 0) {
-                renderLesson(LESSONS[0].id);
-            }
-
-            // إضافة تأثير التمرير للـ navbar
+            // ---- SCROLL EFFECTS ----
             const navbar = document.getElementById('navbar');
             window.addEventListener('scroll', function() {
-                if (window.scrollY > 40) navbar.classList.add('scrolled');
-                else navbar.classList.remove('scrolled');
+                if (window.scrollY > 40) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
             });
 
-            // Reveal on scroll
+            // ---- REVEAL ON SCROLL ----
+            const revealElements = document.querySelectorAll('.card, .dash-stat, .dash-chart');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
                 });
             }, { threshold: 0.08 });
-            document.querySelectorAll('.card, .dash-stat, .dash-chart').forEach(el => {
+
+            revealElements.forEach(el => {
                 el.classList.add('reveal');
                 observer.observe(el);
             });
 
-            console.log('✅ CyberSec Academy loaded — ١٠٠ قسم تعليمي جاهز.');
-            console.log('📚 إجمالي الدروس:', LESSONS.length);
-            console.log('🔐 بإشراف أمجد عبداللطيف موسي');
+            // ---- SAMPLE QUIZ INTERACTION ----
+            document.querySelector('.quiz-box .btn-primary')?.addEventListener('click', function() {
+                const selected = document.querySelector('.quiz-box input[name="quiz"]:checked');
+                if (!selected) {
+                    alert('الرجاء اختيار إجابة أولاً.');
+                    return;
+                }
+                const isCorrect = selected.value === 'b';
+                alert(isCorrect ? '✅ إجابة صحيحة! السلامة (Integrity) هي المبدأ الصحيح.' :
+                    '❌ إجابة خاطئة. الإجابة الصحيحة هي: السلامة (Integrity).');
+            });
+
+            // ---- SEARCH PLACEHOLDER ----
+            document.querySelectorAll('.search-input').forEach(input => {
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        const val = this.value.trim();
+                        if (val) {
+                            alert('🔍 جاري البحث عن: "' + val + '" ... (سيتم عرض النتائج قريبًا)');
+                        }
+                    }
+                });
+            });
+
+            // ---- CHART BARS ANIMATE ----
+            const bars = document.querySelectorAll('.chart-bars .bar');
+            setTimeout(() => {
+                bars.forEach(bar => {
+                    const h = bar.style.height;
+                    bar.style.height = '0px';
+                    setTimeout(() => {
+                        bar.style.height = h;
+                    }, 100);
+                });
+            }, 400);
+
+            // ---- ADMIN SIDEBAR ----
+            document.querySelectorAll('.admin-sidebar .menu a').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelectorAll('.admin-sidebar .menu a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // ---- LESSON TOC ----
+            document.querySelectorAll('.lesson-sidebar .toc ul li a').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelectorAll('.lesson-sidebar .toc ul li a').forEach(a => a.classList.remove(
+                    'active'));
+                    this.classList.add('active');
+                });
+            });
+
+            console.log('🚀 CyberSec Academy loaded successfully.');
+            console.log('🔐 منصة الأمن السيبراني التعليمية — بإشراف أمجد عبداللطيف موسي');
 
         })();
     </script>
 </body>
-    </html>
+                                                                                                                  </html>
