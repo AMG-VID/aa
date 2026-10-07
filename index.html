@@ -1,1050 +1,1322 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Cybersecurity Portfolio</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Amjad Abd El-Latif | Cybersecurity Portfolio</title>
+<meta name="description" content="Amjad Abd El-Latif — Egyptian cybersecurity enthusiast, ethical hacker in progress. 24+ programming certificates. Never stop learning." />
+<meta property="og:title" content="Amjad Abd El-Latif | Cybersecurity Portfolio" />
+<meta property="og:description" content="Egyptian cybersecurity enthusiast | Ethical Hacker in Progress" />
+<meta property="og:image" content="https://i.ibb.co/dw78vpW4/Picsart-26-10-06-16-22-06-337.jpg" />
+<meta property="og:type" content="website" />
+<link rel="icon" href="https://i.ibb.co/dw78vpW4/Picsart-26-10-06-16-22-06-337.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&family=Cairo:wght@300;400;700;900&family=Tajawal:wght@300;400;700;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 <style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+:root{
+  --bg:#000308;
+  --neon-green:#00ff88;
+  --neon-blue:#00d4ff;
+  --neon-purple:#a855f7;
+  --neon-pink:#ff2d95;
+  --text:#e0f5ff;
+  --muted:#7a9bb5;
+  --card-bg:rgba(5,15,25,.55);
+  --card-border:rgba(0,255,136,.25);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Cairo','Tajawal','Rajdhani',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  cursor:none;
+  line-height:1.6;
+  min-height:100vh;
+}
+html[lang="en"] body, html[lang="pl"] body{font-family:'Rajdhani','Cairo',sans-serif}
+::selection{background:var(--neon-green);color:#000}
+::-webkit-scrollbar{width:10px;background:#000}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--neon-green),var(--neon-blue));border-radius:5px}
 
-  body {
-    font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-    background: #0d1117;
-    color: #c9d1d9;
-    line-height: 1.7;
-  }
+/* ============ BACKGROUND LAYERS ============ */
+#bg-video{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  object-fit:cover;z-index:-4;filter:brightness(.35) saturate(1.2) blur(1px);
+}
+.bg-overlay{
+  position:fixed;inset:0;z-index:-3;
+  background:
+    radial-gradient(ellipse at top,rgba(0,255,136,.10),transparent 60%),
+    radial-gradient(ellipse at bottom,rgba(168,85,247,.10),transparent 60%),
+    linear-gradient(180deg,rgba(0,3,8,.75),rgba(0,3,8,.92));
+}
+#matrix-canvas{position:fixed;inset:0;z-index:-2;opacity:.18;pointer-events:none}
+.scanlines{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:repeating-linear-gradient(0deg,rgba(0,255,136,.03) 0px,rgba(0,255,136,.03) 1px,transparent 1px,transparent 3px);
+  mix-blend-mode:overlay;
+}
 
-  /* ===== Header ===== */
-  header {
-    background: #161b22;
-    border-bottom: 1px solid #30363d;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
+/* ============ CURSOR ============ */
+.cursor-dot,.cursor-ring{
+  position:fixed;top:0;left:0;pointer-events:none;z-index:99999;
+  transform:translate(-50%,-50%);
+  transition:transform .08s ease;
+}
+.cursor-dot{width:6px;height:6px;background:var(--neon-green);border-radius:50%;box-shadow:0 0 12px var(--neon-green)}
+.cursor-ring{
+  width:34px;height:34px;border:1px solid var(--neon-green);
+  border-radius:50%;transition:all .18s ease;
+  box-shadow:0 0 14px rgba(0,255,136,.55),inset 0 0 10px rgba(0,255,136,.25);
+}
+.cursor-ring::before,.cursor-ring::after{
+  content:'';position:absolute;background:var(--neon-green);
+}
+.cursor-ring::before{left:50%;top:-6px;width:1px;height:8px;transform:translateX(-50%)}
+.cursor-ring::after{left:50%;bottom:-6px;width:1px;height:8px;transform:translateX(-50%)}
+body:hover .cursor-ring{opacity:1}
+a:hover ~ .cursor-ring, button:hover ~ .cursor-ring{transform:translate(-50%,-50%) scale(1.5)}
 
-  .header-inner {
-    max-width: 1150px;
-    margin: 0 auto;
-    padding: 14px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
+/* ============ LOADER ============ */
+#loader{
+  position:fixed;inset:0;z-index:99999;background:#000308;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  transition:opacity .6s ease,visibility .6s ease;
+}
+#loader.hide{opacity:0;visibility:hidden}
+.loader-logo{
+  width:110px;height:110px;border-radius:50%;
+  border:2px solid var(--neon-green);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 40px var(--neon-green),inset 0 0 25px rgba(0,255,136,.35);
+  animation:pulse 1.6s infinite ease-in-out;
+  overflow:hidden;
+}
+.loader-logo img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+@keyframes pulse{0%,100%{box-shadow:0 0 30px var(--neon-green),inset 0 0 20px rgba(0,255,136,.3)}50%{box-shadow:0 0 70px var(--neon-green),inset 0 0 40px rgba(0,255,136,.6)}}
+.loader-title{
+  font-family:'Orbitron',sans-serif;font-weight:900;letter-spacing:5px;
+  color:var(--neon-green);margin-top:26px;text-shadow:0 0 18px var(--neon-green);
+  font-size:1.05rem;text-align:center;
+}
+.loader-bar{
+  width:min(340px,80vw);height:4px;background:rgba(0,255,136,.15);
+  margin-top:20px;border-radius:2px;overflow:hidden;position:relative;
+}
+.loader-bar span{
+  display:block;height:100%;width:0;
+  background:linear-gradient(90deg,var(--neon-green),var(--neon-blue));
+  box-shadow:0 0 18px var(--neon-green);
+  transition:width .2s ease;
+}
+.loader-text{
+  font-family:'JetBrains Mono',monospace;color:var(--neon-blue);
+  margin-top:16px;font-size:.78rem;letter-spacing:2px;
+}
+.loader-text::after{content:'▊';animation:blink .8s steps(1) infinite;margin-inline-start:4px}
+@keyframes blink{50%{opacity:0}}
 
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 19px;
-    font-weight: bold;
-    color: #58a6ff;
-  }
+/* ============ HEADER ============ */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:14px 5vw;display:flex;align-items:center;justify-content:space-between;
+  backdrop-filter:blur(14px);
+  background:linear-gradient(180deg,rgba(0,3,8,.85),rgba(0,3,8,.35));
+  border-bottom:1px solid rgba(0,255,136,.12);
+  transition:.3s;
+}
+.logo-wrap{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-wrap img{
+  width:42px;height:42px;border-radius:50%;
+  border:2px solid var(--neon-green);
+  box-shadow:0 0 16px var(--neon-green);
+  animation:logoPulse 3s infinite;
+}
+@keyframes logoPulse{0%,100%{box-shadow:0 0 12px var(--neon-green)}50%{box-shadow:0 0 26px var(--neon-green),0 0 40px rgba(0,255,136,.4)}}
+.logo-text{
+  font-family:'Orbitron',sans-serif;font-weight:900;
+  color:var(--neon-green);letter-spacing:2px;font-size:1.05rem;
+  text-shadow:0 0 12px rgba(0,255,136,.6);
+}
+nav ul{display:flex;gap:26px;list-style:none;align-items:center}
+nav a{
+  color:var(--text);text-decoration:none;font-weight:600;font-size:.92rem;
+  position:relative;padding:6px 0;transition:.3s;letter-spacing:.3px;
+}
+nav a::after{
+  content:'';position:absolute;bottom:0;left:0;width:0;height:2px;
+  background:var(--neon-green);box-shadow:0 0 10px var(--neon-green);
+  transition:.35s;
+}
+nav a:hover{color:var(--neon-green)}
+nav a:hover::after{width:100%}
+.header-right{display:flex;align-items:center;gap:14px}
+.badge-avail{
+  display:flex;align-items:center;gap:7px;
+  padding:6px 14px;font-size:.78rem;font-weight:700;
+  border:1px solid rgba(0,255,136,.5);border-radius:50px;
+  color:var(--neon-green);background:rgba(0,255,136,.06);
+  font-family:'JetBrains Mono',monospace;
+}
+.badge-avail .dot{
+  width:8px;height:8px;border-radius:50%;background:var(--neon-green);
+  box-shadow:0 0 10px var(--neon-green);animation:pulseDot 1.4s infinite;
+}
+@keyframes pulseDot{50%{opacity:.3}}
+.lang-switch{position:relative}
+.lang-btn{
+  background:transparent;border:1px solid rgba(0,212,255,.5);
+  color:var(--neon-blue);padding:8px 14px;border-radius:8px;
+  cursor:none;font-weight:700;font-size:.85rem;display:flex;gap:8px;align-items:center;
+  font-family:'JetBrains Mono',monospace;transition:.3s;
+}
+.lang-btn:hover{background:rgba(0,212,255,.1);box-shadow:0 0 18px rgba(0,212,255,.6)}
+.lang-menu{
+  position:absolute;top:calc(100% + 8px);inset-inline-end:0;
+  background:rgba(2,10,20,.97);border:1px solid rgba(0,212,255,.4);
+  border-radius:10px;padding:6px;display:none;min-width:150px;
+  box-shadow:0 0 30px rgba(0,212,255,.3);backdrop-filter:blur(10px);
+}
+.lang-menu.open{display:block;animation:dropIn .25s ease}
+@keyframes dropIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.lang-menu button{
+  width:100%;background:transparent;border:none;color:var(--text);
+  padding:9px 12px;text-align:start;cursor:none;font-size:.88rem;border-radius:6px;
+  font-family:inherit;font-weight:600;display:flex;gap:10px;align-items:center;
+}
+.lang-menu button:hover{background:rgba(0,212,255,.12);color:var(--neon-green)}
 
-  .logo {
-    font-size: 24px;
-  }
+/* Mobile toggle */
+.menu-toggle{display:none;background:transparent;border:1px solid var(--neon-green);
+  color:var(--neon-green);width:42px;height:42px;border-radius:8px;cursor:none;font-size:1.1rem}
 
-  .lang-switch {
-    display: flex;
-    gap: 6px;
-  }
+/* ============ HERO ============ */
+.hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:130px 5vw 60px;position:relative;
+}
+.hero-grid{
+  display:grid;grid-template-columns:auto 1fr;gap:60px;align-items:center;
+  max-width:1200px;width:100%;
+}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:34px;text-align:center}}
+.hero-avatar{
+  position:relative;width:260px;height:260px;justify-self:center;
+}
+.hero-avatar img{
+  width:100%;height:100%;object-fit:cover;border-radius:50%;
+  border:3px solid var(--neon-green);
+  box-shadow:0 0 50px rgba(0,255,136,.7),0 0 100px rgba(0,255,136,.3),
+             inset 0 0 40px rgba(0,255,136,.2);
+  animation:pulse 3s infinite ease-in-out;
+  position:relative;z-index:2;
+}
+.hero-avatar::before,.hero-avatar::after{
+  content:'';position:absolute;inset:-14px;border-radius:50%;
+  border:1px dashed rgba(0,212,255,.5);
+  animation:spin 18s linear infinite;
+}
+.hero-avatar::after{inset:-28px;border:1px dotted rgba(168,85,247,.4);animation-direction:reverse;animation-duration:26s}
+@keyframes spin{to{transform:rotate(360deg)}}
 
-  .lang-btn {
-    background: #21262d;
-    color: #c9d1d9;
-    border: 1px solid #30363d;
-    padding: 6px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    font-family: inherit;
-    transition: 0.2s;
-  }
+.hero-content h4{
+  font-family:'JetBrains Mono',monospace;color:var(--neon-blue);
+  font-size:.95rem;letter-spacing:3px;margin-bottom:14px;font-weight:400;
+}
+.hero-name{
+  font-family:'Orbitron',sans-serif;font-weight:900;
+  font-size:clamp(1.6rem,4vw,3rem);
+  line-height:1.15;letter-spacing:1.5px;
+  background:linear-gradient(90deg,#fff,var(--neon-green),var(--neon-blue),var(--neon-purple),#fff);
+  background-size:300% auto;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:shineText 5s linear infinite;
+  position:relative;
+}
+@keyframes shineText{to{background-position:300% center}}
+.glitch{position:relative;display:inline-block}
+.glitch::before,.glitch::after{
+  content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%;
+  background:var(--bg);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.glitch::before{color:var(--neon-blue);-webkit-text-fill-color:var(--neon-blue);animation:glitch1 2.5s infinite;mix-blend-mode:screen;opacity:.85}
+.glitch::after{color:var(--neon-pink);-webkit-text-fill-color:var(--neon-pink);animation:glitch2 3.5s infinite;mix-blend-mode:screen;opacity:.7}
+@keyframes glitch1{
+  0%,90%,100%{transform:translate(0)}
+  92%{transform:translate(-3px,2px)}94%{transform:translate(3px,-2px)}
+  96%{transform:translate(-2px,-1px)}98%{transform:translate(2px,1px)}
+}
+@keyframes glitch2{
+  0%,88%,100%{transform:translate(0)}
+  90%{transform:translate(3px,-2px)}93%{transform:translate(-3px,2px)}
+  96%{transform:translate(2px,1px)}98%{transform:translate(-2px,-1px)}
+}
+.hero-role{
+  color:var(--neon-green);font-weight:600;font-size:clamp(1rem,1.6vw,1.25rem);
+  margin-top:16px;font-family:'JetBrains Mono',monospace;
+  min-height:1.6em;
+}
+.hero-role .cursor-type{display:inline-block;width:10px;background:var(--neon-green);
+  animation:blink .7s steps(1) infinite;vertical-align:-2px;height:1.1em}
 
-  .lang-btn:hover {
-    background: #30363d;
-  }
+.age-counter{
+  margin-top:24px;padding:18px 22px;border-radius:14px;
+  border:1px solid rgba(0,255,136,.35);
+  background:linear-gradient(135deg,rgba(0,255,136,.06),rgba(0,212,255,.06));
+  backdrop-filter:blur(8px);max-width:fit-content;
+  box-shadow:0 0 30px rgba(0,255,136,.15);
+}
+@media(max-width:900px){.age-counter{margin-inline:auto}}
+.age-counter .label{
+  font-family:'JetBrains Mono',monospace;color:var(--neon-blue);
+  font-size:.75rem;letter-spacing:2px;margin-bottom:8px;
+  display:flex;align-items:center;gap:8px;
+}
+.age-counter .label::before{
+  content:'';width:8px;height:8px;border-radius:50%;
+  background:var(--neon-green);box-shadow:0 0 10px var(--neon-green);
+  animation:pulseDot 1.2s infinite;
+}
+.age-values{
+  display:flex;flex-wrap:wrap;gap:14px;font-family:'JetBrains Mono',monospace;
+}
+.age-unit{display:flex;flex-direction:column;align-items:center;min-width:52px}
+.age-unit .num{
+  font-size:1.4rem;font-weight:900;color:var(--neon-green);
+  text-shadow:0 0 12px var(--neon-green);
+}
+.age-unit .u{font-size:.68rem;color:var(--muted);letter-spacing:1px}
 
-  .lang-btn.active {
-    background: #238636;
-    border-color: #2ea043;
-    color: #ffffff;
-  }
+.hero-cta{display:flex;gap:16px;margin-top:32px;flex-wrap:wrap}
+@media(max-width:900px){.hero-cta{justify-content:center}}
+.btn{
+  padding:14px 28px;border-radius:10px;font-weight:700;font-size:.92rem;
+  text-decoration:none;cursor:none;position:relative;overflow:hidden;
+  font-family:'Rajdhani','Cairo',sans-serif;letter-spacing:1px;
+  transition:.35s;display:inline-flex;align-items:center;gap:9px;
+  border:1px solid var(--neon-green);
+  color:var(--neon-green);background:rgba(0,255,136,.05);
+}
+.btn::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,var(--neon-green),var(--neon-blue));
+  transform:translateX(-100%);transition:.4s;z-index:-1;
+}
+.btn:hover::before{transform:translateX(0)}
+.btn:hover{color:#000;box-shadow:0 0 26px var(--neon-green),0 0 60px rgba(0,255,136,.4);transform:translateY(-3px)}
+.btn.primary{background:var(--neon-green);color:#000}
+.btn.primary::before{background:linear-gradient(90deg,var(--neon-blue),var(--neon-purple))}
+.btn.primary:hover{color:#fff;box-shadow:0 0 30px var(--neon-blue)}
+.btn-outline{border-color:var(--neon-blue);color:var(--neon-blue);background:rgba(0,212,255,.05)}
+.btn-outline::before{background:linear-gradient(90deg,var(--neon-blue),var(--neon-purple))}
+.btn-outline:hover{color:#000}
 
-  /* ===== Hero ===== */
-  .hero {
-    max-width: 1150px;
-    margin: 0 auto;
-    padding: 60px 20px 40px;
-    text-align: center;
-  }
+/* Ripple */
+.ripple{position:absolute;border-radius:50%;background:rgba(0,255,136,.5);
+  transform:scale(0);animation:rippleGo .6s linear;pointer-events:none}
+@keyframes rippleGo{to{transform:scale(4);opacity:0}}
 
-  .hero h1 {
-    font-size: 34px;
-    color: #f0f6fc;
-    margin-bottom: 14px;
-  }
+/* ============ SECTION ============ */
+section{padding:110px 5vw;position:relative;z-index:2}
+.section-head{text-align:center;margin-bottom:64px}
+.section-head .tag{
+  font-family:'JetBrains Mono',monospace;color:var(--neon-blue);
+  font-size:.8rem;letter-spacing:4px;margin-bottom:10px;
+  display:inline-block;
+}
+.section-head h2{
+  font-family:'Orbitron',sans-serif;font-weight:900;
+  font-size:clamp(1.7rem,3.4vw,2.6rem);
+  color:#fff;letter-spacing:2px;position:relative;display:inline-block;
+}
+.section-head h2::after{
+  content:'';position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);
+  width:70px;height:3px;border-radius:3px;
+  background:linear-gradient(90deg,var(--neon-green),var(--neon-blue));
+  box-shadow:0 0 20px var(--neon-green);
+}
+.reveal{opacity:0;transform:translateY(50px);transition:all .9s cubic-bezier(.2,.8,.3,1)}
+.reveal.in{opacity:1;transform:translateY(0)}
 
-  .hero p {
-    font-size: 17px;
-    color: #8b949e;
-    max-width: 700px;
-    margin: 0 auto;
-  }
+/* ============ ABOUT ============ */
+.about-wrap{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:40px}
+.about-card{
+  background:var(--card-bg);border:1px solid var(--card-border);
+  border-radius:18px;padding:38px;backdrop-filter:blur(12px);
+  box-shadow:0 0 40px rgba(0,255,136,.06);
+  position:relative;overflow:hidden;
+}
+.about-card::before{
+  content:'';position:absolute;top:0;left:-100%;width:100%;height:2px;
+  background:linear-gradient(90deg,transparent,var(--neon-green),transparent);
+  animation:sweep 4s linear infinite;
+}
+@keyframes sweep{to{left:100%}}
+.about-card p{font-size:1.05rem;color:#c8dce8;line-height:1.9;margin-bottom:22px}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:20px}
+.info-item{
+  padding:16px 20px;border-radius:12px;
+  background:rgba(0,212,255,.05);border:1px solid rgba(0,212,255,.2);
+  display:flex;align-items:center;gap:14px;transition:.35s;
+}
+.info-item:hover{
+  transform:translateY(-4px);border-color:var(--neon-green);
+  box-shadow:0 8px 30px rgba(0,255,136,.18);
+}
+.info-item .ic{
+  font-size:1.5rem;width:44px;height:44px;
+  display:grid;place-items:center;border-radius:10px;
+  background:rgba(0,255,136,.1);color:var(--neon-green);
+}
+.info-item .lbl{font-size:.75rem;color:var(--muted);letter-spacing:1px;font-family:'JetBrains Mono',monospace}
+.info-item .val{font-size:.98rem;color:#fff;font-weight:600}
 
-  .warning {
-    max-width: 1150px;
-    margin: 0 auto 30px;
-    padding: 14px 20px;
-    background: #3d1f00;
-    border: 1px solid #9e6a03;
-    border-radius: 8px;
-    color: #ffd33d;
-    font-size: 14px;
-    text-align: center;
-  }
+/* ============ SKILLS ============ */
+.skills-wrap{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:26px}
+.skill{
+  background:var(--card-bg);border:1px solid var(--card-border);
+  border-radius:12px;padding:20px 24px;backdrop-filter:blur(10px);
+  transition:.35s;
+}
+.skill:hover{border-color:var(--neon-green);box-shadow:0 0 24px rgba(0,255,136,.18);transform:translateX(6px)}
+html[dir="ltr"] .skill:hover{transform:translateX(-6px)}
+.skill-top{display:flex;justify-content:space-between;margin-bottom:12px;align-items:center}
+.skill-name{font-weight:700;font-size:1rem;color:#fff;display:flex;align-items:center;gap:10px}
+.skill-name i{color:var(--neon-green);font-size:1.1rem}
+.skill-pct{font-family:'JetBrains Mono',monospace;color:var(--neon-blue);font-weight:700;font-size:.9rem}
+.skill-bar{height:8px;background:rgba(0,255,136,.08);border-radius:6px;overflow:hidden;position:relative}
+.skill-bar span{
+  display:block;height:100%;width:0;border-radius:6px;
+  background:linear-gradient(90deg,var(--neon-green),var(--neon-blue));
+  box-shadow:0 0 12px var(--neon-green);
+  transition:width 1.6s cubic-bezier(.2,.8,.3,1);position:relative;
+}
+.skill-bar span::after{
+  content:'';position:absolute;top:0;right:0;bottom:0;width:20px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.6));
+  animation:shine 2s infinite;
+}
+@keyframes shine{0%{opacity:0}50%{opacity:1}100%{opacity:0}}
 
-  /* ===== Sections ===== */
-  .section {
-    max-width: 1150px;
-    margin: 0 auto;
-    padding: 30px 20px;
-  }
+/* ============ CERTIFICATES ============ */
+.certs-badge{
+  display:inline-flex;align-items:center;gap:10px;margin:0 auto 40px;
+  padding:10px 22px;border-radius:50px;font-weight:700;
+  background:linear-gradient(90deg,rgba(0,255,136,.15),rgba(0,212,255,.15));
+  border:1px solid var(--neon-green);color:var(--neon-green);
+  font-family:'JetBrains Mono',monospace;font-size:.9rem;
+  box-shadow:0 0 24px rgba(0,255,136,.25);
+  animation:badgePulse 3s infinite;
+}
+@keyframes badgePulse{50%{box-shadow:0 0 44px rgba(0,255,136,.5)}}
+.certs-badge i{font-size:1.15rem}
+.certs-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px}
+.cert-card{
+  background:var(--card-bg);border:1px solid var(--card-border);
+  border-radius:16px;overflow:hidden;cursor:none;
+  transition:.4s cubic-bezier(.2,.8,.3,1);position:relative;
+  backdrop-filter:blur(10px);
+}
+.cert-card::before{
+  content:'';position:absolute;inset:0;border-radius:16px;
+  padding:1px;background:linear-gradient(135deg,var(--neon-green),transparent,var(--neon-blue));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  opacity:0;transition:.4s;pointer-events:none;
+}
+.cert-card:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 20px 50px rgba(0,255,136,.25)}
+.cert-card:hover::before{opacity:1}
+.cert-img{
+  width:100%;height:220px;object-fit:cover;display:block;
+  border-bottom:1px solid rgba(0,255,136,.15);
+  transition:.5s;filter:saturate(.9);
+}
+.cert-card:hover .cert-img{transform:scale(1.06);filter:saturate(1.15)}
+.cert-img-wrap{overflow:hidden}
+.cert-body{padding:20px}
+.cert-body h4{font-size:1rem;color:#fff;margin-bottom:8px;line-height:1.4}
+.cert-body p{font-size:.82rem;color:var(--muted);line-height:1.6;margin-bottom:12px}
+.cert-view{
+  font-family:'JetBrains Mono',monospace;color:var(--neon-blue);font-size:.8rem;
+  display:inline-flex;align-items:center;gap:6px;letter-spacing:1px;
+}
+.cert-card:hover .cert-view{color:var(--neon-green)}
 
-  .section h2 {
-    font-size: 26px;
-    color: #f0f6fc;
-    margin-bottom: 24px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #30363d;
-  }
+/* Modal */
+.modal{
+  position:fixed;inset:0;z-index:9998;background:rgba(0,3,8,.94);
+  display:none;align-items:center;justify-content:center;padding:30px;
+  backdrop-filter:blur(12px);
+}
+.modal.open{display:flex;animation:fadeIn .3s}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal-content{
+  max-width:min(1000px,94vw);max-height:90vh;position:relative;
+  animation:zoomIn .4s cubic-bezier(.2,.9,.3,1.2);
+}
+@keyframes zoomIn{from{transform:scale(.75);opacity:0}to{transform:scale(1);opacity:1}}
+.modal-content img{
+  max-width:100%;max-height:85vh;display:block;border-radius:12px;
+  border:2px solid var(--neon-green);
+  box-shadow:0 0 60px rgba(0,255,136,.5);
+}
+.modal-close{
+  position:absolute;top:-16px;inset-inline-end:-16px;
+  width:44px;height:44px;border-radius:50%;
+  background:var(--neon-green);color:#000;border:none;font-size:1.2rem;
+  cursor:none;box-shadow:0 0 20px var(--neon-green);font-weight:900;
+  transition:.3s;
+}
+.modal-close:hover{transform:rotate(90deg) scale(1.1)}
 
-  /* ===== Projects Grid ===== */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
-    gap: 20px;
-  }
+/* ============ TIMELINE ============ */
+.timeline{max-width:900px;margin:0 auto;position:relative;padding:20px 0}
+.timeline::before{
+  content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;
+  background:linear-gradient(180deg,transparent,var(--neon-green),var(--neon-blue),transparent);
+  transform:translateX(-50%);box-shadow:0 0 20px var(--neon-green);
+}
+.tl-item{
+  position:relative;width:50%;padding:20px 40px;margin-bottom:30px;
+}
+.tl-item:nth-child(odd){left:0;text-align:end}
+.tl-item:nth-child(even){left:50%;text-align:start}
+.tl-card{
+  background:var(--card-bg);border:1px solid var(--card-border);
+  border-radius:14px;padding:22px 24px;backdrop-filter:blur(10px);
+  transition:.35s;position:relative;
+}
+.tl-card:hover{border-color:var(--neon-green);box-shadow:0 0 30px rgba(0,255,136,.25);transform:scale(1.03)}
+.tl-year{
+  font-family:'Orbitron',sans-serif;font-weight:900;color:var(--neon-green);
+  font-size:1.15rem;margin-bottom:8px;letter-spacing:2px;
+  text-shadow:0 0 12px rgba(0,255,136,.6);
+}
+.tl-card p{color:#c8dce8;font-size:.94rem}
+.tl-dot{
+  position:absolute;top:28px;width:18px;height:18px;border-radius:50%;
+  background:var(--neon-green);box-shadow:0 0 20px var(--neon-green);
+  border:3px solid var(--bg);
+}
+.tl-item:nth-child(odd) .tl-dot{inset-inline-end:-9px}
+.tl-item:nth-child(even) .tl-dot{inset-inline-start:-9px}
 
-  .card {
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 10px;
-    padding: 20px;
-    transition: 0.2s;
-    display: flex;
-    flex-direction: column;
-  }
+@media(max-width:760px){
+  .timeline::before{left:20px}
+  .tl-item{width:100%;left:0 !important;text-align:start !important;padding-inline-start:56px}
+  .tl-item .tl-dot{inset-inline-start:11px !important;inset-inline-end:auto !important}
+}
 
-  .card:hover {
-    border-color: #58a6ff;
-    transform: translateY(-3px);
-  }
+/* ============ CONTACT ============ */
+.contact-grid{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.contact-card{
+  background:var(--card-bg);border:1px solid var(--card-border);
+  border-radius:16px;padding:32px 24px;text-decoration:none;color:var(--text);
+  text-align:center;transition:.4s;backdrop-filter:blur(10px);
+  position:relative;overflow:hidden;
+}
+.contact-card::after{
+  content:'';position:absolute;bottom:0;left:0;width:0;height:3px;
+  background:linear-gradient(90deg,var(--neon-green),var(--neon-blue));
+  transition:.4s;
+}
+.contact-card:hover{
+  transform:translateY(-8px) scale(1.02);
+  border-color:var(--neon-green);
+  box-shadow:0 20px 50px rgba(0,255,136,.25);
+}
+.contact-card:hover::after{width:100%}
+.contact-card .icon{
+  width:70px;height:70px;border-radius:18px;margin:0 auto 18px;
+  display:grid;place-items:center;font-size:2rem;
+  background:rgba(0,255,136,.08);color:var(--neon-green);
+  border:1px solid rgba(0,255,136,.3);transition:.4s;
+}
+.contact-card:hover .icon{transform:rotate(-8deg) scale(1.1);box-shadow:0 0 24px rgba(0,255,136,.5)}
+.contact-card h4{font-size:1.05rem;color:#fff;margin-bottom:6px}
+.contact-card span{font-size:.85rem;color:var(--muted);word-break:break-all}
+.contact-card .arrow{
+  display:inline-block;margin-top:14px;color:var(--neon-blue);
+  font-family:'JetBrains Mono',monospace;font-size:.8rem;transition:.3s;
+}
+.contact-card:hover .arrow{transform:translateX(6px);color:var(--neon-green)}
+html[dir="rtl"] .contact-card .arrow{transform:scaleX(-1)}
+html[dir="rtl"] .contact-card:hover .arrow{transform:scaleX(-1) translateX(6px)}
 
-  .card-top {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 10px;
-  }
+/* ============ FOOTER ============ */
+footer{
+  padding:40px 5vw;text-align:center;border-top:1px solid rgba(0,255,136,.12);
+  position:relative;z-index:2;
+  font-family:'JetBrains Mono',monospace;color:var(--muted);font-size:.85rem;
+}
+footer .heart{color:var(--neon-green);animation:beat 1.2s infinite}
+@keyframes beat{50%{transform:scale(1.35)}}
 
-  .card-icon {
-    font-size: 28px;
-    line-height: 1;
-  }
+/* ============ TERMINAL EASTER EGG ============ */
+#terminal-btn{
+  position:fixed;bottom:20px;inset-inline-start:20px;z-index:999;
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.4);
+  color:var(--neon-green);font-size:1.05rem;cursor:none;
+  display:grid;place-items:center;transition:.3s;
+  opacity:.35;
+}
+#terminal-btn:hover{opacity:1;box-shadow:0 0 24px var(--neon-green);transform:scale(1.1)}
+.terminal{
+  position:fixed;inset:0;z-index:99999;background:rgba(0,3,8,.96);
+  display:none;align-items:center;justify-content:center;padding:20px;
+  backdrop-filter:blur(12px);
+}
+.terminal.open{display:flex;animation:fadeIn .3s}
+.terminal-box{
+  width:min(720px,95vw);height:min(480px,80vh);
+  background:#000308;border:1px solid var(--neon-green);
+  border-radius:12px;padding:20px;font-family:'JetBrains Mono',monospace;
+  color:var(--neon-green);box-shadow:0 0 60px rgba(0,255,136,.4);
+  display:flex;flex-direction:column;
+}
+.terminal-head{
+  display:flex;align-items:center;gap:8px;margin-bottom:14px;
+  padding-bottom:12px;border-bottom:1px solid rgba(0,255,136,.2);
+}
+.terminal-head .td{width:12px;height:12px;border-radius:50%}
+.terminal-head .td.r{background:#ff5f56}
+.terminal-head .td.y{background:#ffbd2e}
+.terminal-head .td.g{background:#27c93f}
+.terminal-head span{margin-inline-start:auto;font-size:.78rem;color:var(--muted)}
+.terminal-body{flex:1;overflow-y:auto;font-size:.88rem;line-height:1.7}
+.terminal-body .line{margin-bottom:6px}
+.terminal-body .prompt{color:var(--neon-blue)}
+.terminal-input{
+  display:flex;gap:8px;margin-top:12px;padding-top:12px;
+  border-top:1px solid rgba(0,255,136,.2);
+}
+.terminal-input span{color:var(--neon-blue)}
+.terminal-input input{
+  flex:1;background:transparent;border:none;outline:none;
+  color:var(--neon-green);font-family:'JetBrains Mono',monospace;font-size:.9rem;cursor:none;
+}
 
-  .card-title {
-    font-size: 17px;
-    color: #58a6ff;
-    font-weight: bold;
+/* ============ RESPONSIVE ============ */
+@media(max-width:880px){
+  header{padding:12px 4vw}
+  nav{
+    position:fixed;top:70px;inset-inline-end:-100%;width:260px;height:calc(100vh - 70px);
+    background:rgba(0,3,8,.98);backdrop-filter:blur(14px);
+    border-inline-start:1px solid rgba(0,255,136,.2);
+    padding:30px 22px;transition:.4s;z-index:999;
   }
-
-  .card-desc {
-    font-size: 14.5px;
-    color: #8b949e;
-    margin-bottom: 14px;
-  }
-
-  .tools {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 14px;
-  }
-
-  .tool-tag {
-    background: #21262d;
-    border: 1px solid #30363d;
-    color: #7ee787;
-    font-size: 12px;
-    padding: 3px 9px;
-    border-radius: 20px;
-  }
-
-  details {
-    background: #0d1117;
-    border: 1px solid #30363d;
-    border-radius: 8px;
-    padding: 10px 14px;
-    margin-top: auto;
-  }
-
-  summary {
-    cursor: pointer;
-    color: #58a6ff;
-    font-size: 14px;
-    font-weight: bold;
-    outline: none;
-  }
-
-  summary:hover {
-    color: #79c0ff;
-  }
-
-  .details-text {
-    font-size: 14px;
-    color: #c9d1d9;
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px solid #21262d;
-  }
-
-  /* ===== Demos ===== */
-  .demo-box {
-    margin-top: 14px;
-    padding-top: 14px;
-    border-top: 1px dashed #30363d;
-  }
-
-  .demo-label {
-    display: block;
-    font-size: 12px;
-    color: #8b949e;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
-  }
-
-  .demo-btn {
-    background: #238636;
-    color: #ffffff;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    font-family: inherit;
-    transition: 0.2s;
-  }
-
-  .demo-btn:hover {
-    background: #2ea043;
-  }
-
-  .demo-output {
-    background: #010409;
-    border: 1px solid #30363d;
-    border-radius: 6px;
-    padding: 10px;
-    margin-top: 10px;
-    font-family: 'Courier New', monospace;
-    font-size: 12.5px;
-    color: #7ee787;
-    white-space: pre-wrap;
-    word-break: break-all;
-    max-height: 220px;
-    overflow-y: auto;
-    direction: ltr;
-    text-align: left;
-    min-height: 20px;
-  }
-
-  .demo-input {
-    width: 100%;
-    background: #0d1117;
-    border: 1px solid #30363d;
-    color: #c9d1d9;
-    padding: 9px 12px;
-    border-radius: 6px;
-    font-size: 14px;
-    font-family: inherit;
-    outline: none;
-  }
-
-  .demo-input:focus {
-    border-color: #58a6ff;
-  }
-
-  .pw-bar {
-    height: 8px;
-    background: #21262d;
-    border-radius: 4px;
-    margin-top: 10px;
-    overflow: hidden;
-  }
-
-  .pw-bar div {
-    height: 100%;
-    width: 0%;
-    background: #888;
-    border-radius: 4px;
-    transition: 0.3s;
-  }
-
-  .demo-text {
-    font-size: 13px;
-    color: #8b949e;
-    margin-top: 8px;
-  }
-
-  .check-item {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    font-size: 14px;
-    color: #c9d1d9;
-    padding: 5px 0;
-    cursor: pointer;
-  }
-
-  .check-item input {
-    width: 16px;
-    height: 16px;
-    accent-color: #238636;
-    cursor: pointer;
-  }
-
-  .code-block {
-    background: #010409;
-    border: 1px solid #30363d;
-    border-radius: 6px;
-    padding: 12px;
-    font-family: 'Courier New', monospace;
-    font-size: 12.5px;
-    color: #c9d1d9;
-    white-space: pre;
-    overflow-x: auto;
-    direction: ltr;
-    text-align: left;
-    margin-top: 10px;
-  }
-
-  .code-block .kw { color: #ff7b72; }
-  .code-block .fn { color: #d2a8ff; }
-  .code-block .str { color: #a5d6ff; }
-  .code-block .cm { color: #8b949e; }
-
-  /* ===== About ===== */
-  .about-box {
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 10px;
-    padding: 24px;
-    font-size: 15.5px;
-    color: #c9d1d9;
-  }
-
-  /* ===== Footer ===== */
-  footer {
-    background: #161b22;
-    border-top: 1px solid #30363d;
-    text-align: center;
-    padding: 24px 20px;
-    margin-top: 40px;
-    font-size: 14px;
-    color: #8b949e;
-  }
-
-  /* ===== RTL fixes ===== */
-  html[dir="rtl"] .demo-output,
-  html[dir="rtl"] .code-block {
-    direction: ltr;
-    text-align: left;
-  }
-
-  /* ===== Responsive ===== */
-  @media (max-width: 600px) {
-    .hero h1 { font-size: 25px; }
-    .hero p { font-size: 15px; }
-    .section h2 { font-size: 21px; }
-    .header-inner { justify-content: center; }
-    .projects-grid { grid-template-columns: 1fr; }
-  }
+  nav.open{inset-inline-end:0}
+  nav ul{flex-direction:column;gap:20px;align-items:flex-start}
+  .menu-toggle{display:grid;place-items:center}
+  .badge-avail{display:none}
+  .hero-avatar{width:200px;height:200px}
+  .age-values{gap:10px}
+  .age-unit{min-width:44px}
+  .age-unit .num{font-size:1.15rem}
+  section{padding:80px 5vw}
+  .tl-card{padding:18px}
+}
+@media(max-width:520px){
+  .logo-text{font-size:.85rem}
+  .hero-cta .btn{padding:12px 20px;font-size:.85rem}
+}
+@media(hover:none){body{cursor:auto}*{cursor:auto !important}.cursor-dot,.cursor-ring{display:none}}
 </style>
 </head>
 <body>
 
+<!-- CURSOR -->
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo">
+    <img src="https://i.ibb.co/dw78vpW4/Picsart-26-10-06-16-22-06-337.jpg" alt="logo" />
+  </div>
+  <div class="loader-title" id="loaderTitle">INITIALIZING SECURE CONNECTION...</div>
+  <div class="loader-bar"><span id="loaderFill"></span></div>
+  <div class="loader-text" id="loaderStatus">&gt; Booting kernel modules</div>
+</div>
+
+<!-- BACKGROUND -->
+<video id="bg-video" autoplay muted loop playsinline preload="auto">
+  <source src="https://videotourl.com/videos/1791320627778-0a230d15-708c-46cc-91db-44c91b4874f8.mp4" type="video/mp4" />
+</video>
+<div class="bg-overlay"></div>
+<canvas id="matrix-canvas"></canvas>
+<div class="scanlines"></div>
+
+<!-- HEADER -->
 <header>
-  <div class="header-inner">
-    <div class="brand">
-      <span class="logo">🛡️</span>
-      <span id="siteTitle">بورتفوليو الأمن السيبراني</span>
-    </div>
+  <a href="#home" class="logo-wrap">
+    <img src="https://i.ibb.co/dw78vpW4/Picsart-26-10-06-16-22-06-337.jpg" alt="Amjad" />
+    <span class="logo-text">AMJAD.exe</span>
+  </a>
+  <nav id="nav">
+    <ul>
+      <li><a href="#home" data-i18n="nav.home">الرئيسية</a></li>
+      <li><a href="#about" data-i18n="nav.about">عني</a></li>
+      <li><a href="#skills" data-i18n="nav.skills">المهارات</a></li>
+      <li><a href="#certs" data-i18n="nav.certs">الشهادات</a></li>
+      <li><a href="#journey" data-i18n="nav.journey">رحلتي</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">تواصل</a></li>
+    </ul>
+  </nav>
+  <div class="header-right">
+    <div class="badge-avail"><span class="dot"></span><span data-i18n="badge">متاح للتعلم والتعاون</span></div>
     <div class="lang-switch">
-      <button class="lang-btn active" data-lang="ar" onclick="setLang('ar')">العربية</button>
-      <button class="lang-btn" data-lang="en" onclick="setLang('en')">English</button>
-      <button class="lang-btn" data-lang="pl" onclick="setLang('pl')">Polski</button>
+      <button class="lang-btn" id="langBtn"><i class="fas fa-globe"></i><span id="langLabel">AR</span><i class="fas fa-chevron-down" style="font-size:.7rem"></i></button>
+      <div class="lang-menu" id="langMenu">
+        <button data-lang="ar">🇪🇬 العربية</button>
+        <button data-lang="en">🇬🇧 English</button>
+        <button data-lang="pl">🇵🇱 Polski</button>
+      </div>
     </div>
+    <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
   </div>
 </header>
 
-<section class="hero">
-  <h1 id="heroTitle">أهلاً! أنا بتعلم الأمن السيبراني</h1>
-  <p id="heroText">دي مجموعة المشاريع اللي عملتها وأنا بتعلم. كل مشروع عملته في مختبر آمن على أجهزة وهمية بتاعتي.</p>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid">
+    <div class="hero-avatar">
+      <img src="https://i.ibb.co/dw78vpW4/Picsart-26-10-06-16-22-06-337.jpg" alt="Amjad" />
+    </div>
+    <div class="hero-content">
+      <h4 data-i18n="hero.greet">&gt; HELLO_WORLD</h4>
+      <h1 class="hero-name glitch" data-text="أمجد عبد اللطيف الدسوقي حسن محمد موسى" id="heroName">أمجد عبد اللطيف الدسوقي<br/>حسن محمد موسى</h1>
+      <p class="hero-role"><span id="typed"></span><span class="cursor-type"></span></p>
+
+      <div class="age-counter">
+        <div class="label" data-i18n="age.label">LIVE_AGE_COUNTER</div>
+        <div class="age-values">
+          <div class="age-unit"><span class="num" id="ageY">0</span><span class="u" data-i18n="age.y">سنة</span></div>
+          <div class="age-unit"><span class="num" id="ageM">0</span><span class="u" data-i18n="age.m">شهر</span></div>
+          <div class="age-unit"><span class="num" id="ageD">0</span><span class="u" data-i18n="age.d">يوم</span></div>
+          <div class="age-unit"><span class="num" id="ageH">0</span><span class="u" data-i18n="age.h">ساعة</span></div>
+          <div class="age-unit"><span class="num" id="ageMi">0</span><span class="u" data-i18n="age.mi">دقيقة</span></div>
+          <div class="age-unit"><span class="num" id="ageS">0</span><span class="u" data-i18n="age.s">ثانية</span></div>
+        </div>
+      </div>
+
+      <div class="hero-cta">
+        <a href="#skills" class="btn primary"><i class="fas fa-terminal"></i><span data-i18n="hero.cta1">اكتشف مهاراتي</span></a>
+        <a href="#contact" class="btn btn-outline"><i class="fas fa-satellite-dish"></i><span data-i18n="hero.cta2">تواصل معايا</span></a>
+      </div>
+    </div>
+  </div>
 </section>
 
-<div class="warning" id="warningText">⚠️ كل المشاريع اتعملت في مختبر شخصي معزول. ممنوع اختبار أي نظام بدون إذن.</div>
-
-<section class="section" id="projects">
-  <h2 id="projectsTitle">المشاريع</h2>
-  <div class="projects-grid" id="projectsGrid"></div>
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-head reveal">
+    <span class="tag">// 01. whoami</span>
+    <h2 data-i18n="about.title">عني</h2>
+  </div>
+  <div class="about-wrap">
+    <div class="about-card reveal">
+      <p data-i18n="about.p1">طالب مصري، من مواليد 14 فبراير 2010، حلمي إني أبقى خبير أمن سيبراني عالمي. معنديش خبرة كافية لسه، لكن بتعلم كل يوم وبطوّر من نفسي خطوة بخطوة.</p>
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="ic"><i class="fas fa-map-marker-alt"></i></div>
+          <div><div class="lbl" data-i18n="about.country.l">COUNTRY</div><div class="val" data-i18n="about.country.v">مصر 🇪🇬</div></div>
+        </div>
+        <div class="info-item">
+          <div class="ic"><i class="fas fa-shield-halved"></i></div>
+          <div><div class="lbl" data-i18n="about.spec.l">SPECIALTY</div><div class="val" data-i18n="about.spec.v">الأمن السيبراني</div></div>
+        </div>
+        <div class="info-item">
+          <div class="ic"><i class="fas fa-book-open"></i></div>
+          <div><div class="lbl" data-i18n="about.status.l">STATUS</div><div class="val" data-i18n="about.status.v">بتعلم كل يوم</div></div>
+        </div>
+        <div class="info-item">
+          <div class="ic"><i class="fas fa-language"></i></div>
+          <div><div class="lbl" data-i18n="about.lang.l">LANGUAGES</div><div class="val" data-i18n="about.lang.v">العربية + الإنجليزية</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section class="section" id="about">
-  <h2 id="aboutTitle">عني</h2>
-  <div class="about-box" id="aboutText">
-    أنا مبتدئ في الأمن السيبراني بتعلم Networking و Linux و Web Security. بحب أتعلم بالتطبيق العملي وبعمل كل حاجة في مختبر معزول على جهازي.
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-head reveal">
+    <span class="tag">// 02. skills.json</span>
+    <h2 data-i18n="skills.title">المهارات</h2>
+  </div>
+  <div class="skills-wrap">
+    <div class="skill reveal" data-pct="75">
+      <div class="skill-top"><div class="skill-name"><i class="fab fa-js"></i><span>JavaScript</span></div><span class="skill-pct">75%</span></div>
+      <div class="skill-bar"><span></span></div>
+    </div>
+    <div class="skill reveal" data-pct="65">
+      <div class="skill-top"><div class="skill-name"><i class="fas fa-shield-halved"></i><span data-i18n="skill.cyber">أساسيات الأمن السيبراني</span></div><span class="skill-pct">65%</span></div>
+      <div class="skill-bar"><span></span></div>
+    </div>
+    <div class="skill reveal" data-pct="85">
+      <div class="skill-top"><div class="skill-name"><i class="fab fa-html5"></i><span>HTML / CSS</span></div><span class="skill-pct">85%</span></div>
+      <div class="skill-bar"><span></span></div>
+    </div>
+    <div class="skill reveal" data-pct="55">
+      <div class="skill-top"><div class="skill-name"><i class="fas fa-network-wired"></i><span data-i18n="skill.net">Networking Basics</span></div><span class="skill-pct">55%</span></div>
+      <div class="skill-bar"><span></span></div>
+    </div>
+    <div class="skill reveal" data-pct="60">
+      <div class="skill-top"><div class="skill-name"><i class="fab fa-linux"></i><span data-i18n="skill.linux">Linux Basics</span></div><span class="skill-pct">60%</span></div>
+      <div class="skill-bar"><span></span></div>
+    </div>
+    <div class="skill reveal" data-pct="80">
+      <div class="skill-top"><div class="skill-name"><i class="fas fa-brain"></i><span data-i18n="skill.ps">Problem Solving</span></div><span class="skill-pct">80%</span></div>
+      <div class="skill-bar"><span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATES -->
+<section id="certs">
+  <div class="section-head reveal">
+    <span class="tag">// 03. achievements.db</span>
+    <h2 data-i18n="certs.title">الشهادات</h2>
+  </div>
+  <div style="text-align:center" class="reveal">
+    <div class="certs-badge"><i class="fas fa-award"></i><span data-i18n="certs.badge">+24 شهادة في البرمجة على مدار دراستي</span></div>
+  </div>
+  <div class="certs-grid">
+    <div class="cert-card reveal" data-img="https://i.ibb.co/yFwtXJNP/certificate-0019dd9ae7db563a236bda20762e68d35.png">
+      <div class="cert-img-wrap"><img class="cert-img" loading="lazy" src="https://i.ibb.co/yFwtXJNP/certificate-0019dd9ae7db563a236bda20762e68d35.png" alt="JS Certificate" /></div>
+      <div class="cert-body">
+        <h4 data-i18n="cert1.title">شهادة JavaScript Level 1</h4>
+        <p data-i18n="cert1.desc">موثقة من منصة أس بريكس اليابانية + وزارة التربية والتعليم المصرية + جامعة هيروشيما اليابانية</p>
+        <span class="cert-view"><i class="fas fa-expand"></i> <span data-i18n="cert.view">عرض الشهادة</span></span>
+      </div>
+    </div>
+    <div class="cert-card reveal" data-img="https://i.ibb.co/MyFJ9PvS/Certificateof-Appreciation.png">
+      <div class="cert-img-wrap"><img class="cert-img" loading="lazy" src="https://i.ibb.co/MyFJ9PvS/Certificateof-Appreciation.png" alt="Appreciation" /></div>
+      <div class="cert-body">
+        <h4 data-i18n="cert2.title">شهادة تقدير من مُدرسة البرمجة</h4>
+        <p data-i18n="cert2.desc">أولى إعدادي — تقدير على التفوق في مسار البرمجة</p>
+        <span class="cert-view"><i class="fas fa-expand"></i> <span data-i18n="cert.view">عرض الشهادة</span></span>
+      </div>
+    </div>
+    <div class="cert-card reveal" data-img="https://i.ibb.co/RphrqbmQ/Picsart-26-10-07-19-36-22-146.png">
+      <div class="cert-img-wrap"><img class="cert-img" loading="lazy" src="https://i.ibb.co/RphrqbmQ/Picsart-26-10-07-19-36-22-146.png" alt="Certificate" /></div>
+      <div class="cert-body">
+        <h4 data-i18n="cert3.title">شهادة ثانية من مُدرسة البرمجة</h4>
+        <p data-i18n="cert3.desc">أولى إعدادي — إنجاز إضافي في مسار البرمجة</p>
+        <span class="cert-view"><i class="fas fa-expand"></i> <span data-i18n="cert.view">عرض الشهادة</span></span>
+      </div>
+    </div>
+    <div class="cert-card reveal" data-img="https://i.ibb.co/7tMf0qvK/Picsart-26-10-07-19-47-45-565.png">
+      <div class="cert-img-wrap"><img class="cert-img" loading="lazy" src="https://i.ibb.co/7tMf0qvK/Picsart-26-10-07-19-47-45-565.png" alt="Director Certificate" /></div>
+      <div class="cert-body">
+        <h4 data-i18n="cert4.title">شهادة مدير المدرسة — الأولى في مسابقة الحاسب الآلي</h4>
+        <p data-i18n="cert4.desc">موقعة من مدرسة الحاسب + المدير + مدرس IT</p>
+        <span class="cert-view"><i class="fas fa-expand"></i> <span data-i18n="cert.view">عرض الشهادة</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal" id="certModal">
+  <div class="modal-content">
+    <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
+    <img id="modalImg" src="" alt="certificate" />
+  </div>
+</div>
+
+<!-- JOURNEY -->
+<section id="journey">
+  <div class="section-head reveal">
+    <span class="tag">// 04. journey.log</span>
+    <h2 data-i18n="journey.title">رحلتي</h2>
+  </div>
+  <div class="timeline">
+    <div class="tl-item reveal">
+      <div class="tl-card"><div class="tl-year">2010</div><p data-i18n="tl.1">ولدت في مصر 🇪🇬 — بداية الحكاية</p></div>
+      <div class="tl-dot"></div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-card"><div class="tl-year" data-i18n="tl.2y">أولى إعدادي</div><p data-i18n="tl.2">بدأت رحلتي في البرمجة وحصلت على أولى شهاداتي</p></div>
+      <div class="tl-dot"></div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-card"><div class="tl-year">2025+</div><p data-i18n="tl.3">أول شهادة JavaScript موثقة دولياً من اليابان ومصر</p></div>
+      <div class="tl-dot"></div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-card"><div class="tl-year" data-i18n="tl.4y">المستقبل</div><p data-i18n="tl.4">خبير أمن سيبراني 🎯</p></div>
+      <div class="tl-dot"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-head reveal">
+    <span class="tag">// 05. connect</span>
+    <h2 data-i18n="contact.title">تواصل معايا</h2>
+  </div>
+  <div class="contact-grid">
+    <a class="contact-card reveal" href="https://www.linkedin.com/in/amgadqu123" target="_blank" rel="noopener">
+      <div class="icon"><i class="fab fa-linkedin-in"></i></div>
+      <h4>LinkedIn</h4>
+      <span>amgadqu123</span>
+      <div class="arrow" data-i18n="contact.visit">زيارة الحساب ←</div>
+    </a>
+    <a class="contact-card reveal" href="https://youtube.com/@mousacode" target="_blank" rel="noopener">
+      <div class="icon"><i class="fab fa-youtube"></i></div>
+      <h4>YouTube — Mousa Code</h4>
+      <span>@mousacode</span>
+      <div class="arrow" data-i18n="contact.visit">زيارة القناة ←</div>
+    </a>
   </div>
 </section>
 
 <footer>
-  <span id="footerText">اتعمل بـ HTML و CSS و JavaScript. كل التجارب في بيئة معزولة.</span>
+  <div data-i18n="footer">Built with 💚 from Egypt | Never Stop Learning</div>
 </footer>
+
+<!-- TERMINAL EASTER EGG -->
+<button id="terminal-btn" title="Terminal"><i class="fas fa-terminal"></i></button>
+<div class="terminal" id="terminal">
+  <div class="terminal-box">
+    <div class="terminal-head">
+      <div class="td r"></div><div class="td y"></div><div class="td g"></div>
+      <span>amjad@secure-terminal:~$</span>
+    </div>
+    <div class="terminal-body" id="termBody">
+      <div class="line prompt">Type 'help' to see available commands.</div>
+    </div>
+    <div class="terminal-input">
+      <span>➜</span>
+      <input id="termInput" autocomplete="off" placeholder="enter command..." />
+    </div>
+  </div>
+</div>
 
 <script>
 /* =========================================================
-   Portfolio script - I wrote this while learning JavaScript.
-   Everything is simple and easy to read.
-   ========================================================= */
-
-// Which language is showing right now
-var currentLang = 'ar';
-
-// -------- All the interface words in 3 languages --------
-var ui = {
+   I18N
+========================================================= */
+const i18n = {
   ar: {
-    siteTitle: 'بورتفوليو الأمن السيبراني',
-    heroTitle: 'أهلاً! أنا بتعلم الأمن السيبراني',
-    heroText: 'دي مجموعة المشاريع اللي عملتها وأنا بتعلم. كل مشروع عملته في مختبر آمن على أجهزة وهمية بتاعتي.',
-    warningText: '⚠️ كل المشاريع اتعملت في مختبر شخصي معزول. ممنوع اختبار أي نظام بدون إذن.',
-    projectsTitle: 'المشاريع',
-    aboutTitle: 'عني',
-    aboutText: 'أنا مبتدئ في الأمن السيبراني بتعلم Networking و Linux و Web Security. بحب أتعلم بالتطبيق العملي وبعمل كل حاجة في مختبر معزول على جهازي.',
-    footerText: 'اتعمل بـ HTML و CSS و JavaScript. كل التجارب في بيئة معزولة.',
-    toolsLabel: 'الأدوات',
-    detailsLabel: 'التفاصيل',
-    demoLabel: 'تجربة سريعة',
-    nmapButton: 'ابدأ الفحص',
-    scanning: 'جاري الفحص...',
-    pwPlaceholder: 'اكتب باسورد هنا...',
-    pwLabel: 'قوة الباسورد:',
-    pwWeak: 'ضعيف',
-    pwMedium: 'متوسط',
-    pwStrong: 'قوي',
-    checklist: [
-      'تغيير باسورد الراوتر',
-      'تفعيل WPA2-AES',
-      'عمل شبكة للزوار',
-      'فصل أجهزة IoT',
-      'تحديث الـ Firmware'
-    ]
+    "nav.home":"الرئيسية","nav.about":"عني","nav.skills":"المهارات","nav.certs":"الشهادات","nav.journey":"رحلتي","nav.contact":"تواصل",
+    "badge":"متاح للتعلم والتعاون",
+    "hero.greet":"> HELLO_WORLD",
+    "heroName":"أمجد عبد اللطيف الدسوقي<br/>حسن محمد موسى",
+    "role":"Cybersecurity Enthusiast | Ethical Hacker in Progress",
+    "age.label":"LIVE_AGE_COUNTER","age.y":"سنة","age.m":"شهر","age.d":"يوم","age.h":"ساعة","age.mi":"دقيقة","age.s":"ثانية",
+    "hero.cta1":"اكتشف مهاراتي","hero.cta2":"تواصل معايا",
+    "about.title":"عني",
+    "about.p1":"طالب مصري، من مواليد 14 فبراير 2010، حلمي إني أبقى خبير أمن سيبراني عالمي. معنديش خبرة كافية لسه، لكن بتعلم كل يوم وبطوّر من نفسي خطوة بخطوة.",
+    "about.country.l":"COUNTRY","about.country.v":"مصر 🇪🇬",
+    "about.spec.l":"SPECIALTY","about.spec.v":"الأمن السيبراني",
+    "about.status.l":"STATUS","about.status.v":"بتعلم كل يوم — خطوة بخطوة",
+    "about.lang.l":"LANGUAGES","about.lang.v":"العربية (الأم) + الإنجليزية",
+    "skills.title":"المهارات",
+    "skill.cyber":"أساسيات الأمن السيبراني","skill.net":"أساسيات الشبكات","skill.linux":"أساسيات Linux","skill.ps":"حل المشكلات",
+    "certs.title":"الشهادات","certs.badge":"+24 شهادة في البرمجة على مدار دراستي",
+    "cert1.title":"شهادة JavaScript Level 1","cert1.desc":"موثقة من منصة أس بريكس اليابانية + وزارة التربية والتعليم المصرية + جامعة هيروشيما اليابانية",
+    "cert2.title":"شهادة تقدير من مُدرسة البرمجة","cert2.desc":"أولى إعدادي — تقدير على التفوق في مسار البرمجة",
+    "cert3.title":"شهادة ثانية من مُدرسة البرمجة","cert3.desc":"أولى إعدادي — إنجاز إضافي في مسار البرمجة",
+    "cert4.title":"شهادة مدير المدرسة — الأولى في مسابقة الحاسب الآلي","cert4.desc":"موقعة من مدرسة الحاسب + المدير + مدرس IT",
+    "cert.view":"عرض الشهادة",
+    "journey.title":"رحلتي",
+    "tl.1":"ولدت في مصر 🇪🇬 — بداية الحكاية","tl.2y":"أولى إعدادي",
+    "tl.2":"بدأت رحلتي في البرمجة وحصلت على أولى شهاداتي",
+    "tl.3":"أول شهادة JavaScript موثقة دولياً من اليابان ومصر","tl.4y":"المستقبل","tl.4":"خبير أمن سيبراني 🎯",
+    "contact.title":"تواصل معايا","contact.visit":"زيارة الحساب ←",
+    "footer":"Built with 💚 from Egypt | Never Stop Learning",
+    "loaderTitle":"INITIALIZING SECURE CONNECTION..."
   },
   en: {
-    siteTitle: 'Cybersecurity Portfolio',
-    heroTitle: 'Hi! I am learning Cybersecurity',
-    heroText: 'These are the projects I built while learning. Everything was done in a safe lab on my own virtual machines.',
-    warningText: '⚠️ All projects were done in a personal isolated lab. Never test any system without permission.',
-    projectsTitle: 'Projects',
-    aboutTitle: 'About Me',
-    aboutText: 'I am a cybersecurity beginner learning Networking, Linux and Web Security. I love hands-on practice and I do everything in an isolated lab on my own machine.',
-    footerText: 'Built with HTML, CSS and JavaScript. All experiments in an isolated environment.',
-    toolsLabel: 'Tools',
-    detailsLabel: 'Details',
-    demoLabel: 'Quick Demo',
-    nmapButton: 'Run Scan',
-    scanning: 'Scanning...',
-    pwPlaceholder: 'Type a password here...',
-    pwLabel: 'Password strength:',
-    pwWeak: 'Weak',
-    pwMedium: 'Medium',
-    pwStrong: 'Strong',
-    checklist: [
-      'Change router password',
-      'Enable WPA2-AES',
-      'Create guest network',
-      'Separate IoT devices',
-      'Update firmware'
-    ]
+    "nav.home":"Home","nav.about":"About","nav.skills":"Skills","nav.certs":"Certificates","nav.journey":"Journey","nav.contact":"Contact",
+    "badge":"Available for Learning & Collaboration",
+    "hero.greet":"> HELLO_WORLD",
+    "heroName":"Amjad Abd El-Latif<br/>El-Desouky Hassan Mohamed Mousa",
+    "role":"Cybersecurity Enthusiast | Ethical Hacker in Progress",
+    "age.label":"LIVE_AGE_COUNTER","age.y":"Years","age.m":"Months","age.d":"Days","age.h":"Hours","age.mi":"Min","age.s":"Sec",
+    "hero.cta1":"Explore My Skills","hero.cta2":"Contact Me",
+    "about.title":"About Me",
+    "about.p1":"An Egyptian student, born on February 14, 2010. My dream is to become a world-class cybersecurity expert. I don't have enough experience yet, but I'm learning every day, step by step.",
+    "about.country.l":"COUNTRY","about.country.v":"Egypt 🇪🇬",
+    "about.spec.l":"SPECIALTY","about.spec.v":"Cybersecurity",
+    "about.status.l":"STATUS","about.status.v":"Learning every day — step by step",
+    "about.lang.l":"LANGUAGES","about.lang.v":"Arabic (Native) + English",
+    "skills.title":"Skills",
+    "skill.cyber":"Cybersecurity Basics","skill.net":"Networking Basics","skill.linux":"Linux Basics","skill.ps":"Problem Solving",
+    "certs.title":"Certificates","certs.badge":"+24 Programming Certificates throughout my studies",
+    "cert1.title":"JavaScript Level 1 Certificate","cert1.desc":"Verified by Asprox Japanese platform + Egyptian Ministry of Education + Hiroshima University",
+    "cert2.title":"Appreciation Certificate from Programming School","cert2.desc":"Grade 7 — Recognition for excellence in the programming track",
+    "cert3.title":"Second Certificate from Programming School","cert3.desc":"Grade 7 — Additional achievement in the programming track",
+    "cert4.title":"School Principal Certificate — 1st Place in Computer Competition","cert4.desc":"Signed by the Computer School + Principal + IT Teacher",
+    "cert.view":"View Certificate",
+    "journey.title":"My Journey",
+    "tl.1":"Born in Egypt 🇪🇬 — the story begins","tl.2y":"Grade 7",
+    "tl.2":"Started my programming journey and earned my first certificates",
+    "tl.3":"First internationally verified JavaScript certificate from Japan & Egypt","tl.4y":"The Future","tl.4":"Cybersecurity Expert 🎯",
+    "contact.title":"Contact Me","contact.visit":"Visit Profile →",
+    "footer":"Built with 💚 from Egypt | Never Stop Learning",
+    "loaderTitle":"INITIALIZING SECURE CONNECTION..."
   },
   pl: {
-    siteTitle: 'Portfolio Cyberbezpieczeństwa',
-    heroTitle: 'Cześć! Uczę się cyberbezpieczeństwa',
-    heroText: 'To projekty, które zbudowałem podczas nauki. Wszystko robiłem w bezpiecznym laboratorium na własnych maszynach wirtualnych.',
-    warningText: '⚠️ Wszystkie projekty powstały w prywatnym, izolowanym laboratorium. Nigdy nie testuj systemów bez pozwolenia.',
-    projectsTitle: 'Projekty',
-    aboutTitle: 'O mnie',
-    aboutText: 'Jestem początkującym w cyberbezpieczeństwie, uczę się sieci, Linuksa i bezpieczeństwa aplikacji webowych. Lubię praktykę i robię wszystko w izolowanym laboratorium na własnym komputerze.',
-    footerText: 'Zbudowane w HTML, CSS i JavaScript. Wszystkie eksperymenty w izolowanym środowisku.',
-    toolsLabel: 'Narzędzia',
-    detailsLabel: 'Szczegóły',
-    demoLabel: 'Szybkie demo',
-    nmapButton: 'Uruchom skan',
-    scanning: 'Skanowanie...',
-    pwPlaceholder: 'Wpisz hasło tutaj...',
-    pwLabel: 'Siła hasła:',
-    pwWeak: 'Słabe',
-    pwMedium: 'Średnie',
-    pwStrong: 'Silne',
-    checklist: [
-      'Zmiana hasła routera',
-      'Włącz WPA2-AES',
-      'Utwórz sieć dla gości',
-      'Oddziel urządzenia IoT',
-      'Aktualizuj firmware'
-    ]
+    "nav.home":"Start","nav.about":"O mnie","nav.skills":"Umiejętności","nav.certs":"Certyfikaty","nav.journey":"Moja podróż","nav.contact":"Kontakt",
+    "badge":"Dostępny do nauki i współpracy",
+    "hero.greet":"> CZEŚĆ_ŚWIECIE",
+    "heroName":"Amjad Abd El-Latif<br/>El-Desouky Hassan Mohamed Mousa",
+    "role":"Entuzjasta cyberbezpieczeństwa | Etyczny haker w trakcie nauki",
+    "age.label":"LICZNIK_WIEKU_NA_ŻYWO","age.y":"Lat","age.m":"Mies.","age.d":"Dni","age.h":"Godz.","age.mi":"Min","age.s":"Sek",
+    "hero.cta1":"Poznaj moje umiejętności","hero.cta2":"Skontaktuj się",
+    "about.title":"O mnie",
+    "about.p1":"Egipski uczeń, urodzony 14 lutego 2010. Moim marzeniem jest zostać światowej klasy ekspertem ds. cyberbezpieczeństwa. Nie mam jeszcze wystarczającego doświadczenia, ale uczę się każdego dnia, krok po kroku.",
+    "about.country.l":"KRAJ","about.country.v":"Egipt 🇪🇬",
+    "about.spec.l":"SPECJALIZACJA","about.spec.v":"Cyberbezpieczeństwo",
+    "about.status.l":"STATUS","about.status.v":"Uczę się codziennie — krok po kroku",
+    "about.lang.l":"JĘZYKI","about.lang.v":"Arabski (ojczysty) + Angielski",
+    "skills.title":"Umiejętności",
+    "skill.cyber":"Podstawy cyberbezpieczeństwa","skill.net":"Podstawy sieci","skill.linux":"Podstawy Linux","skill.ps":"Rozwiązywanie problemów",
+    "certs.title":"Certyfikaty","certs.badge":"+24 certyfikaty programistyczne zdobyte podczas nauki",
+    "cert1.title":"Certyfikat JavaScript Level 1","cert1.desc":"Zweryfikowany przez japońską platformę Asprox + egipskie Ministerstwo Edukacji + Uniwersytet w Hiroszimie",
+    "cert2.title":"Certyfikat uznania od szkoły programowania","cert2.desc":"Klasa 7 — wyróżnienie za doskonałość w programowaniu",
+    "cert3.title":"Drugi certyfikat od szkoły programowania","cert3.desc":"Klasa 7 — dodatkowe osiągnięcie w programowaniu",
+    "cert4.title":"Certyfikat dyrektora szkoły — 1. miejsce w konkursie komputerowym","cert4.desc":"Podpisany przez szkołę komputerową + dyrektora + nauczyciela IT",
+    "cert.view":"Zobacz certyfikat",
+    "journey.title":"Moja podróż",
+    "tl.1":"Urodziłem się w Egipcie 🇪🇬 — początek historii","tl.2y":"Klasa 7",
+    "tl.2":"Rozpocząłem przygodę z programowaniem i zdobyłem pierwsze certyfikaty",
+    "tl.3":"Pierwszy międzynarodowy certyfikat JavaScript z Japonii i Egiptu","tl.4y":"Przyszłość","tl.4":"Ekspert cyberbezpieczeństwa 🎯",
+    "contact.title":"Kontakt","contact.visit":"Odwiedź profil →",
+    "footer":"Zbudowane z 💚 z Egiptu | Nigdy nie przestawaj się uczyć",
+    "loaderTitle":"INICJALIZACJA BEZPIECZNEGO POŁĄCZENIA..."
   }
 };
 
-// -------- All my 15 projects --------
-var projects = [
-  {
-    icon: '🖥️',
-    title: {
-      ar: 'بناء مختبر منزلي',
-      en: 'Building a Home Lab',
-      pl: 'Budowa laboratorium domowego'
-    },
-    desc: {
-      ar: 'عملت مختبر افتراضي على جهازي فيه Kali Linux و Metasploitable2 علشان أتدرب بأمان.',
-      en: 'I built a virtual lab on my own computer with Kali Linux and Metasploitable2 so I can practice safely.',
-      pl: 'Zbudowałem wirtualne laboratorium na własnym komputerze z Kali Linux i Metasploitable2, żeby bezpiecznie ćwiczyć.'
-    },
-    details: {
-      ar: 'نزّلت VirtualBox وعملت جهازين وهميين، وربطتهم بشبكة داخلية معزولة (Internal Network) علشان مفيش أي حاجة تخرج للنت. الجهاز الأول Kali والثاني Metasploitable2 كهدف للتدريب.',
-      en: 'I installed VirtualBox, created two virtual machines, and connected them with an isolated Internal Network so nothing leaks to the internet. The first VM is Kali and the second is Metasploitable2 as a practice target.',
-      pl: 'Zainstalowałem VirtualBox, stworzyłem dwie maszyny wirtualne i połączyłem je w izolowanej sieci wewnętrznej, żeby nic nie wychodziło do internetu. Pierwsza maszyna to Kali, a druga to Metasploitable2 jako cel do ćwiczeń.'
-    },
-    tools: ['VirtualBox', 'Kali Linux', 'Metasploitable2'],
-    demo: null
-  },
-  {
-    icon: '🔍',
-    title: {
-      ar: 'فحص الشبكة بـ Nmap',
-      en: 'Network Scanning with Nmap',
-      pl: 'Skanowanie sieci z Nmap'
-    },
-    desc: {
-      ar: 'استخدمت Nmap علشان أكتشف الأجهزة المفتوحة والـ Ports والخدمات في المختبر بتاعي.',
-      en: 'I used Nmap to discover live hosts, open ports and services in my lab.',
-      pl: 'Użyłem Nmap do wykrycia aktywnych hostów, otwartych portów i usług w moim laboratorium.'
-    },
-    details: {
-      ar: 'بدأت بـ ping scan علشان أعرف الأجهزة الشغالة، بعدين عملت SYN scan على كل البورتات، وبعدها استخدمت -sV لمعرفة إصدارات الخدمات.',
-      en: 'I started with a ping scan to find live hosts, then ran a SYN scan on all ports, and finally used -sV to detect service versions.',
-      pl: 'Zacząłem od skanu ping, żeby znaleźć aktywne hosty, potem uruchomiłem skan SYN na wszystkich portach, a na końcu użyłem -sV do wykrycia wersji usług.'
-    },
-    tools: ['Nmap', 'Linux'],
-    demo: 'nmap'
-  },
-  {
-    icon: '🦈',
-    title: {
-      ar: 'تحليل الحزم بـ Wireshark',
-      en: 'Packet Analysis with Wireshark',
-      pl: 'Analiza pakietów z Wireshark'
-    },
-    desc: {
-      ar: 'عملت Capture للترافيك داخل المختبر وحللت بروتوكولات HTTP و DNS و FTP.',
-      en: 'I captured traffic inside my lab and analyzed HTTP, DNS and FTP protocols.',
-      pl: 'Przechwyciłem ruch w laboratorium i przeanalizowałem protokoły HTTP, DNS i FTP.'
-    },
-    details: {
-      ar: 'فلترت على http.request وشفت إن بيانات تسجيل الدخول كانت مكشوفة كنص عادي، وده خلاني أفهم ليه لازم HTTPS. كمان تابعت DNS queries و FTP session كاملة.',
-      en: 'I filtered on http.request and saw login data in plain text, which made me understand why HTTPS matters. I also followed DNS queries and a full FTP session.',
-      pl: 'Filtrowałem po http.request i zobaczyłem dane logowania w postaci czystego tekstu, co pokazało mi, dlaczego HTTPS jest ważny. Śledziłem też zapytania DNS i pełną sesję FTP.'
-    },
-    tools: ['Wireshark', 'tcpdump'],
-    demo: null
-  },
-  {
-    icon: '🔑',
-    title: {
-      ar: 'أمن كلمات المرور',
-      en: 'Password Security',
-      pl: 'Bezpieczeństwo haseł'
-    },
-    desc: {
-      ar: 'جربت John the Ripper على هاشات تجريبية، وكتبت أداة صغيرة بتقيس قوة الباسورد.',
-      en: 'I tried John the Ripper on practice hashes, and wrote a small tool that measures password strength.',
-      pl: 'Przetestowałem John the Ripper na przykładowych haszach i napisałem małe narzędzie, które mierzy siłę hasła.'
-    },
-    details: {
-      ar: 'استخدمت wordlist صغيرة مع John the Ripper على هاشات MD5 تجريبية. كمان كتبت دالة بتحسب قوة الباسورد على أساس الطول وتنوع الحروف والأرقام والرموز.',
-      en: 'I used a small wordlist with John the Ripper on practice MD5 hashes. I also wrote a function that scores password strength based on length and variety of letters, numbers and symbols.',
-      pl: 'Użyłem małej listy słów z John the Ripper na przykładowych haszach MD5. Napisałem też funkcję oceniającą siłę hasła na podstawie długości i różnorodności liter, cyfr i symboli.'
-    },
-    tools: ['John the Ripper', 'JavaScript'],
-    demo: 'password'
-  },
-  {
-    icon: '🕵️',
-    title: {
-      ar: 'جمع المعلومات (OSINT)',
-      en: 'OSINT Reconnaissance',
-      pl: 'Rozpoznanie OSINT'
-    },
-    desc: {
-      ar: 'بحثت عن معلوماتي المكشوفة على الإنترنت باستخدام Google Dorks و Have I Been Pwned.',
-      en: 'I searched for my own exposed data online using Google Dorks and Have I Been Pwned.',
-      pl: 'Szukałem swoich ujawnionych danych w internecie używając Google Dorks i Have I Been Pwned.'
-    },
-    details: {
-      ar: 'كتبت تقرير صغير فيه إيميلي اتسرب في أي تسريبات، وإيه الحسابات القديمة اللي لسه موجودة، وإزاي أأمّنها بتغيير الباسورد وتفعيل 2FA.',
-      en: 'I wrote a small report showing which breaches my email appeared in, which old accounts still exist, and how to secure them by changing passwords and enabling 2FA.',
-      pl: 'Napisałem mały raport pokazujący, w których wyciekach pojawił się mój e-mail, które stare konta nadal istnieją i jak je zabezpieczyć zmieniając hasła i włączając 2FA.'
-    },
-    tools: ['Google Dorks', 'Have I Been Pwned', 'theHarvester'],
-    demo: null
-  },
-  {
-    icon: '🌐',
-    title: {
-      ar: 'أمن تطبيقات الويب (DVWA)',
-      en: 'Web Application Security (DVWA)',
-      pl: 'Bezpieczeństwo aplikacji webowych (DVWA)'
-    },
-    desc: {
-      ar: 'جربت ثغرات SQL Injection و XSS و CSRF على DVWA باستخدام Burp Suite.',
-      en: 'I practiced SQL Injection, XSS and CSRF on DVWA using Burp Suite.',
-      pl: 'Ćwiczyłem SQL Injection, XSS i CSRF na DVWA używając Burp Suite.'
-    },
-    details: {
-      ar: 'بدأت بمستوى Low في DVWA وجربت كل ثغرة، بعدين قارنت مع مستوى High علشان أفهم الفرق وإزاي الإصلاح بيتم عن طريق Prepared Statements و Output Encoding.',
-      en: 'I started at the Low level in DVWA and tried each vulnerability, then compared with High level to understand the difference and how fixes work with Prepared Statements and Output Encoding.',
-      pl: 'Zacząłem od poziomu Low w DVWA i przetestowałem każdą podatność, potem porównałem z poziomem High, żeby zrozumieć różnicę i jak działają poprawki z Prepared Statements i Output Encoding.'
-    },
-    tools: ['DVWA', 'Burp Suite', 'OWASP'],
-    demo: null
-  },
-  {
-    icon: '🐍',
-    title: {
-      ar: 'أدوات صغيرة بـ Python',
-      en: 'Small Python Tools',
-      pl: 'Małe narzędzia w Pythonie'
-    },
-    desc: {
-      ar: 'كتبت Port Scanner بسيط و DNS Lookup Tool و File Integrity Monitor.',
-      en: 'I wrote a simple Port Scanner, a DNS Lookup Tool and a File Integrity Monitor.',
-      pl: 'Napisałem prosty skaner portów, narzędzie DNS Lookup i monitor integralności plików.'
-    },
-    details: {
-      ar: 'استخدمت مكتبة socket للـ Port Scanner، و dnspython للـ DNS Lookup، و hashlib للـ File Integrity Monitor اللي بيقارن هاش الملفات كل فترة.',
-      en: 'I used the socket library for the Port Scanner, dnspython for DNS Lookup, and hashlib for the File Integrity Monitor that compares file hashes over time.',
-      pl: 'Użyłem biblioteki socket do skanera portów, dnspython do DNS Lookup i hashlib do monitora integralności plików, który porównuje hasze plików w czasie.'
-    },
-    tools: ['Python', 'socket', 'hashlib'],
-    demo: 'python'
-  },
-  {
-    icon: '📋',
-    title: {
-      ar: 'تحليل سجلات النظام',
-      en: 'Log Analysis',
-      pl: 'Analiza logów'
-    },
-    desc: {
-      ar: 'حللت auth.log في لينكس و Windows Event Logs علشان أكتشف محاولات تسجيل دخول فاشلة.',
-      en: 'I analyzed auth.log on Linux and Windows Event Logs to detect failed login attempts.',
-      pl: 'Analizowałem auth.log w Linuksie i dzienniki zdarzeń Windows, żeby wykryć nieudane próby logowania.'
-    },
-    details: {
-      ar: 'استخدمت grep مع أنماط زي "Failed password" و "Invalid user" علشان أجمع المحاولات الفاشلة وأشوف لو في Brute Force. كمان جربت Splunk Free.',
-      en: 'I used grep with patterns like "Failed password" and "Invalid user" to collect failed attempts and spot possible brute force. I also tried Splunk Free.',
-      pl: 'Użyłem grep ze wzorcami takimi jak "Failed password" i "Invalid user", żeby zebrać nieudane próby i wykryć możliwy brute force. Próbowałem też Splunk Free.'
-    },
-    tools: ['grep', 'Splunk', 'Event Viewer'],
-    demo: null
-  },
-  {
-    icon: '🔥',
-    title: {
-      ar: 'جدار الحماية وأنظمة الكشف',
-      en: 'Firewall and IDS',
-      pl: 'Zapora sieciowa i IDS'
-    },
-    desc: {
-      ar: 'نصبت pfSense في المختبر وكتبت قاعدة بسيطة في Suricata واختبرتها بـ Nmap.',
-      en: 'I set up pfSense in my lab and wrote a simple Suricata rule and tested it with Nmap.',
-      pl: 'Skonfigurowałem pfSense w laboratorium i napisałem prostą regułę Suricata, którą przetestowałem Nmapem.'
-    },
-    details: {
-      ar: 'عملت قاعدة في Suricata تنبهني على أي SYN scan، وبعدين شغلت Nmap من الـ Kali وشفت التنبيهات في اللوج.',
-      en: 'I created a Suricata rule that alerts on any SYN scan, then ran Nmap from Kali and saw the alerts in the log.',
-      pl: 'Stworzyłem regułę Suricata, która alarmuje o każdym skanie SYN, następnie uruchomiłem Nmap z Kali i zobaczyłem alerty w logu.'
-    },
-    tools: ['pfSense', 'Suricata', 'Snort'],
-    demo: null
-  },
-  {
-    icon: '🛡️',
-    title: {
-      ar: 'تقييم الثغرات',
-      en: 'Vulnerability Assessment',
-      pl: 'Ocena podatności'
-    },
-    desc: {
-      ar: 'استخدمت Nessus Essentials و OpenVAS على أجهزة المختبر وطلعت تقرير بالثغرات.',
-      en: 'I used Nessus Essentials and OpenVAS on my lab machines and produced a vulnerability report.',
-      pl: 'Użyłem Nessus Essentials i OpenVAS na maszynach laboratoryjnych i przygotowałem raport podatności.'
-    },
-    details: {
-      ar: 'عملت Scan كامل على Metasploitable2، وبعدين رتبت الثغرات حسب الخطورة (Critical/High/Medium/Low) وكتبت توصيات للإصلاح.',
-      en: 'I ran a full scan on Metasploitable2, then sorted findings by severity (Critical/High/Medium/Low) and wrote remediation recommendations.',
-      pl: 'Przeprowadziłem pełny skan Metasploitable2, następnie posortowałem wyniki według ważności (Critical/High/Medium/Low) i napisałem zalecenia naprawcze.'
-    },
-    tools: ['Nessus', 'OpenVAS', 'Nmap'],
-    demo: null
-  },
-  {
-    icon: '🚩',
-    title: {
-      ar: 'تحديات CTF',
-      en: 'CTF Challenges',
-      pl: 'Wyzwania CTF'
-    },
-    desc: {
-      ar: 'حليت مستويات OverTheWire Bandit و PicoCTF وكتبت Writeups.',
-      en: 'I solved OverTheWire Bandit and PicoCTF levels and wrote writeups.',
-      pl: 'Rozwiązałem poziomy OverTheWire Bandit i PicoCTF i napisałem writeupy.'
-    },
-    details: {
-      ar: 'بدأت بـ Bandit المستويات 0-15 وتعلمت أوامر لينكس الأساسية زي ls و cat و find و grep و ssh. بعدها دخلت PicoCTF على تحديات Web و Forensics.',
-      en: 'I started with Bandit levels 0-15 and learned basic Linux commands like ls, cat, find, grep and ssh. Then I moved to PicoCTF for Web and Forensics challenges.',
-      pl: 'Zacząłem od poziomów Bandit 0-15 i nauczyłem się podstawowych komend Linuksa jak ls, cat, find, grep i ssh. Potem przeszedłem do PicoCTF na wyzwania Web i Forensics.'
-    },
-    tools: ['OverTheWire', 'PicoCTF', 'TryHackMe'],
-    demo: null
-  },
-  {
-    icon: '🏠',
-    title: {
-      ar: 'تأمين شبكة البيت',
-      en: 'Securing My Home Network',
-      pl: 'Zabezpieczenie sieci domowej'
-    },
-    desc: {
-      ar: 'عملت قائمة تحقق لتأمين الراوتر والأجهزة المتصلة بيه.',
-      en: 'I made a checklist to secure my router and connected devices.',
-      pl: 'Stworzyłem listę kontrolną do zabezpieczenia routera i podłączonych urządzeń.'
-    },
-    details: {
-      ar: 'غيّرت باسورد الراوتر، فعّلت WPA2-AES، عملت شبكة منفصلة للزوار، فصلت أجهزة IoT، وحدّثت الـ Firmware.',
-      en: 'I changed the router password, enabled WPA2-AES, created a guest network, separated IoT devices, and updated the firmware.',
-      pl: 'Zmieniłem hasło routera, włączyłem WPA2-AES, utworzyłem sieć dla gości, oddzieliłem urządzenia IoT i zaktualizowałem firmware.'
-    },
-    tools: ['Router', 'WPA2', 'Guest Network'],
-    demo: 'checklist'
-  },
-  {
-    icon: '🎣',
-    title: {
-      ar: 'تحليل رسائل التصيد',
-      en: 'Phishing Email Analysis',
-      pl: 'Analiza e-maili phishingowych'
-    },
-    desc: {
-      ar: 'حللت Email Headers وفحصت SPF و DKIM و DMARC لرسالة تصيد تجريبية.',
-      en: 'I analyzed email headers and checked SPF, DKIM and DMARC for a sample phishing email.',
-      pl: 'Przeanalizowałem nagłówki e-maili i sprawdziłem SPF, DKIM i DMARC dla przykładowego phishingu.'
-    },
-    details: {
-      ar: 'فتحت الـ Headers في Gmail، دورت على Received و Return-Path، وفحصت الروابط في VirusTotal و urlscan.io، ولقيت دومين مشبوه.',
-      en: 'I opened the headers in Gmail, looked at Received and Return-Path, checked links in VirusTotal and urlscan.io, and found a suspicious domain.',
-      pl: 'Otworzyłem nagłówki w Gmailu, sprawdziłem Received i Return-Path, zweryfikowałem linki w VirusTotal i urlscan.io i znalazłem podejrzaną domenę.'
-    },
-    tools: ['Gmail Headers', 'VirusTotal', 'urlscan.io'],
-    demo: null
-  },
-  {
-    icon: '🦠',
-    title: {
-      ar: 'تحليل عينة برمجية خبيثة',
-      en: 'Malware Analysis',
-      pl: 'Analiza złośliwego oprogramowania'
-    },
-    desc: {
-      ar: 'عملت Static Analysis لعينة تجريبية باستخدام VirusTotal و strings و PE Headers.',
-      en: 'I did static analysis of a sample using VirusTotal, strings and PE Headers.',
-      pl: 'Przeprowadziłem analizę statyczną próbki używając VirusTotal, strings i nagłówków PE.'
-    },
-    details: {
-      ar: 'ما شغلتش العينة على جهازي أبدًا، رفعتها على VirusTotal وشفت النتيجة، وبعدين استخدمت strings و PEview علشان أشوف الـ Imports والـ Sections المشبوهة.',
-      en: 'I never ran the sample on my machine; I uploaded it to VirusTotal and checked the result, then used strings and PEview to look at suspicious imports and sections.',
-      pl: 'Nigdy nie uruchamiałem próbki na swoim komputerze; wgrałem ją do VirusTotal i sprawdziłem wynik, następnie użyłem strings i PEview do zbadania podejrzanych importów i sekcji.'
-    },
-    tools: ['VirusTotal', 'strings', 'PEview'],
-    demo: null
-  },
-  {
-    icon: '📁',
-    title: {
-      ar: 'بورتفوليو المشاريع',
-      en: 'Project Portfolio',
-      pl: 'Portfolio projektów'
-    },
-    desc: {
-      ar: 'جمعت كل المشاريع والـ Writeups في مكان واحد على GitHub.',
-      en: 'I collected all projects and writeups in one place on GitHub.',
-      pl: 'Zebrałem wszystkie projekty i writeupy w jednym miejscu na GitHubie.'
-    },
-    details: {
-      ar: 'كل مشروع فيه README بيشرح الخطوات والنتائج والأدوات المستخدمة، وده بيساعدني أرجع له وأتذكره وأوريه لأي حد.',
-      en: 'Each project has a README explaining steps, results and tools used, which helps me review it later and show it to others.',
-      pl: 'Każdy projekt ma README wyjaśniające kroki, wyniki i użyte narzędzia, co pomaga mi wracać do nich i pokazywać je innym.'
-    },
-    tools: ['GitHub', 'Markdown', 'Notion'],
-    demo: null
-  }
-];
+let currentLang = 'ar';
 
-/* =========================================================
-   Small demo helpers
-   ========================================================= */
-
-// Build the HTML for a demo box depending on the type
-function getDemoHTML(type) {
-  var t = ui[currentLang];
-
-  if (type === 'nmap') {
-    return '<div class="demo-box">' +
-             '<span class="demo-label">' + t.demoLabel + '</span>' +
-             '<button class="demo-btn" onclick="runNmapDemo()">' + t.nmapButton + '</button>' +
-             '<pre class="demo-output" id="nmapOut"></pre>' +
-           '</div>';
-  }
-
-  if (type === 'password') {
-    return '<div class="demo-box">' +
-             '<span class="demo-label">' + t.demoLabel + '</span>' +
-             '<input type="text" class="demo-input" id="pwInput" placeholder="' + t.pwPlaceholder + '" oninput="checkPassword()">' +
-             '<div class="pw-bar"><div id="pwBar"></div></div>' +
-             '<p class="demo-text" id="pwText">' + t.pwLabel + ' -</p>' +
-           '</div>';
-  }
-
-  if (type === 'checklist') {
-    var items = t.checklist;
-    var h = '<div class="demo-box">' +
-              '<span class="demo-label">' + t.demoLabel + '</span>';
-    for (var i = 0; i < items.length; i++) {
-      h += '<label class="check-item"><input type="checkbox">' + items[i] + '</label>';
-    }
-    h += '</div>';
-    return h;
-  }
-
-  if (type === 'python') {
-    return '<div class="demo-box">' +
-             '<span class="demo-label">' + t.demoLabel + '</span>' +
-             '<pre class="code-block">' +
-'<span class="cm"># small port scanner I wrote</span>\n' +
-'<span class="kw">import</span> socket\n\n' +
-'<span class="kw">def</span> <span class="fn">scan</span>(host, port):\n' +
-'    s = socket.socket()\n' +
-'    s.settimeout(0.5)\n' +
-'    <span class="kw">try</span>:\n' +
-'        s.connect((host, port))\n' +
-'        <span class="kw">return</span> <span class="kw">True</span>\n' +
-'    <span class="kw">except</span>:\n' +
-'        <span class="kw">return</span> <span class="kw">False</span>\n' +
-'    <span class="kw">finally</span>:\n' +
-'        s.close()\n\n' +
-'<span class="kw">for</span> p <span class="kw">in</span> [21, 22, 80, 443, 3306]:\n' +
-'    <span class="kw">if</span> scan(<span class="str">"192.168.56.101"</span>, p):\n' +
-'        print(<span class="str">"port"</span>, p, <span class="str">"is open"</span>)' +
-             '</pre>' +
-           '</div>';
-  }
-
-  return '';
-}
-
-// Simulate an Nmap scan output line by line
-function runNmapDemo() {
-  var out = document.getElementById('nmapOut');
-  if (!out) return;
-
-  var t = ui[currentLang];
-  out.textContent = t.scanning;
-
-  var lines = [
-    'Starting Nmap 7.94 ( https://nmap.org )',
-    'Nmap scan report for 192.168.56.101',
-    'Host is up (0.0012s latency).',
-    'Not shown: 977 closed tcp ports (reset)',
-    'PORT     STATE SERVICE     VERSION',
-    '21/tcp   open  ftp         vsftpd 2.3.4',
-    '22/tcp   open  ssh         OpenSSH 4.7p1',
-    '80/tcp   open  http        Apache httpd 2.2.8',
-    '3306/tcp open  mysql       MySQL 5.0.51a',
-    'MAC Address: 08:00:27:1A:2B:3C (VirtualBox)',
-    'Nmap done: 1 IP address (1 host up) scanned in 12.34 seconds'
-  ];
-
-  var i = 0;
-  out.textContent = '';
-
-  var timer = setInterval(function () {
-    if (i < lines.length) {
-      out.textContent += lines[i] + '\n';
-      out.scrollTop = out.scrollHeight;
-      i++;
-    } else {
-      clearInterval(timer);
-    }
-  }, 180);
-}
-
-// Check how strong a password is
-function checkPassword() {
-  var input = document.getElementById('pwInput');
-  var bar = document.getElementById('pwBar');
-  var text = document.getElementById('pwText');
-  if (!input || !bar || !text) return;
-
-  var val = input.value;
-  var t = ui[currentLang];
-  var score = 0;
-
-  if (val.length >= 8) score++;
-  if (val.length >= 12) score++;
-  if (/[a-z]/.test(val)) score++;
-  if (/[A-Z]/.test(val)) score++;
-  if (/[0-9]/.test(val)) score++;
-  if (/[^a-zA-Z0-9]/.test(val)) score++;
-
-  var width, color, level;
-
-  if (val.length === 0) {
-    width = '0%';
-    color = '#888';
-    level = '-';
-  } else if (score <= 2) {
-    width = '33%';
-    color = '#e74c3c';
-    level = t.pwWeak;
-  } else if (score <= 4) {
-    width = '66%';
-    color = '#f39c12';
-    level = t.pwMedium;
-  } else {
-    width = '100%';
-    color = '#2ecc71';
-    level = t.pwStrong;
-  }
-
-  bar.style.width = width;
-  bar.style.background = color;
-  text.textContent = t.pwLabel + ' ' + level;
-}
-
-/* =========================================================
-   Build the projects grid
-   ========================================================= */
-
-function renderProjects() {
-  var grid = document.getElementById('projectsGrid');
-  var t = ui[currentLang];
-  var html = '';
-
-  for (var i = 0; i < projects.length; i++) {
-    var p = projects[i];
-
-    // tools tags
-    var toolsHtml = '';
-    for (var j = 0; j < p.tools.length; j++) {
-      toolsHtml += '<span class="tool-tag">' + p.tools[j] + '</span>';
-    }
-
-    html += '<div class="card">';
-    html +=   '<div class="card-top">';
-    html +=     '<span class="card-icon">' + p.icon + '</span>';
-    html +=     '<span class="card-title">' + p.title[currentLang] + '</span>';
-    html +=   '</div>';
-    html +=   '<p class="card-desc">' + p.desc[currentLang] + '</p>';
-    html +=   '<div class="tools">' + toolsHtml + '</div>';
-    html +=   '<details>';
-    html +=     '<summary>' + t.detailsLabel + '</summary>';
-    html +=     '<p class="details-text">' + p.details[currentLang] + '</p>';
-    html +=     getDemoHTML(p.demo);
-    html +=   '</details>';
-    html += '</div>';
-  }
-
-  grid.innerHTML = html;
-}
-
-/* =========================================================
-   Update the interface words when language changes
-   ========================================================= */
-
-function updateUI() {
-  var t = ui[currentLang];
-  var ids = ['siteTitle', 'heroTitle', 'heroText', 'warningText',
-             'projectsTitle', 'aboutTitle', 'aboutText', 'footerText'];
-
-  for (var i = 0; i < ids.length; i++) {
-    var el = document.getElementById(ids[i]);
-    if (el) {
-      el.textContent = t[ids[i]];
-    }
-  }
-}
-
-/* =========================================================
-   Switch language
-   ========================================================= */
-
-function setLang(lang) {
+function applyLang(lang){
   currentLang = lang;
+  const t = i18n[lang];
+  const html = document.documentElement;
+  html.lang = lang;
+  html.dir = lang === 'ar' ? 'rtl' : 'ltr';
 
-  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if(t[k] !== undefined) el.innerHTML = t[k];
+  });
 
-  if (lang === 'ar') {
-    document.documentElement.dir = 'rtl';
-  } else {
-    document.documentElement.dir = 'ltr';
+  // Hero name (glitch data-text)
+  const hn = document.getElementById('heroName');
+  if(hn){
+    hn.innerHTML = t['heroName'];
+    hn.setAttribute('data-text', t['heroName'].replace(/<br\s*\/?>/g,' '));
   }
 
-  updateUI();
-  renderProjects();
+  document.getElementById('langLabel').textContent = lang.toUpperCase();
 
-  // mark active button
-  var buttons = document.querySelectorAll('.lang-btn');
-  for (var i = 0; i < buttons.length; i++) {
-    if (buttons[i].getAttribute('data-lang') === lang) {
-      buttons[i].classList.add('active');
-    } else {
-      buttons[i].classList.remove('active');
+  // Retrigger typing
+  startTyping();
+  // Loader title (if visible)
+  const lt = document.getElementById('loaderTitle');
+  if(lt) lt.textContent = t['loaderTitle'];
+}
+
+document.querySelectorAll('#langMenu button').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    applyLang(b.dataset.lang);
+    document.getElementById('langMenu').classList.remove('open');
+  });
+});
+document.getElementById('langBtn').addEventListener('click', e=>{
+  e.stopPropagation();
+  document.getElementById('langMenu').classList.toggle('open');
+});
+document.addEventListener('click', ()=> document.getElementById('langMenu').classList.remove('open'));
+
+/* =========================================================
+   LOADER
+========================================================= */
+const loaderFill = document.getElementById('loaderFill');
+const loaderStatus = document.getElementById('loaderStatus');
+const statusMsgs = [
+  "> Booting kernel modules",
+  "> Loading encryption keys",
+  "> Mounting secure filesystem",
+  "> Handshake with node...",
+  "> Access granted ✓"
+];
+let lProg = 0, sIdx = 0;
+const loaderInterval = setInterval(()=>{
+  lProg += Math.random()*12 + 4;
+  if(lProg >= 100){ lProg = 100; }
+  loaderFill.style.width = lProg + '%';
+  const newIdx = Math.floor(lProg/21);
+  if(newIdx !== sIdx && statusMsgs[newIdx]){ sIdx = newIdx; loaderStatus.textContent = statusMsgs[newIdx]; }
+  if(lProg === 100){
+    clearInterval(loaderInterval);
+    setTimeout(()=> document.getElementById('loader').classList.add('hide'), 500);
+  }
+}, 160);
+
+/* =========================================================
+   MATRIX RAIN
+========================================================= */
+(function matrixRain(){
+  const canvas = document.getElementById('matrix-canvas');
+  const ctx = canvas.getContext('2d');
+  let w, h, cols, drops;
+  const chars = 'アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>{}[]/\\';
+  function resize(){
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+    cols = Math.floor(w / 16);
+    drops = Array(cols).fill(1);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  function draw(){
+    ctx.fillStyle = 'rgba(0,3,8,0.08)';
+    ctx.fillRect(0,0,w,h);
+    ctx.fillStyle = '#00ff88';
+    ctx.font = '15px "JetBrains Mono", monospace';
+    for(let i=0;i<cols;i++){
+      const ch = chars[Math.floor(Math.random()*chars.length)];
+      ctx.fillText(ch, i*16, drops[i]*16);
+      if(drops[i]*16 > h && Math.random() > 0.975) drops[i] = 0;
+      drops[i]++;
     }
   }
+  setInterval(draw, 55);
+})();
+
+/* =========================================================
+   CUSTOM CURSOR
+========================================================= */
+const dot = document.querySelector('.cursor-dot');
+const ring = document.querySelector('.cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e=>{
+  mx = e.clientX; my = e.clientY;
+  dot.style.left = mx+'px'; dot.style.top = my+'px';
+});
+function follow(){
+  rx += (mx-rx)*0.16;
+  ry += (my-ry)*0.16;
+  ring.style.left = rx+'px'; ring.style.top = ry+'px';
+  requestAnimationFrame(follow);
+}
+follow();
+
+/* =========================================================
+   TYPING EFFECT
+========================================================= */
+let typingTimer;
+function startTyping(){
+  clearTimeout(typingTimer);
+  const el = document.getElementById('typed');
+  const text = i18n[currentLang]['role'];
+  el.textContent = '';
+  let i = 0;
+  function type(){
+    if(i <= text.length){
+      el.textContent = text.slice(0,i);
+      i++;
+      typingTimer = setTimeout(type, 45);
+    } else {
+      // pause then restart
+      typingTimer = setTimeout(()=>{ el.textContent=''; i=0; type(); }, 3500);
+    }
+  }
+  type();
 }
 
 /* =========================================================
-   Start the page
-   ========================================================= */
+   LIVE AGE COUNTER (born Feb 14, 2010)
+========================================================= */
+const BIRTH = new Date(2010, 1, 14, 0, 0, 0); // Feb = index 1
+function getAge(){
+  const now = new Date();
+  let years = now.getFullYear() - BIRTH.getFullYear();
+  let months = now.getMonth() - BIRTH.getMonth();
+  let days = now.getDate() - BIRTH.getDate();
+  let hours = now.getHours() - BIRTH.getHours();
+  let minutes = now.getMinutes() - BIRTH.getMinutes();
+  let seconds = now.getSeconds() - BIRTH.getSeconds();
 
-setLang('ar');
+  if(seconds < 0){ seconds += 60; minutes--; }
+  if(minutes < 0){ minutes += 60; hours--; }
+  if(hours < 0){ hours += 24; days--; }
+  if(days < 0){
+    const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+    days += prevMonth; months--;
+  }
+  if(months < 0){ months += 12; years--; }
+  return { years, months, days, hours, minutes, seconds };
+}
+function pad(n){ return n<10 ? '0'+n : n; }
+function updateAge(){
+  const a = getAge();
+  document.getElementById('ageY').textContent = a.years;
+  document.getElementById('ageM').textContent = a.months;
+  document.getElementById('ageD').textContent = a.days;
+  document.getElementById('ageH').textContent = pad(a.hours);
+  document.getElementById('ageMi').textContent = pad(a.minutes);
+  document.getElementById('ageS').textContent = pad(a.seconds);
+}
+setInterval(updateAge, 1000);
+updateAge();
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      en.target.classList.add('in');
+      // Trigger skill bars
+      if(en.target.classList.contains('skill')){
+        const bar = en.target.querySelector('.skill-bar span');
+        const pct = en.target.dataset.pct;
+        setTimeout(()=> bar.style.width = pct + '%', 200);
+      }
+      io.unobserve(en.target);
+    }
+  });
+},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+
+/* =========================================================
+   CERTIFICATE MODAL
+========================================================= */
+const modal = document.getElementById('certModal');
+const modalImg = document.getElementById('modalImg');
+document.querySelectorAll('.cert-card').forEach(card=>{
+  card.addEventListener('click', ()=>{
+    modalImg.src = card.dataset.img;
+    modal.classList.add('open');
+  });
+});
+document.getElementById('modalClose').addEventListener('click', ()=> modal.classList.remove('open'));
+modal.addEventListener('click', (e)=>{ if(e.target === modal) modal.classList.remove('open'); });
+document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') modal.classList.remove('open'); });
+
+/* =========================================================
+   RIPPLE EFFECT ON BUTTONS
+========================================================= */
+document.querySelectorAll('.btn, .contact-card, .lang-btn').forEach(b=>{
+  b.addEventListener('click', function(e){
+    const r = document.createElement('span');
+    r.className = 'ripple';
+    const rect = this.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    r.style.width = r.style.height = size + 'px';
+    r.style.left = (e.clientX - rect.left - size/2) + 'px';
+    r.style.top = (e.clientY - rect.top - size/2) + 'px';
+    this.appendChild(r);
+    setTimeout(()=> r.remove(), 650);
+  });
+});
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+const nav = document.getElementById('nav');
+document.getElementById('menuToggle').addEventListener('click', ()=> nav.classList.toggle('open'));
+document.querySelectorAll('nav a').forEach(a=> a.addEventListener('click', ()=> nav.classList.remove('open')));
+
+/* =========================================================
+   TERMINAL EASTER EGG
+========================================================= */
+const term = document.getElementById('terminal');
+const termBody = document.getElementById('termBody');
+const termInput = document.getElementById('termInput');
+
+document.getElementById('terminal-btn').addEventListener('click', ()=>{
+  term.classList.add('open');
+  termInput.focus();
+});
+term.addEventListener('click', (e)=>{ if(e.target === term) term.classList.remove('open'); });
+
+function addLine(text, cls=''){
+  const div = document.createElement('div');
+  div.className = 'line ' + cls;
+  div.innerHTML = text;
+  termBody.appendChild(div);
+  termBody.scrollTop = termBody.scrollHeight;
+}
+
+function runCmd(cmd){
+  cmd = cmd.trim().toLowerCase();
+  addLine('<span class="prompt">➜</span> ' + cmd);
+  switch(cmd){
+    case 'help':
+      addLine('Available commands:');
+      addLine('  <span style="color:#00d4ff">whoami</span>   - About Amjad');
+      addLine('  <span style="color:#00d4ff">age</span>      - Live age');
+      addLine('  <span style="color:#00d4ff">skills</span>   - List skills');
+      addLine('  <span style="color:#00d4ff">certs</span>    - Certificates count');
+      addLine('  <span style="color:#00d4ff">quote</span>    - Motivational quote');
+      addLine('  <span style="color:#00d4ff">contact</span>  - Contact info');
+      addLine('  <span style="color:#00d4ff">clear</span>    - Clear terminal');
+      break;
+    case 'whoami':
+      addLine('Amjad Abd El-Latif — Egyptian cybersecurity enthusiast 🛡️');
+      addLine('Born: 14 Feb 2010 | Learning every day, step by step.');
+      break;
+    case 'age': {
+      const a = getAge();
+      addLine(`Age: ${a.years}y ${a.months}m ${a.days}d ${pad(a.hours)}h ${pad(a.minutes)}m ${pad(a.seconds)}s`);
+      break;
+    }
+    case 'skills':
+      addLine('→ JavaScript, HTML/CSS, Cybersecurity Basics');
+      addLine('→ Networking, Linux, Problem Solving');
+      break;
+    case 'certs':
+      addLine('🎖️ 24+ programming certificates');
+      addLine('Top: JavaScript Level 1 (Asprox 🇯🇵 + Hiroshima Univ + Egyptian MoE)');
+      break;
+    case 'quote':
+      addLine('"The quieter you become, the more you are able to hear."');
+      addLine('"Never stop learning — the hacker\'s journey has no end." 🚀');
+      break;
+    case 'contact':
+      addLine('LinkedIn: https://www.linkedin.com/in/amgadqu123');
+      addLine('YouTube:  https://youtube.com/@mousacode');
+      break;
+    case 'clear':
+      termBody.innerHTML = '';
+      break;
+    case '':
+      break;
+    default:
+      addLine(`command not found: ${cmd}. Type 'help'`, '');
+  }
+}
+termInput.addEventListener('keydown', (e)=>{
+  if(e.key === 'Enter'){
+    runCmd(termInput.value);
+    termInput.value = '';
+  }
+});
+
+/* =========================================================
+   INIT
+========================================================= */
+applyLang('ar');
+
+/* Set video speed slightly slower for atmosphere */
+const vid = document.getElementById('bg-video');
+vid.addEventListener('loadeddata', ()=> { vid.playbackRate = 0.85; });
 </script>
-
 </body>
-   </html>
+                                                              </html>
