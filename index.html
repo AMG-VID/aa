@@ -4,7 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Amjad Abd El-Latif | Cybersecurity Portfolio</title>
-<meta name="description" content="Amjad Abd El-Latif — Egyptian cybersecurity enthusiast, ethical hacker in progress. 24+ programming certificates. Never stop learning." />
+<meta name="description" content="Amjad Abd El-Latif — Egyptian cybersecurity enthusiast & ethical hacker in progress. 24+ certificates. Never stop learning." />
+<meta name="author" content="Amjad Abd El-Latif" />
 <meta property="og:title" content="Amjad Abd El-Latif | Cybersecurity Portfolio" />
 <meta property="og:description" content="Egyptian cybersecurity enthusiast | Ethical Hacker in Progress" />
 <meta property="og:image" content="https://i.ibb.co/dw78vpW4/Picsart-26-10-06-16-22-06-337.jpg" />
@@ -12,152 +13,199 @@
 <link rel="icon" href="https://i.ibb.co/dw78vpW4/Picsart-26-10-06-16-22-06-337.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&family=Cairo:wght@300;400;700;900&family=Tajawal:wght@300;400;700;900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Share+Tech+Mono&family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;700;900&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 <style>
+/* =========================================================
+   ROOT & RESET
+========================================================= */
 :root{
-  --bg:#000308;
+  --bg:#000205;
+  --bg-2:#020811;
   --neon-green:#00ff88;
+  --neon-green-2:#00d67a;
   --neon-blue:#00d4ff;
+  --neon-blue-2:#0094ff;
   --neon-purple:#a855f7;
   --neon-pink:#ff2d95;
-  --text:#e0f5ff;
-  --muted:#7a9bb5;
-  --card-bg:rgba(5,15,25,.55);
-  --card-border:rgba(0,255,136,.25);
+  --neon-yellow:#ffe600;
+  --text:#dff5ff;
+  --text-dim:#a3c2d6;
+  --muted:#5f7f96;
+  --card-bg:rgba(4,14,24,.65);
+  --card-bg-2:rgba(2,8,17,.85);
+  --border:rgba(0,255,136,.18);
+  --border-2:rgba(0,212,255,.25);
+  --shadow-glow:0 0 25px rgba(0,255,136,.35);
 }
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;overflow-x:hidden}
 body{
-  font-family:'Cairo','Tajawal','Rajdhani',sans-serif;
+  font-family:'Cairo','Tajawal',sans-serif;
   background:var(--bg);
   color:var(--text);
   overflow-x:hidden;
   cursor:none;
-  line-height:1.6;
+  line-height:1.7;
   min-height:100vh;
+  -webkit-font-smoothing:antialiased;
 }
-html[lang="en"] body, html[lang="pl"] body{font-family:'Rajdhani','Cairo',sans-serif}
+html[lang="en"] body,html[lang="pl"] body{font-family:'Rajdhani','Cairo',sans-serif}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:none}
 ::selection{background:var(--neon-green);color:#000}
 ::-webkit-scrollbar{width:10px;background:#000}
 ::-webkit-scrollbar-thumb{background:linear-gradient(var(--neon-green),var(--neon-blue));border-radius:5px}
+::-webkit-scrollbar-thumb:hover{background:var(--neon-green)}
 
-/* ============ BACKGROUND LAYERS ============ */
+/* =========================================================
+   BACKGROUND
+========================================================= */
 #bg-video{
-  position:fixed;top:0;left:0;width:100%;height:100%;
-  object-fit:cover;z-index:-4;filter:brightness(.35) saturate(1.2) blur(1px);
+  position:fixed;inset:0;width:100%;height:100%;
+  object-fit:cover;z-index:-4;
+  filter:brightness(.32) saturate(1.3) blur(1.5px);
+  transform:scale(1.05);
 }
 .bg-overlay{
   position:fixed;inset:0;z-index:-3;
   background:
-    radial-gradient(ellipse at top,rgba(0,255,136,.10),transparent 60%),
-    radial-gradient(ellipse at bottom,rgba(168,85,247,.10),transparent 60%),
-    linear-gradient(180deg,rgba(0,3,8,.75),rgba(0,3,8,.92));
+    radial-gradient(ellipse at 20% 0%,rgba(0,255,136,.12),transparent 55%),
+    radial-gradient(ellipse at 80% 100%,rgba(168,85,247,.12),transparent 55%),
+    linear-gradient(180deg,rgba(0,2,5,.7),rgba(0,2,5,.95));
 }
-#matrix-canvas{position:fixed;inset:0;z-index:-2;opacity:.18;pointer-events:none}
+#matrix-canvas{position:fixed;inset:0;z-index:-2;opacity:.16;pointer-events:none}
 .scanlines{
   position:fixed;inset:0;z-index:-1;pointer-events:none;
-  background:repeating-linear-gradient(0deg,rgba(0,255,136,.03) 0px,rgba(0,255,136,.03) 1px,transparent 1px,transparent 3px);
+  background:repeating-linear-gradient(0deg,rgba(0,255,136,.028) 0px,rgba(0,255,136,.028) 1px,transparent 1px,transparent 3px);
   mix-blend-mode:overlay;
 }
+.noise{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
 
-/* ============ CURSOR ============ */
+/* =========================================================
+   CURSOR
+========================================================= */
 .cursor-dot,.cursor-ring{
   position:fixed;top:0;left:0;pointer-events:none;z-index:99999;
   transform:translate(-50%,-50%);
-  transition:transform .08s ease;
 }
-.cursor-dot{width:6px;height:6px;background:var(--neon-green);border-radius:50%;box-shadow:0 0 12px var(--neon-green)}
+.cursor-dot{
+  width:6px;height:6px;background:var(--neon-green);border-radius:50%;
+  box-shadow:0 0 12px var(--neon-green);
+}
 .cursor-ring{
-  width:34px;height:34px;border:1px solid var(--neon-green);
-  border-radius:50%;transition:all .18s ease;
-  box-shadow:0 0 14px rgba(0,255,136,.55),inset 0 0 10px rgba(0,255,136,.25);
+  width:36px;height:36px;border:1.5px solid var(--neon-green);
+  border-radius:50%;transition:width .2s,height .2s,background .2s,border-color .2s;
+  box-shadow:0 0 14px rgba(0,255,136,.55),inset 0 0 8px rgba(0,255,136,.2);
 }
 .cursor-ring::before,.cursor-ring::after{
   content:'';position:absolute;background:var(--neon-green);
 }
 .cursor-ring::before{left:50%;top:-6px;width:1px;height:8px;transform:translateX(-50%)}
 .cursor-ring::after{left:50%;bottom:-6px;width:1px;height:8px;transform:translateX(-50%)}
-body:hover .cursor-ring{opacity:1}
-a:hover ~ .cursor-ring, button:hover ~ .cursor-ring{transform:translate(-50%,-50%) scale(1.5)}
+.cursor-ring.click{width:52px;height:52px;background:rgba(0,255,136,.15);border-color:var(--neon-blue)}
+body.no-cursor *{cursor:none !important}
 
-/* ============ LOADER ============ */
+/* =========================================================
+   LOADER
+========================================================= */
 #loader{
-  position:fixed;inset:0;z-index:99999;background:#000308;
+  position:fixed;inset:0;z-index:99999;background:#000205;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  transition:opacity .6s ease,visibility .6s ease;
+  transition:opacity .7s ease,visibility .7s ease;padding:20px;
 }
-#loader.hide{opacity:0;visibility:hidden}
+#loader.hide{opacity:0;visibility:hidden;pointer-events:none}
 .loader-logo{
-  width:110px;height:110px;border-radius:50%;
+  width:120px;height:120px;border-radius:50%;
   border:2px solid var(--neon-green);
   display:flex;align-items:center;justify-content:center;
-  box-shadow:0 0 40px var(--neon-green),inset 0 0 25px rgba(0,255,136,.35);
-  animation:pulse 1.6s infinite ease-in-out;
-  overflow:hidden;
+  box-shadow:0 0 50px var(--neon-green),inset 0 0 30px rgba(0,255,136,.4);
+  animation:pulseLg 1.6s infinite ease-in-out;
+  overflow:hidden;position:relative;
+}
+.loader-logo::before{
+  content:'';position:absolute;inset:-8px;border-radius:50%;
+  border:1px dashed rgba(0,212,255,.5);
+  animation:spin 8s linear infinite;
 }
 .loader-logo img{width:100%;height:100%;object-fit:cover;border-radius:50%}
-@keyframes pulse{0%,100%{box-shadow:0 0 30px var(--neon-green),inset 0 0 20px rgba(0,255,136,.3)}50%{box-shadow:0 0 70px var(--neon-green),inset 0 0 40px rgba(0,255,136,.6)}}
+@keyframes pulseLg{
+  0%,100%{box-shadow:0 0 30px var(--neon-green),inset 0 0 25px rgba(0,255,136,.3)}
+  50%{box-shadow:0 0 80px var(--neon-green),inset 0 0 45px rgba(0,255,136,.6)}
+}
+@keyframes spin{to{transform:rotate(360deg)}}
 .loader-title{
   font-family:'Orbitron',sans-serif;font-weight:900;letter-spacing:5px;
-  color:var(--neon-green);margin-top:26px;text-shadow:0 0 18px var(--neon-green);
-  font-size:1.05rem;text-align:center;
+  color:var(--neon-green);margin-top:30px;text-shadow:0 0 18px var(--neon-green);
+  font-size:1rem;text-align:center;
 }
 .loader-bar{
-  width:min(340px,80vw);height:4px;background:rgba(0,255,136,.15);
-  margin-top:20px;border-radius:2px;overflow:hidden;position:relative;
+  width:min(360px,85vw);height:4px;background:rgba(0,255,136,.12);
+  margin-top:22px;border-radius:4px;overflow:hidden;
 }
 .loader-bar span{
   display:block;height:100%;width:0;
   background:linear-gradient(90deg,var(--neon-green),var(--neon-blue));
   box-shadow:0 0 18px var(--neon-green);
-  transition:width .2s ease;
+  transition:width .25s ease;
 }
 .loader-text{
   font-family:'JetBrains Mono',monospace;color:var(--neon-blue);
-  margin-top:16px;font-size:.78rem;letter-spacing:2px;
+  margin-top:16px;font-size:.78rem;letter-spacing:2px;min-height:1.2em;
 }
-.loader-text::after{content:'▊';animation:blink .8s steps(1) infinite;margin-inline-start:4px}
+.loader-text::after{content:'▊';animation:blink .8s steps(1) infinite;margin-inline-start:4px;color:var(--neon-green)}
 @keyframes blink{50%{opacity:0}}
+.loader-pct{
+  font-family:'JetBrains Mono',monospace;color:var(--neon-green);
+  margin-top:8px;font-size:.72rem;letter-spacing:3px;opacity:.75;
+}
 
-/* ============ HEADER ============ */
+/* =========================================================
+   HEADER
+========================================================= */
 header{
   position:fixed;top:0;left:0;right:0;z-index:1000;
-  padding:14px 5vw;display:flex;align-items:center;justify-content:space-between;
-  backdrop-filter:blur(14px);
-  background:linear-gradient(180deg,rgba(0,3,8,.85),rgba(0,3,8,.35));
-  border-bottom:1px solid rgba(0,255,136,.12);
-  transition:.3s;
-}
-.logo-wrap{display:flex;align-items:center;gap:12px;text-decoration:none}
-.logo-wrap img{
-  width:42px;height:42px;border-radius:50%;
-  border:2px solid var(--neon-green);
-  box-shadow:0 0 16px var(--neon-green);
-  animation:logoPulse 3s infinite;
-}
-@keyframes logoPulse{0%,100%{box-shadow:0 0 12px var(--neon-green)}50%{box-shadow:0 0 26px var(--neon-green),0 0 40px rgba(0,255,136,.4)}}
-.logo-text{
-  font-family:'Orbitron',sans-serif;font-weight:900;
-  color:var(--neon-green);letter-spacing:2px;font-size:1.05rem;
-  text-shadow:0 0 12px rgba(0,255,136,.6);
-}
-nav ul{display:flex;gap:26px;list-style:none;align-items:center}
-nav a{
-  color:var(--text);text-decoration:none;font-weight:600;font-size:.92rem;
-  position:relative;padding:6px 0;transition:.3s;letter-spacing:.3px;
-}
-nav a::after{
-  content:'';position:absolute;bottom:0;left:0;width:0;height:2px;
-  background:var(--neon-green);box-shadow:0 0 10px var(--neon-green);
+  padding:12px 4vw;display:flex;align-items:center;justify-content:space-between;
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  background:linear-gradient(180deg,rgba(0,2,5,.88),rgba(0,2,5,.4));
+  border-bottom:1px solid rgba(0,255,136,.1);
   transition:.35s;
 }
-nav a:hover{color:var(--neon-green)}
-nav a:hover::after{width:100%}
-.header-right{display:flex;align-items:center;gap:14px}
+header.scrolled{padding:8px 4vw;background:linear-gradient(180deg,rgba(0,2,5,.95),rgba(0,2,5,.75));border-bottom-color:rgba(0,255,136,.22)}
+.logo-wrap{display:flex;align-items:center;gap:12px}
+.logo-wrap img{
+  width:44px;height:44px;border-radius:50%;
+  border:2px solid var(--neon-green);
+  box-shadow:0 0 18px rgba(0,255,136,.6);
+  animation:logoP 3s infinite ease-in-out;
+}
+@keyframes logoP{0%,100%{box-shadow:0 0 12px var(--neon-green)}50%{box-shadow:0 0 28px var(--neon-green),0 0 44px rgba(0,255,136,.35)}}
+.logo-text{
+  font-family:'Orbitron',sans-serif;font-weight:900;
+  color:var(--neon-green);letter-spacing:2px;font-size:1rem;
+  text-shadow:0 0 12px rgba(0,255,136,.6);
+}
+.logo-text span{color:var(--neon-blue);text-shadow:0 0 10px var(--neon-blue)}
+
+nav ul{display:flex;gap:4px;list-style:none;align-items:center}
+nav a{
+  color:var(--text-dim);font-weight:600;font-size:.88rem;
+  position:relative;padding:9px 14px;border-radius:8px;transition:.3s;
+  letter-spacing:.3px;display:inline-block;
+}
+nav a:hover,nav a.active{color:var(--neon-green);background:rgba(0,255,136,.06)}
+nav a.active::before{
+  content:'';position:absolute;bottom:4px;left:14px;right:14px;height:2px;
+  background:var(--neon-green);box-shadow:0 0 10px var(--neon-green);border-radius:2px;
+}
+.header-right{display:flex;align-items:center;gap:12px}
 .badge-avail{
-  display:flex;align-items:center;gap:7px;
-  padding:6px 14px;font-size:.78rem;font-weight:700;
+  display:flex;align-items:center;gap:8px;
+  padding:7px 14px;font-size:.74rem;font-weight:700;
   border:1px solid rgba(0,255,136,.5);border-radius:50px;
   color:var(--neon-green);background:rgba(0,255,136,.06);
   font-family:'JetBrains Mono',monospace;
@@ -166,173 +214,79 @@ nav a:hover::after{width:100%}
   width:8px;height:8px;border-radius:50%;background:var(--neon-green);
   box-shadow:0 0 10px var(--neon-green);animation:pulseDot 1.4s infinite;
 }
-@keyframes pulseDot{50%{opacity:.3}}
+@keyframes pulseDot{50%{opacity:.25;transform:scale(.8)}}
 .lang-switch{position:relative}
 .lang-btn{
   background:transparent;border:1px solid rgba(0,212,255,.5);
   color:var(--neon-blue);padding:8px 14px;border-radius:8px;
-  cursor:none;font-weight:700;font-size:.85rem;display:flex;gap:8px;align-items:center;
+  font-weight:700;font-size:.82rem;display:flex;gap:8px;align-items:center;
   font-family:'JetBrains Mono',monospace;transition:.3s;
 }
-.lang-btn:hover{background:rgba(0,212,255,.1);box-shadow:0 0 18px rgba(0,212,255,.6)}
+.lang-btn:hover{background:rgba(0,212,255,.1);box-shadow:0 0 18px rgba(0,212,255,.55)}
 .lang-menu{
   position:absolute;top:calc(100% + 8px);inset-inline-end:0;
-  background:rgba(2,10,20,.97);border:1px solid rgba(0,212,255,.4);
-  border-radius:10px;padding:6px;display:none;min-width:150px;
-  box-shadow:0 0 30px rgba(0,212,255,.3);backdrop-filter:blur(10px);
+  background:rgba(2,8,17,.98);border:1px solid rgba(0,212,255,.4);
+  border-radius:12px;padding:6px;display:none;min-width:160px;
+  box-shadow:0 8px 40px rgba(0,212,255,.28);backdrop-filter:blur(12px);z-index:10;
 }
-.lang-menu.open{display:block;animation:dropIn .25s ease}
-@keyframes dropIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.lang-menu.open{display:block;animation:dropIn .22s ease}
+@keyframes dropIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
 .lang-menu button{
   width:100%;background:transparent;border:none;color:var(--text);
-  padding:9px 12px;text-align:start;cursor:none;font-size:.88rem;border-radius:6px;
-  font-family:inherit;font-weight:600;display:flex;gap:10px;align-items:center;
+  padding:10px 14px;text-align:start;font-size:.88rem;border-radius:7px;
+  font-weight:600;display:flex;gap:10px;align-items:center;transition:.2s;
 }
 .lang-menu button:hover{background:rgba(0,212,255,.12);color:var(--neon-green)}
+.menu-toggle{
+  display:none;background:transparent;border:1px solid var(--neon-green);
+  color:var(--neon-green);width:42px;height:42px;border-radius:10px;
+  font-size:1.05rem;place-items:center;
+}
 
-/* Mobile toggle */
-.menu-toggle{display:none;background:transparent;border:1px solid var(--neon-green);
-  color:var(--neon-green);width:42px;height:42px;border-radius:8px;cursor:none;font-size:1.1rem}
-
-/* ============ HERO ============ */
-.hero{
-  min-height:100vh;display:flex;align-items:center;justify-content:center;
-  padding:130px 5vw 60px;position:relative;
-}
-.hero-grid{
-  display:grid;grid-template-columns:auto 1fr;gap:60px;align-items:center;
-  max-width:1200px;width:100%;
-}
-@media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:34px;text-align:center}}
-.hero-avatar{
-  position:relative;width:260px;height:260px;justify-self:center;
-}
-.hero-avatar img{
-  width:100%;height:100%;object-fit:cover;border-radius:50%;
-  border:3px solid var(--neon-green);
-  box-shadow:0 0 50px rgba(0,255,136,.7),0 0 100px rgba(0,255,136,.3),
-             inset 0 0 40px rgba(0,255,136,.2);
-  animation:pulse 3s infinite ease-in-out;
-  position:relative;z-index:2;
-}
-.hero-avatar::before,.hero-avatar::after{
-  content:'';position:absolute;inset:-14px;border-radius:50%;
-  border:1px dashed rgba(0,212,255,.5);
-  animation:spin 18s linear infinite;
-}
-.hero-avatar::after{inset:-28px;border:1px dotted rgba(168,85,247,.4);animation-direction:reverse;animation-duration:26s}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-.hero-content h4{
-  font-family:'JetBrains Mono',monospace;color:var(--neon-blue);
-  font-size:.95rem;letter-spacing:3px;margin-bottom:14px;font-weight:400;
-}
-.hero-name{
-  font-family:'Orbitron',sans-serif;font-weight:900;
-  font-size:clamp(1.6rem,4vw,3rem);
-  line-height:1.15;letter-spacing:1.5px;
-  background:linear-gradient(90deg,#fff,var(--neon-green),var(--neon-blue),var(--neon-purple),#fff);
-  background-size:300% auto;
-  -webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;
-  animation:shineText 5s linear infinite;
-  position:relative;
-}
-@keyframes shineText{to{background-position:300% center}}
-.glitch{position:relative;display:inline-block}
-.glitch::before,.glitch::after{
-  content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%;
-  background:var(--bg);-webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-.glitch::before{color:var(--neon-blue);-webkit-text-fill-color:var(--neon-blue);animation:glitch1 2.5s infinite;mix-blend-mode:screen;opacity:.85}
-.glitch::after{color:var(--neon-pink);-webkit-text-fill-color:var(--neon-pink);animation:glitch2 3.5s infinite;mix-blend-mode:screen;opacity:.7}
-@keyframes glitch1{
-  0%,90%,100%{transform:translate(0)}
-  92%{transform:translate(-3px,2px)}94%{transform:translate(3px,-2px)}
-  96%{transform:translate(-2px,-1px)}98%{transform:translate(2px,1px)}
-}
-@keyframes glitch2{
-  0%,88%,100%{transform:translate(0)}
-  90%{transform:translate(3px,-2px)}93%{transform:translate(-3px,2px)}
-  96%{transform:translate(2px,1px)}98%{transform:translate(-2px,-1px)}
-}
-.hero-role{
-  color:var(--neon-green);font-weight:600;font-size:clamp(1rem,1.6vw,1.25rem);
-  margin-top:16px;font-family:'JetBrains Mono',monospace;
-  min-height:1.6em;
-}
-.hero-role .cursor-type{display:inline-block;width:10px;background:var(--neon-green);
-  animation:blink .7s steps(1) infinite;vertical-align:-2px;height:1.1em}
-
-.age-counter{
-  margin-top:24px;padding:18px 22px;border-radius:14px;
-  border:1px solid rgba(0,255,136,.35);
-  background:linear-gradient(135deg,rgba(0,255,136,.06),rgba(0,212,255,.06));
-  backdrop-filter:blur(8px);max-width:fit-content;
-  box-shadow:0 0 30px rgba(0,255,136,.15);
-}
-@media(max-width:900px){.age-counter{margin-inline:auto}}
-.age-counter .label{
-  font-family:'JetBrains Mono',monospace;color:var(--neon-blue);
-  font-size:.75rem;letter-spacing:2px;margin-bottom:8px;
-  display:flex;align-items:center;gap:8px;
-}
-.age-counter .label::before{
-  content:'';width:8px;height:8px;border-radius:50%;
-  background:var(--neon-green);box-shadow:0 0 10px var(--neon-green);
-  animation:pulseDot 1.2s infinite;
-}
-.age-values{
-  display:flex;flex-wrap:wrap;gap:14px;font-family:'JetBrains Mono',monospace;
-}
-.age-unit{display:flex;flex-direction:column;align-items:center;min-width:52px}
-.age-unit .num{
-  font-size:1.4rem;font-weight:900;color:var(--neon-green);
-  text-shadow:0 0 12px var(--neon-green);
-}
-.age-unit .u{font-size:.68rem;color:var(--muted);letter-spacing:1px}
-
-.hero-cta{display:flex;gap:16px;margin-top:32px;flex-wrap:wrap}
-@media(max-width:900px){.hero-cta{justify-content:center}}
+/* =========================================================
+   BUTTONS
+========================================================= */
 .btn{
   padding:14px 28px;border-radius:10px;font-weight:700;font-size:.92rem;
-  text-decoration:none;cursor:none;position:relative;overflow:hidden;
-  font-family:'Rajdhani','Cairo',sans-serif;letter-spacing:1px;
-  transition:.35s;display:inline-flex;align-items:center;gap:9px;
+  position:relative;overflow:hidden;letter-spacing:1px;
+  transition:.35s;display:inline-flex;align-items:center;gap:10px;
   border:1px solid var(--neon-green);
   color:var(--neon-green);background:rgba(0,255,136,.05);
+  font-family:'Rajdhani','Cairo',sans-serif;
 }
+.btn i{font-size:.95rem}
 .btn::before{
   content:'';position:absolute;inset:0;
   background:linear-gradient(90deg,var(--neon-green),var(--neon-blue));
-  transform:translateX(-100%);transition:.4s;z-index:-1;
+  transform:translateX(-100%);transition:.4s;z-index:0;
 }
+.btn>*{position:relative;z-index:1}
 .btn:hover::before{transform:translateX(0)}
-.btn:hover{color:#000;box-shadow:0 0 26px var(--neon-green),0 0 60px rgba(0,255,136,.4);transform:translateY(-3px)}
-.btn.primary{background:var(--neon-green);color:#000}
+.btn:hover{color:#000;box-shadow:0 0 30px var(--neon-green),0 0 60px rgba(0,255,136,.35);transform:translateY(-3px)}
+.btn.primary{background:var(--neon-green);color:#000;border-color:var(--neon-green)}
 .btn.primary::before{background:linear-gradient(90deg,var(--neon-blue),var(--neon-purple))}
-.btn.primary:hover{color:#fff;box-shadow:0 0 30px var(--neon-blue)}
-.btn-outline{border-color:var(--neon-blue);color:var(--neon-blue);background:rgba(0,212,255,.05)}
-.btn-outline::before{background:linear-gradient(90deg,var(--neon-blue),var(--neon-purple))}
-.btn-outline:hover{color:#000}
-
-/* Ripple */
-.ripple{position:absolute;border-radius:50%;background:rgba(0,255,136,.5);
-  transform:scale(0);animation:rippleGo .6s linear;pointer-events:none}
+.btn.primary:hover{color:#fff;box-shadow:0 0 34px var(--neon-blue)}
+.btn.outline{border-color:var(--neon-blue);color:var(--neon-blue);background:rgba(0,212,255,.05)}
+.btn.outline::before{background:linear-gradient(90deg,var(--neon-blue),var(--neon-purple))}
+.btn.outline:hover{color:#000}
+.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.55);
+  transform:scale(0);animation:rippleGo .65s linear;pointer-events:none;z-index:2}
 @keyframes rippleGo{to{transform:scale(4);opacity:0}}
 
-/* ============ SECTION ============ */
-section{padding:110px 5vw;position:relative;z-index:2}
-.section-head{text-align:center;margin-bottom:64px}
+/* =========================================================
+   SECTION BASE
+========================================================= */
+section{padding:100px 5vw;position:relative;z-index:2}
+.section-head{text-align:center;margin-bottom:60px}
 .section-head .tag{
   font-family:'JetBrains Mono',monospace;color:var(--neon-blue);
-  font-size:.8rem;letter-spacing:4px;margin-bottom:10px;
-  display:inline-block;
+  font-size:.8rem;letter-spacing:4px;margin-bottom:12px;
+  display:inline-block;padding:5px 14px;border:1px solid rgba(0,212,255,.35);
+  border-radius:50px;background:rgba(0,212,255,.05);
 }
 .section-head h2{
   font-family:'Orbitron',sans-serif;font-weight:900;
-  font-size:clamp(1.7rem,3.4vw,2.6rem);
+  font-size:clamp(1.7rem,3.6vw,2.7rem);
   color:#fff;letter-spacing:2px;position:relative;display:inline-block;
 }
 .section-head h2::after{
@@ -341,27 +295,200 @@ section{padding:110px 5vw;position:relative;z-index:2}
   background:linear-gradient(90deg,var(--neon-green),var(--neon-blue));
   box-shadow:0 0 20px var(--neon-green);
 }
+.section-head p.sub{color:var(--text-dim);margin-top:32px;max-width:640px;margin-inline:auto;font-size:.98rem}
 .reveal{opacity:0;transform:translateY(50px);transition:all .9s cubic-bezier(.2,.8,.3,1)}
 .reveal.in{opacity:1;transform:translateY(0)}
+.reveal-l{opacity:0;transform:translateX(-60px);transition:all .9s cubic-bezier(.2,.8,.3,1)}
+.reveal-l.in{opacity:1;transform:translateX(0)}
+.reveal-r{opacity:0;transform:translateX(60px);transition:all .9s cubic-bezier(.2,.8,.3,1)}
+.reveal-r.in{opacity:1;transform:translateX(0)}
 
-/* ============ ABOUT ============ */
-.about-wrap{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:40px}
-.about-card{
-  background:var(--card-bg);border:1px solid var(--card-border);
-  border-radius:18px;padding:38px;backdrop-filter:blur(12px);
-  box-shadow:0 0 40px rgba(0,255,136,.06);
-  position:relative;overflow:hidden;
+/* =========================================================
+   HERO
+========================================================= */
+.hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:140px 5vw 60px;position:relative;
 }
-.about-card::before{
+.hero-grid{
+  display:grid;grid-template-columns:auto 1fr;gap:60px;align-items:center;
+  max-width:1200px;width:100%;
+}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:34px;text-align:center}}
+.hero-avatar{position:relative;width:260px;height:260px;justify-self:center}
+.hero-avatar img{
+  width:100%;height:100%;object-fit:cover;border-radius:50%;
+  border:3px solid var(--neon-green);
+  box-shadow:0 0 60px rgba(0,255,136,.7),0 0 110px rgba(0,255,136,.3),
+             inset 0 0 40px rgba(0,255,136,.2);
+  animation:pulseLg 3s infinite ease-in-out;position:relative;z-index:2;
+}
+.hero-avatar::before,.hero-avatar::after{
+  content:'';position:absolute;inset:-14px;border-radius:50%;
+  border:1px dashed rgba(0,212,255,.5);animation:spin 20s linear infinite;
+}
+.hero-avatar::after{inset:-30px;border:1px dotted rgba(168,85,247,.4);animation-direction:reverse;animation-duration:28s}
+.hero-status-bubble{
+  position:absolute;bottom:14px;inset-inline-end:-10px;z-index:3;
+  padding:6px 12px;border-radius:50px;background:rgba(0,2,5,.95);
+  border:1px solid var(--neon-green);color:var(--neon-green);
+  font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;
+  box-shadow:0 0 18px rgba(0,255,136,.55);display:flex;gap:6px;align-items:center;
+  white-space:nowrap;
+}
+.hero-status-bubble .dot{width:6px;height:6px;border-radius:50%;background:var(--neon-green);animation:pulseDot 1.4s infinite}
+
+.hero-content h4{
+  font-family:'JetBrains Mono',monospace;color:var(--neon-blue);
+  font-size:.9rem;letter-spacing:3px;margin-bottom:14px;font-weight:400;
+}
+.hero-name{
+  font-family:'Orbitron',sans-serif;font-weight:900;
+  font-size:clamp(1.55rem,3.8vw,2.9rem);line-height:1.2;letter-spacing:1px;
+  background:linear-gradient(90deg,#fff,var(--neon-green),var(--neon-blue),var(--neon-purple),#fff);
+  background-size:300% auto;-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;animation:shineText 5s linear infinite;
+}
+@keyframes shineText{to{background-position:300% center}}
+.glitch{position:relative;display:inline-block}
+.glitch::before,.glitch::after{
+  content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.glitch::before{color:var(--neon-blue);-webkit-text-fill-color:var(--neon-blue);
+  animation:glitch1 3s infinite;mix-blend-mode:screen;opacity:.85}
+.glitch::after{color:var(--neon-pink);-webkit-text-fill-color:var(--neon-pink);
+  animation:glitch2 4s infinite;mix-blend-mode:screen;opacity:.7}
+@keyframes glitch1{
+  0%,89%,100%{transform:translate(0)}92%{transform:translate(-3px,2px)}
+  94%{transform:translate(3px,-2px)}96%{transform:translate(-2px,-1px)}98%{transform:translate(2px,1px)}
+}
+@keyframes glitch2{
+  0%,87%,100%{transform:translate(0)}90%{transform:translate(3px,-2px)}
+  93%{transform:translate(-3px,2px)}96%{transform:translate(2px,1px)}98%{transform:translate(-2px,-1px)}
+}
+.hero-role{
+  color:var(--neon-green);font-weight:600;font-size:clamp(.95rem,1.5vw,1.2rem);
+  margin-top:16px;font-family:'JetBrains Mono',monospace;min-height:1.6em;
+}
+.hero-role .cursor-type{
+  display:inline-block;width:9px;background:var(--neon-green);
+  animation:blink .7s steps(1) infinite;vertical-align:-2px;height:1.05em;
+  margin-inline-start:3px;
+}
+.hero-tags{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
+@media(max-width:900px){.hero-tags{justify-content:center}}
+.hero-tags span{
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;
+  padding:5px 11px;border-radius:50px;border:1px solid rgba(0,212,255,.35);
+  color:var(--neon-blue);background:rgba(0,212,255,.05);
+}
+.age-counter{
+  margin-top:24px;padding:16px 22px;border-radius:14px;
+  border:1px solid rgba(0,255,136,.35);
+  background:linear-gradient(135deg,rgba(0,255,136,.06),rgba(0,212,255,.06));
+  backdrop-filter:blur(8px);max-width:fit-content;
+  box-shadow:0 0 30px rgba(0,255,136,.15);
+}
+@media(max-width:900px){.age-counter{margin-inline:auto}}
+.age-counter .label{
+  font-family:'JetBrains Mono',monospace;color:var(--neon-blue);
+  font-size:.72rem;letter-spacing:2px;margin-bottom:10px;
+  display:flex;align-items:center;gap:8px;
+}
+.age-counter .label::before{
+  content:'';width:8px;height:8px;border-radius:50%;
+  background:var(--neon-green);box-shadow:0 0 10px var(--neon-green);
+  animation:pulseDot 1.2s infinite;
+}
+.age-values{display:flex;flex-wrap:wrap;gap:12px}
+.age-unit{display:flex;flex-direction:column;align-items:center;min-width:50px}
+.age-unit .num{
+  font-family:'JetBrains Mono',monospace;font-size:1.35rem;font-weight:900;
+  color:var(--neon-green);text-shadow:0 0 14px var(--neon-green);
+  line-height:1.1;
+}
+.age-unit .u{font-size:.65rem;color:var(--muted);letter-spacing:1px;margin-top:2px}
+.hero-cta{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap}
+@media(max-width:900px){.hero-cta{justify-content:center}}
+
+.scroll-hint{
+  position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
+  color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.7rem;
+  letter-spacing:3px;display:flex;flex-direction:column;align-items:center;gap:8px;
+  animation:bob 2.2s infinite ease-in-out;
+}
+.scroll-hint .line{width:1px;height:30px;background:linear-gradient(var(--neon-green),transparent)}
+@keyframes bob{50%{transform:translate(-50%,8px)}}
+
+/* =========================================================
+   STATS STRIP
+========================================================= */
+.stats-strip{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:20px;max-width:1200px;margin:0 auto;
+}
+.stat-card{
+  padding:26px 20px;border-radius:16px;text-align:center;
+  background:var(--card-bg);border:1px solid var(--border);
+  backdrop-filter:blur(12px);transition:.4s;position:relative;overflow:hidden;
+}
+.stat-card::before{
   content:'';position:absolute;top:0;left:-100%;width:100%;height:2px;
   background:linear-gradient(90deg,transparent,var(--neon-green),transparent);
   animation:sweep 4s linear infinite;
 }
 @keyframes sweep{to{left:100%}}
-.about-card p{font-size:1.05rem;color:#c8dce8;line-height:1.9;margin-bottom:22px}
-.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:20px}
+.stat-card:hover{transform:translateY(-6px);border-color:var(--neon-green);
+  box-shadow:0 14px 40px rgba(0,255,136,.22)}
+.stat-card .icon{
+  width:52px;height:52px;border-radius:12px;margin:0 auto 12px;
+  display:grid;place-items:center;font-size:1.35rem;
+  background:rgba(0,255,136,.1);color:var(--neon-green);
+  border:1px solid rgba(0,255,136,.3);
+}
+.stat-card .num{
+  font-family:'Orbitron',sans-serif;font-weight:900;
+  font-size:2rem;color:#fff;text-shadow:0 0 18px rgba(0,255,136,.55);
+  display:inline-block;
+}
+.stat-card .num-suffix{color:var(--neon-green);font-family:'Orbitron',sans-serif;font-weight:900;font-size:1.6rem}
+.stat-card .lbl{color:var(--muted);font-size:.82rem;margin-top:6px;letter-spacing:.5px}
+
+/* =========================================================
+   ABOUT
+========================================================= */
+.about-wrap{max-width:1150px;margin:0 auto;display:grid;grid-template-columns:1.3fr .9fr;gap:36px;align-items:start}
+@media(max-width:900px){.about-wrap{grid-template-columns:1fr;gap:30px}}
+.about-card{
+  background:var(--card-bg);border:1px solid var(--border);
+  border-radius:18px;padding:36px;backdrop-filter:blur(12px);
+  box-shadow:0 0 40px rgba(0,255,136,.06);position:relative;overflow:hidden;
+}
+.about-card::before{
+  content:'';position:absolute;top:0;left:-100%;width:100%;height:2px;
+  background:linear-gradient(90deg,transparent,var(--neon-green),transparent);
+  animation:sweep 5s linear infinite;
+}
+.about-card p{font-size:1.02rem;color:#c8dce8;line-height:1.9;margin-bottom:20px}
+.about-terminal{
+  background:#000308;border:1px solid rgba(0,255,136,.3);border-radius:12px;
+  padding:16px 18px;font-family:'JetBrains Mono',monospace;
+  font-size:.85rem;color:var(--neon-green);margin-bottom:24px;
+  box-shadow:inset 0 0 25px rgba(0,255,136,.06);overflow:hidden;
+}
+.about-terminal .ln{opacity:0;animation:lineIn .35s forwards}
+.about-terminal .ln:nth-child(1){animation-delay:.1s}
+.about-terminal .ln:nth-child(2){animation-delay:.5s}
+.about-terminal .ln:nth-child(3){animation-delay:.9s}
+.about-terminal .ln:nth-child(4){animation-delay:1.3s}
+@keyframes lineIn{to{opacity:1}}
+.about-terminal .prompt{color:var(--neon-blue)}
+.about-terminal .out{color:#9bd1b7;margin-inline-start:14px}
+
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:22px}
 .info-item{
-  padding:16px 20px;border-radius:12px;
+  padding:16px;border-radius:12px;
   background:rgba(0,212,255,.05);border:1px solid rgba(0,212,255,.2);
   display:flex;align-items:center;gap:14px;transition:.35s;
 }
@@ -370,26 +497,49 @@ section{padding:110px 5vw;position:relative;z-index:2}
   box-shadow:0 8px 30px rgba(0,255,136,.18);
 }
 .info-item .ic{
-  font-size:1.5rem;width:44px;height:44px;
+  font-size:1.4rem;width:44px;height:44px;
   display:grid;place-items:center;border-radius:10px;
-  background:rgba(0,255,136,.1);color:var(--neon-green);
+  background:rgba(0,255,136,.1);color:var(--neon-green);flex-shrink:0;
 }
-.info-item .lbl{font-size:.75rem;color:var(--muted);letter-spacing:1px;font-family:'JetBrains Mono',monospace}
-.info-item .val{font-size:.98rem;color:#fff;font-weight:600}
+.info-item .lbl{font-size:.7rem;color:var(--muted);letter-spacing:1px;font-family:'JetBrains Mono',monospace}
+.info-item .val{font-size:.92rem;color:#fff;font-weight:600;line-height:1.3}
 
-/* ============ SKILLS ============ */
-.skills-wrap{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:26px}
+.about-side{display:flex;flex-direction:column;gap:20px}
+.hex-card{
+  background:var(--card-bg);border:1px solid var(--border);border-radius:16px;
+  padding:24px;backdrop-filter:blur(12px);position:relative;overflow:hidden;
+}
+.hex-card h3{
+  font-family:'Orbitron',sans-serif;font-size:.95rem;color:var(--neon-green);
+  letter-spacing:2px;margin-bottom:16px;display:flex;align-items:center;gap:10px;
+}
+.hex-card h3 i{color:var(--neon-blue)}
+.focus-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+.focus-list li{
+  display:flex;gap:12px;align-items:center;padding:10px 12px;border-radius:10px;
+  background:rgba(0,255,136,.04);border:1px solid rgba(0,255,136,.12);
+  transition:.3s;font-size:.9rem;
+}
+.focus-list li:hover{background:rgba(0,255,136,.09);transform:translateX(6px)}
+html[dir="ltr"] .focus-list li:hover{transform:translateX(-6px)}
+.focus-list li i{color:var(--neon-green);font-size:1rem;width:20px}
+.focus-list li span{color:var(--text-dim);font-size:.85rem;display:block;margin-top:2px}
+
+/* =========================================================
+   SKILLS
+========================================================= */
+.skills-wrap{max-width:1000px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
 .skill{
-  background:var(--card-bg);border:1px solid var(--card-border);
-  border-radius:12px;padding:20px 24px;backdrop-filter:blur(10px);
+  background:var(--card-bg);border:1px solid var(--border);
+  border-radius:12px;padding:18px 24px;backdrop-filter:blur(10px);
   transition:.35s;
 }
 .skill:hover{border-color:var(--neon-green);box-shadow:0 0 24px rgba(0,255,136,.18);transform:translateX(6px)}
 html[dir="ltr"] .skill:hover{transform:translateX(-6px)}
-.skill-top{display:flex;justify-content:space-between;margin-bottom:12px;align-items:center}
-.skill-name{font-weight:700;font-size:1rem;color:#fff;display:flex;align-items:center;gap:10px}
-.skill-name i{color:var(--neon-green);font-size:1.1rem}
-.skill-pct{font-family:'JetBrains Mono',monospace;color:var(--neon-blue);font-weight:700;font-size:.9rem}
+.skill-top{display:flex;justify-content:space-between;margin-bottom:12px;align-items:center;gap:10px}
+.skill-name{font-weight:700;font-size:.98rem;color:#fff;display:flex;align-items:center;gap:10px}
+.skill-name i{color:var(--neon-green);font-size:1.1rem;width:22px;text-align:center}
+.skill-pct{font-family:'JetBrains Mono',monospace;color:var(--neon-blue);font-weight:700;font-size:.88rem}
 .skill-bar{height:8px;background:rgba(0,255,136,.08);border-radius:6px;overflow:hidden;position:relative}
 .skill-bar span{
   display:block;height:100%;width:0;border-radius:6px;
@@ -398,59 +548,128 @@ html[dir="ltr"] .skill:hover{transform:translateX(-6px)}
   transition:width 1.6s cubic-bezier(.2,.8,.3,1);position:relative;
 }
 .skill-bar span::after{
-  content:'';position:absolute;top:0;right:0;bottom:0;width:20px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.6));
-  animation:shine 2s infinite;
+  content:'';position:absolute;top:0;right:0;bottom:0;width:24px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.65));
+  animation:shine 2.2s infinite;
 }
 @keyframes shine{0%{opacity:0}50%{opacity:1}100%{opacity:0}}
 
-/* ============ CERTIFICATES ============ */
+/* =========================================================
+   TECH STACK MARQUEE
+========================================================= */
+.tech-marquee{
+  margin-top:48px;overflow:hidden;position:relative;
+  padding:22px 0;border-block:1px solid rgba(0,255,136,.15);
+  background:rgba(0,255,136,.02);
+}
+.tech-marquee::before,.tech-marquee::after{
+  content:'';position:absolute;top:0;bottom:0;width:100px;z-index:2;pointer-events:none;
+}
+.tech-marquee::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+.tech-marquee::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
+.marquee-track{
+  display:flex;gap:50px;animation:scrollX 26s linear infinite;
+  width:max-content;align-items:center;
+}
+@keyframes scrollX{to{transform:translateX(-50%)}}
+.marquee-track .tech-item{
+  display:flex;align-items:center;gap:10px;
+  color:var(--text-dim);font-weight:600;font-size:1rem;
+  font-family:'Rajdhani',sans-serif;letter-spacing:1px;
+  transition:.3s;opacity:.7;flex-shrink:0;
+}
+.marquee-track .tech-item:hover{opacity:1;color:var(--neon-green)}
+.marquee-track .tech-item i{font-size:1.6rem}
+
+/* =========================================================
+   SERVICES / WHAT I DO
+========================================================= */
+.services-grid{max-width:1150px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.service-card{
+  background:var(--card-bg);border:1px solid var(--border);
+  border-radius:16px;padding:32px 26px;backdrop-filter:blur(10px);
+  transition:.4s;position:relative;overflow:hidden;
+}
+.service-card::after{
+  content:'';position:absolute;bottom:0;left:0;width:0;height:3px;
+  background:linear-gradient(90deg,var(--neon-green),var(--neon-blue));
+  transition:.4s;
+}
+.service-card:hover{transform:translateY(-8px);border-color:var(--neon-green);
+  box-shadow:0 20px 50px rgba(0,255,136,.22)}
+.service-card:hover::after{width:100%}
+.service-icon{
+  width:66px;height:66px;border-radius:16px;margin-bottom:20px;
+  display:grid;place-items:center;font-size:1.65rem;
+  background:linear-gradient(135deg,rgba(0,255,136,.12),rgba(0,212,255,.12));
+  color:var(--neon-green);border:1px solid rgba(0,255,136,.3);
+  transition:.4s;
+}
+.service-card:hover .service-icon{transform:rotate(-8deg) scale(1.08);
+  box-shadow:0 0 30px rgba(0,255,136,.5)}
+.service-card h3{font-size:1.1rem;color:#fff;margin-bottom:10px;font-weight:700}
+.service-card p{color:var(--text-dim);font-size:.9rem;line-height:1.75}
+
+/* =========================================================
+   CERTIFICATES
+========================================================= */
 .certs-badge{
-  display:inline-flex;align-items:center;gap:10px;margin:0 auto 40px;
-  padding:10px 22px;border-radius:50px;font-weight:700;
+  display:inline-flex;align-items:center;gap:10px;margin:0 auto 44px;
+  padding:12px 24px;border-radius:50px;font-weight:700;
   background:linear-gradient(90deg,rgba(0,255,136,.15),rgba(0,212,255,.15));
   border:1px solid var(--neon-green);color:var(--neon-green);
-  font-family:'JetBrains Mono',monospace;font-size:.9rem;
+  font-family:'JetBrains Mono',monospace;font-size:.88rem;
   box-shadow:0 0 24px rgba(0,255,136,.25);
   animation:badgePulse 3s infinite;
 }
 @keyframes badgePulse{50%{box-shadow:0 0 44px rgba(0,255,136,.5)}}
 .certs-badge i{font-size:1.15rem}
-.certs-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px}
+.certs-grid{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;
+}
 .cert-card{
-  background:var(--card-bg);border:1px solid var(--card-border);
-  border-radius:16px;overflow:hidden;cursor:none;
+  background:var(--card-bg);border:1px solid var(--border);
+  border-radius:16px;overflow:hidden;
   transition:.4s cubic-bezier(.2,.8,.3,1);position:relative;
   backdrop-filter:blur(10px);
 }
 .cert-card::before{
-  content:'';position:absolute;inset:0;border-radius:16px;
-  padding:1px;background:linear-gradient(135deg,var(--neon-green),transparent,var(--neon-blue));
+  content:'';position:absolute;inset:0;border-radius:16px;padding:1px;
+  background:linear-gradient(135deg,var(--neon-green),transparent,var(--neon-blue));
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
   -webkit-mask-composite:xor;mask-composite:exclude;
   opacity:0;transition:.4s;pointer-events:none;
 }
-.cert-card:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 20px 50px rgba(0,255,136,.25)}
+.cert-card:hover{transform:translateY(-8px) scale(1.02);
+  box-shadow:0 20px 50px rgba(0,255,136,.25)}
 .cert-card:hover::before{opacity:1}
+.cert-img-wrap{overflow:hidden;position:relative}
 .cert-img{
   width:100%;height:220px;object-fit:cover;display:block;
   border-bottom:1px solid rgba(0,255,136,.15);
   transition:.5s;filter:saturate(.9);
 }
 .cert-card:hover .cert-img{transform:scale(1.06);filter:saturate(1.15)}
-.cert-img-wrap{overflow:hidden}
+.cert-img-wrap::after{
+  content:'🔍';position:absolute;inset:0;display:grid;place-items:center;
+  font-size:2rem;background:rgba(0,0,0,.55);opacity:0;transition:.35s;
+  backdrop-filter:blur(3px);
+}
+.cert-card:hover .cert-img-wrap::after{opacity:1}
 .cert-body{padding:20px}
-.cert-body h4{font-size:1rem;color:#fff;margin-bottom:8px;line-height:1.4}
-.cert-body p{font-size:.82rem;color:var(--muted);line-height:1.6;margin-bottom:12px}
+.cert-body h4{font-size:.98rem;color:#fff;margin-bottom:8px;line-height:1.45;font-weight:700}
+.cert-body p{font-size:.82rem;color:var(--text-dim);line-height:1.65;margin-bottom:12px}
 .cert-view{
-  font-family:'JetBrains Mono',monospace;color:var(--neon-blue);font-size:.8rem;
+  font-family:'JetBrains Mono',monospace;color:var(--neon-blue);font-size:.78rem;
   display:inline-flex;align-items:center;gap:6px;letter-spacing:1px;
+  transition:.3s;
 }
 .cert-card:hover .cert-view{color:var(--neon-green)}
 
 /* Modal */
 .modal{
-  position:fixed;inset:0;z-index:9998;background:rgba(0,3,8,.94);
+  position:fixed;inset:0;z-index:9998;background:rgba(0,2,5,.94);
   display:none;align-items:center;justify-content:center;padding:30px;
   backdrop-filter:blur(12px);
 }
@@ -462,7 +681,7 @@ html[dir="ltr"] .skill:hover{transform:translateX(-6px)}
 }
 @keyframes zoomIn{from{transform:scale(.75);opacity:0}to{transform:scale(1);opacity:1}}
 .modal-content img{
-  max-width:100%;max-height:85vh;display:block;border-radius:12px;
+  max-width:100%;max-height:85vh;border-radius:12px;
   border:2px solid var(--neon-green);
   box-shadow:0 0 60px rgba(0,255,136,.5);
 }
@@ -470,116 +689,224 @@ html[dir="ltr"] .skill:hover{transform:translateX(-6px)}
   position:absolute;top:-16px;inset-inline-end:-16px;
   width:44px;height:44px;border-radius:50%;
   background:var(--neon-green);color:#000;border:none;font-size:1.2rem;
-  cursor:none;box-shadow:0 0 20px var(--neon-green);font-weight:900;
-  transition:.3s;
+  box-shadow:0 0 20px var(--neon-green);font-weight:900;transition:.3s;
 }
 .modal-close:hover{transform:rotate(90deg) scale(1.1)}
 
-/* ============ TIMELINE ============ */
+/* =========================================================
+   PROJECTS
+========================================================= */
+.projects-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.project-card{
+  background:var(--card-bg);border:1px solid var(--border);border-radius:16px;
+  padding:26px;backdrop-filter:blur(10px);transition:.4s;position:relative;
+  overflow:hidden;
+}
+.project-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--neon-purple),var(--neon-pink),var(--neon-blue));
+  transform:scaleX(0);transform-origin:left;transition:.5s;
+}
+.project-card:hover::before{transform:scaleX(1)}
+.project-card:hover{transform:translateY(-8px);border-color:var(--neon-purple);
+  box-shadow:0 20px 50px rgba(168,85,247,.25)}
+.project-head{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.project-head .icon{
+  width:50px;height:50px;border-radius:12px;display:grid;place-items:center;
+  font-size:1.35rem;background:rgba(168,85,247,.12);color:var(--neon-purple);
+  border:1px solid rgba(168,85,247,.35);flex-shrink:0;
+}
+.project-head h3{font-size:1.05rem;color:#fff;font-weight:700}
+.project-head .stage{
+  font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--neon-yellow);
+  letter-spacing:1px;margin-top:2px;display:block;
+}
+.project-card p{color:var(--text-dim);font-size:.88rem;margin-bottom:16px;line-height:1.7}
+.project-tags{display:flex;flex-wrap:wrap;gap:6px}
+.project-tags span{
+  font-family:'JetBrains Mono',monospace;font-size:.7rem;
+  padding:4px 10px;border-radius:50px;
+  background:rgba(0,255,136,.08);color:var(--neon-green);
+  border:1px solid rgba(0,255,136,.2);
+}
+
+/* =========================================================
+   TIMELINE
+========================================================= */
 .timeline{max-width:900px;margin:0 auto;position:relative;padding:20px 0}
 .timeline::before{
   content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;
   background:linear-gradient(180deg,transparent,var(--neon-green),var(--neon-blue),transparent);
   transform:translateX(-50%);box-shadow:0 0 20px var(--neon-green);
 }
-.tl-item{
-  position:relative;width:50%;padding:20px 40px;margin-bottom:30px;
-}
+.tl-item{position:relative;width:50%;padding:20px 40px;margin-bottom:30px}
 .tl-item:nth-child(odd){left:0;text-align:end}
 .tl-item:nth-child(even){left:50%;text-align:start}
 .tl-card{
-  background:var(--card-bg);border:1px solid var(--card-border);
-  border-radius:14px;padding:22px 24px;backdrop-filter:blur(10px);
-  transition:.35s;position:relative;
+  background:var(--card-bg);border:1px solid var(--border);border-radius:14px;
+  padding:22px 24px;backdrop-filter:blur(10px);transition:.35s;position:relative;
 }
-.tl-card:hover{border-color:var(--neon-green);box-shadow:0 0 30px rgba(0,255,136,.25);transform:scale(1.03)}
+.tl-card:hover{border-color:var(--neon-green);
+  box-shadow:0 0 30px rgba(0,255,136,.25);transform:scale(1.03)}
 .tl-year{
   font-family:'Orbitron',sans-serif;font-weight:900;color:var(--neon-green);
-  font-size:1.15rem;margin-bottom:8px;letter-spacing:2px;
+  font-size:1.1rem;margin-bottom:8px;letter-spacing:2px;
   text-shadow:0 0 12px rgba(0,255,136,.6);
 }
-.tl-card p{color:#c8dce8;font-size:.94rem}
+.tl-card p{color:#c8dce8;font-size:.92rem}
+.tl-card .tl-tag{
+  display:inline-block;margin-top:10px;padding:3px 10px;border-radius:50px;
+  font-family:'JetBrains Mono',monospace;font-size:.68rem;
+  background:rgba(0,212,255,.08);color:var(--neon-blue);
+  border:1px solid rgba(0,212,255,.25);
+}
 .tl-dot{
   position:absolute;top:28px;width:18px;height:18px;border-radius:50%;
   background:var(--neon-green);box-shadow:0 0 20px var(--neon-green);
-  border:3px solid var(--bg);
+  border:3px solid var(--bg);z-index:1;
 }
+.tl-dot::after{
+  content:'';position:absolute;inset:-6px;border-radius:50%;
+  border:1px solid rgba(0,255,136,.4);animation:ping 2s infinite;
+}
+@keyframes ping{0%{transform:scale(1);opacity:1}100%{transform:scale(2);opacity:0}}
 .tl-item:nth-child(odd) .tl-dot{inset-inline-end:-9px}
 .tl-item:nth-child(even) .tl-dot{inset-inline-start:-9px}
-
 @media(max-width:760px){
   .timeline::before{left:20px}
-  .tl-item{width:100%;left:0 !important;text-align:start !important;padding-inline-start:56px}
+  .tl-item{width:100%;left:0 !important;text-align:start !important;padding-inline-start:56px;padding-inline-end:10px}
   .tl-item .tl-dot{inset-inline-start:11px !important;inset-inline-end:auto !important}
 }
 
-/* ============ CONTACT ============ */
-.contact-grid{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+/* =========================================================
+   CONTACT
+========================================================= */
+.contact-grid{
+  max-width:1000px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;
+}
 .contact-card{
-  background:var(--card-bg);border:1px solid var(--card-border);
-  border-radius:16px;padding:32px 24px;text-decoration:none;color:var(--text);
-  text-align:center;transition:.4s;backdrop-filter:blur(10px);
-  position:relative;overflow:hidden;
+  background:var(--card-bg);border:1px solid var(--border);border-radius:16px;
+  padding:28px 22px;text-align:center;transition:.4s;backdrop-filter:blur(10px);
+  position:relative;overflow:hidden;display:block;
 }
 .contact-card::after{
   content:'';position:absolute;bottom:0;left:0;width:0;height:3px;
   background:linear-gradient(90deg,var(--neon-green),var(--neon-blue));
   transition:.4s;
 }
-.contact-card:hover{
-  transform:translateY(-8px) scale(1.02);
-  border-color:var(--neon-green);
-  box-shadow:0 20px 50px rgba(0,255,136,.25);
-}
+.contact-card:hover{transform:translateY(-8px) scale(1.02);
+  border-color:var(--neon-green);box-shadow:0 20px 50px rgba(0,255,136,.25)}
 .contact-card:hover::after{width:100%}
 .contact-card .icon{
-  width:70px;height:70px;border-radius:18px;margin:0 auto 18px;
-  display:grid;place-items:center;font-size:2rem;
+  width:66px;height:66px;border-radius:18px;margin:0 auto 16px;
+  display:grid;place-items:center;font-size:1.85rem;
   background:rgba(0,255,136,.08);color:var(--neon-green);
   border:1px solid rgba(0,255,136,.3);transition:.4s;
 }
-.contact-card:hover .icon{transform:rotate(-8deg) scale(1.1);box-shadow:0 0 24px rgba(0,255,136,.5)}
-.contact-card h4{font-size:1.05rem;color:#fff;margin-bottom:6px}
-.contact-card span{font-size:.85rem;color:var(--muted);word-break:break-all}
+.contact-card:hover .icon{transform:rotate(-8deg) scale(1.08);
+  box-shadow:0 0 24px rgba(0,255,136,.5)}
+.contact-card h4{font-size:1rem;color:#fff;margin-bottom:6px;font-weight:700}
+.contact-card span{
+  font-size:.82rem;color:var(--text-dim);word-break:break-all;display:block;
+}
 .contact-card .arrow{
   display:inline-block;margin-top:14px;color:var(--neon-blue);
-  font-family:'JetBrains Mono',monospace;font-size:.8rem;transition:.3s;
+  font-family:'JetBrains Mono',monospace;font-size:.75rem;transition:.3s;
 }
-.contact-card:hover .arrow{transform:translateX(6px);color:var(--neon-green)}
-html[dir="rtl"] .contact-card .arrow{transform:scaleX(-1)}
-html[dir="rtl"] .contact-card:hover .arrow{transform:scaleX(-1) translateX(6px)}
+.contact-card:hover .arrow{color:var(--neon-green)}
 
-/* ============ FOOTER ============ */
+/* =========================================================
+   FAQ
+========================================================= */
+.faq-wrap{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.faq-item{
+  background:var(--card-bg);border:1px solid var(--border);border-radius:14px;
+  backdrop-filter:blur(10px);overflow:hidden;transition:.3s;
+}
+.faq-item.open{border-color:var(--neon-green);box-shadow:0 0 24px rgba(0,255,136,.15)}
+.faq-q{
+  padding:20px 24px;font-weight:700;font-size:.98rem;color:#fff;
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  background:transparent;border:none;width:100%;text-align:start;transition:.3s;
+}
+.faq-q:hover{color:var(--neon-green)}
+.faq-q i{color:var(--neon-green);font-size:.9rem;transition:.3s;flex-shrink:0}
+.faq-item.open .faq-q i{transform:rotate(180deg)}
+.faq-a{
+  max-height:0;overflow:hidden;transition:max-height .4s ease;
+  padding:0 24px;color:var(--text-dim);font-size:.9rem;line-height:1.75;
+}
+.faq-item.open .faq-a{max-height:400px;padding:0 24px 20px}
+
+/* =========================================================
+   CTA BANNER
+========================================================= */
+.cta-banner{
+  max-width:1100px;margin:0 auto;padding:50px 40px;border-radius:22px;
+  background:linear-gradient(135deg,rgba(0,255,136,.08),rgba(168,85,247,.08));
+  border:1px solid rgba(0,255,136,.3);backdrop-filter:blur(12px);
+  text-align:center;position:relative;overflow:hidden;
+}
+.cta-banner::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 20% 50%,rgba(0,255,136,.15),transparent 40%),
+             radial-gradient(circle at 80% 50%,rgba(168,85,247,.15),transparent 40%);
+  pointer-events:none;
+}
+.cta-banner h3{
+  font-family:'Orbitron',sans-serif;font-weight:900;
+  font-size:clamp(1.3rem,2.6vw,1.9rem);color:#fff;margin-bottom:12px;
+  letter-spacing:1px;position:relative;
+}
+.cta-banner p{color:var(--text-dim);margin-bottom:26px;position:relative}
+.cta-banner .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative}
+
+/* =========================================================
+   FOOTER
+========================================================= */
 footer{
-  padding:40px 5vw;text-align:center;border-top:1px solid rgba(0,255,136,.12);
-  position:relative;z-index:2;
-  font-family:'JetBrains Mono',monospace;color:var(--muted);font-size:.85rem;
+  padding:50px 5vw 30px;text-align:center;border-top:1px solid rgba(0,255,136,.12);
+  position:relative;z-index:2;background:rgba(0,2,5,.5);
 }
-footer .heart{color:var(--neon-green);animation:beat 1.2s infinite}
+.footer-socials{display:flex;gap:14px;justify-content:center;margin-bottom:22px}
+.footer-socials a{
+  width:44px;height:44px;border-radius:12px;display:grid;place-items:center;
+  border:1px solid rgba(0,255,136,.3);color:var(--neon-green);
+  background:rgba(0,255,136,.05);transition:.3s;font-size:1.05rem;
+}
+.footer-socials a:hover{background:var(--neon-green);color:#000;
+  box-shadow:0 0 25px var(--neon-green);transform:translateY(-4px)}
+.footer-line{
+  font-family:'JetBrains Mono',monospace;color:var(--muted);
+  font-size:.82rem;margin-bottom:10px;
+}
+.footer-line .heart{color:var(--neon-green);animation:beat 1.2s infinite;display:inline-block}
 @keyframes beat{50%{transform:scale(1.35)}}
+.footer-copy{color:var(--muted);font-size:.75rem;opacity:.6;margin-top:14px}
 
-/* ============ TERMINAL EASTER EGG ============ */
+/* =========================================================
+   TERMINAL EASTER EGG
+========================================================= */
 #terminal-btn{
   position:fixed;bottom:20px;inset-inline-start:20px;z-index:999;
-  width:44px;height:44px;border-radius:50%;
+  width:46px;height:46px;border-radius:50%;
   background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.4);
-  color:var(--neon-green);font-size:1.05rem;cursor:none;
-  display:grid;place-items:center;transition:.3s;
-  opacity:.35;
+  color:var(--neon-green);font-size:1.05rem;
+  display:grid;place-items:center;transition:.3s;opacity:.4;
 }
 #terminal-btn:hover{opacity:1;box-shadow:0 0 24px var(--neon-green);transform:scale(1.1)}
 .terminal{
-  position:fixed;inset:0;z-index:99999;background:rgba(0,3,8,.96);
+  position:fixed;inset:0;z-index:99999;background:rgba(0,2,5,.96);
   display:none;align-items:center;justify-content:center;padding:20px;
   backdrop-filter:blur(12px);
 }
 .terminal.open{display:flex;animation:fadeIn .3s}
 .terminal-box{
-  width:min(720px,95vw);height:min(480px,80vh);
-  background:#000308;border:1px solid var(--neon-green);
-  border-radius:12px;padding:20px;font-family:'JetBrains Mono',monospace;
-  color:var(--neon-green);box-shadow:0 0 60px rgba(0,255,136,.4);
-  display:flex;flex-direction:column;
+  width:min(760px,95vw);height:min(500px,80vh);
+  background:#000205;border:1px solid var(--neon-green);border-radius:12px;
+  padding:18px;font-family:'JetBrains Mono',monospace;color:var(--neon-green);
+  box-shadow:0 0 60px rgba(0,255,136,.4);display:flex;flex-direction:column;
 }
 .terminal-head{
   display:flex;align-items:center;gap:8px;margin-bottom:14px;
@@ -589,10 +916,12 @@ footer .heart{color:var(--neon-green);animation:beat 1.2s infinite}
 .terminal-head .td.r{background:#ff5f56}
 .terminal-head .td.y{background:#ffbd2e}
 .terminal-head .td.g{background:#27c93f}
-.terminal-head span{margin-inline-start:auto;font-size:.78rem;color:var(--muted)}
-.terminal-body{flex:1;overflow-y:auto;font-size:.88rem;line-height:1.7}
-.terminal-body .line{margin-bottom:6px}
+.terminal-head span{margin-inline-start:auto;font-size:.75rem;color:var(--muted)}
+.terminal-body{flex:1;overflow-y:auto;font-size:.86rem;line-height:1.7;padding-inline-end:6px}
+.terminal-body .line{margin-bottom:6px;word-break:break-word}
 .terminal-body .prompt{color:var(--neon-blue)}
+.terminal-body .ok{color:var(--neon-green)}
+.terminal-body .warn{color:var(--neon-yellow)}
 .terminal-input{
   display:flex;gap:8px;margin-top:12px;padding-top:12px;
   border-top:1px solid rgba(0,255,136,.2);
@@ -600,34 +929,67 @@ footer .heart{color:var(--neon-green);animation:beat 1.2s infinite}
 .terminal-input span{color:var(--neon-blue)}
 .terminal-input input{
   flex:1;background:transparent;border:none;outline:none;
-  color:var(--neon-green);font-family:'JetBrains Mono',monospace;font-size:.9rem;cursor:none;
+  color:var(--neon-green);font-family:'JetBrains Mono',monospace;font-size:.9rem;
 }
 
-/* ============ RESPONSIVE ============ */
-@media(max-width:880px){
-  header{padding:12px 4vw}
+/* =========================================================
+   BACK TO TOP
+========================================================= */
+#backTop{
+  position:fixed;bottom:20px;inset-inline-end:20px;z-index:999;
+  width:46px;height:46px;border-radius:50%;
+  background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.4);
+  color:var(--neon-blue);font-size:1rem;display:grid;place-items:center;
+  transition:.3s;opacity:0;visibility:hidden;
+}
+#backTop.show{opacity:1;visibility:visible}
+#backTop:hover{background:var(--neon-blue);color:#000;
+  box-shadow:0 0 25px var(--neon-blue);transform:translateY(-4px)}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media(max-width:980px){
   nav{
-    position:fixed;top:70px;inset-inline-end:-100%;width:260px;height:calc(100vh - 70px);
-    background:rgba(0,3,8,.98);backdrop-filter:blur(14px);
+    position:fixed;top:0;inset-inline-end:-100%;width:280px;height:100vh;
+    background:rgba(0,2,5,.98);backdrop-filter:blur(16px);
     border-inline-start:1px solid rgba(0,255,136,.2);
-    padding:30px 22px;transition:.4s;z-index:999;
+    padding:90px 24px 30px;transition:.4s;z-index:999;
   }
   nav.open{inset-inline-end:0}
-  nav ul{flex-direction:column;gap:20px;align-items:flex-start}
-  .menu-toggle{display:grid;place-items:center}
+  nav ul{flex-direction:column;gap:8px;align-items:stretch}
+  nav a{padding:14px 16px;font-size:.95rem;border-radius:10px}
+  nav a::before{display:none}
+  .menu-toggle{display:grid}
   .badge-avail{display:none}
+}
+@media(max-width:900px){
+  .hero{padding:120px 5vw 60px}
   .hero-avatar{width:200px;height:200px}
-  .age-values{gap:10px}
+  .age-values{gap:8px}
   .age-unit{min-width:44px}
-  .age-unit .num{font-size:1.15rem}
+  .age-unit .num{font-size:1.1rem}
   section{padding:80px 5vw}
-  .tl-card{padding:18px}
+  .section-head{margin-bottom:44px}
+  .scroll-hint{display:none}
 }
 @media(max-width:520px){
-  .logo-text{font-size:.85rem}
-  .hero-cta .btn{padding:12px 20px;font-size:.85rem}
+  .logo-text{font-size:.82rem}
+  .logo-wrap img{width:38px;height:38px}
+  .hero-cta .btn{padding:12px 20px;font-size:.82rem}
+  .stat-card .num{font-size:1.6rem}
+  .about-card{padding:24px}
+  .hex-card{padding:20px}
+  .terminal-box{padding:14px}
 }
-@media(hover:none){body{cursor:auto}*{cursor:auto !important}.cursor-dot,.cursor-ring{display:none}}
+@media(hover:none),(max-width:880px){
+  body{cursor:auto}
+  *{cursor:auto !important}
+  .cursor-dot,.cursor-ring{display:none}
+}
+@media print{
+  #bg-video,.cursor-dot,.cursor-ring,#loader,.scanlines,.noise{display:none !important}
+}
 </style>
 </head>
 <body>
@@ -639,11 +1001,12 @@ footer .heart{color:var(--neon-green);animation:beat 1.2s infinite}
 <!-- LOADER -->
 <div id="loader">
   <div class="loader-logo">
-    <img src="https://i.ibb.co/dw78vpW4/Picsart-26-10-06-16-22-06-337.jpg" alt="logo" />
+    <img src="https://i.ibb.co/dw78vpW4/Picsart-26-10-06-16-22-06-337.jpg" alt="Amjad Logo" />
   </div>
   <div class="loader-title" id="loaderTitle">INITIALIZING SECURE CONNECTION...</div>
   <div class="loader-bar"><span id="loaderFill"></span></div>
   <div class="loader-text" id="loaderStatus">&gt; Booting kernel modules</div>
+  <div class="loader-pct" id="loaderPct">0%</div>
 </div>
 
 <!-- BACKGROUND -->
@@ -653,47 +1016,63 @@ footer .heart{color:var(--neon-green);animation:beat 1.2s infinite}
 <div class="bg-overlay"></div>
 <canvas id="matrix-canvas"></canvas>
 <div class="scanlines"></div>
+<div class="noise"></div>
 
 <!-- HEADER -->
-<header>
+<header id="header">
   <a href="#home" class="logo-wrap">
     <img src="https://i.ibb.co/dw78vpW4/Picsart-26-10-06-16-22-06-337.jpg" alt="Amjad" />
-    <span class="logo-text">AMJAD.exe</span>
+    <span class="logo-text">AMJAD<span>.exe</span></span>
   </a>
   <nav id="nav">
     <ul>
-      <li><a href="#home" data-i18n="nav.home">الرئيسية</a></li>
+      <li><a href="#home" data-i18n="nav.home" class="active">الرئيسية</a></li>
       <li><a href="#about" data-i18n="nav.about">عني</a></li>
       <li><a href="#skills" data-i18n="nav.skills">المهارات</a></li>
+      <li><a href="#services" data-i18n="nav.services">خدماتي</a></li>
       <li><a href="#certs" data-i18n="nav.certs">الشهادات</a></li>
+      <li><a href="#projects" data-i18n="nav.projects">مشاريعي</a></li>
       <li><a href="#journey" data-i18n="nav.journey">رحلتي</a></li>
       <li><a href="#contact" data-i18n="nav.contact">تواصل</a></li>
     </ul>
   </nav>
   <div class="header-right">
-    <div class="badge-avail"><span class="dot"></span><span data-i18n="badge">متاح للتعلم والتعاون</span></div>
+    <div class="badge-avail"><span class="dot"></span><span data-i18n="badge">متاح للتعلم</span></div>
     <div class="lang-switch">
-      <button class="lang-btn" id="langBtn"><i class="fas fa-globe"></i><span id="langLabel">AR</span><i class="fas fa-chevron-down" style="font-size:.7rem"></i></button>
+      <button class="lang-btn" id="langBtn" aria-label="Language">
+        <i class="fas fa-globe"></i><span id="langLabel">AR</span>
+        <i class="fas fa-chevron-down" style="font-size:.65rem"></i>
+      </button>
       <div class="lang-menu" id="langMenu">
         <button data-lang="ar">🇪🇬 العربية</button>
         <button data-lang="en">🇬🇧 English</button>
         <button data-lang="pl">🇵🇱 Polski</button>
       </div>
     </div>
-    <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
   </div>
 </header>
 
-<!-- HERO -->
+<!-- ================= HERO ================= -->
 <section class="hero" id="home">
   <div class="hero-grid">
     <div class="hero-avatar">
       <img src="https://i.ibb.co/dw78vpW4/Picsart-26-10-06-16-22-06-337.jpg" alt="Amjad" />
+      <div class="hero-status-bubble">
+        <span class="dot"></span><span>ONLINE</span>
+      </div>
     </div>
     <div class="hero-content">
       <h4 data-i18n="hero.greet">&gt; HELLO_WORLD</h4>
-      <h1 class="hero-name glitch" data-text="أمجد عبد اللطيف الدسوقي حسن محمد موسى" id="heroName">أمجد عبد اللطيف الدسوقي<br/>حسن محمد موسى</h1>
+      <h1 class="hero-name glitch" data-text="Amjad" id="heroName">أمجد عبد اللطيف الدسوقي<br/>حسن محمد موسى</h1>
       <p class="hero-role"><span id="typed"></span><span class="cursor-type"></span></p>
+      <div class="hero-tags">
+        <span>#Cybersecurity</span>
+        <span>#EthicalHacking</span>
+        <span>#JavaScript</span>
+        <span>#Linux</span>
+        <span>#Networking</span>
+      </div>
 
       <div class="age-counter">
         <div class="label" data-i18n="age.label">LIVE_AGE_COUNTER</div>
@@ -709,21 +1088,59 @@ footer .heart{color:var(--neon-green);animation:beat 1.2s infinite}
 
       <div class="hero-cta">
         <a href="#skills" class="btn primary"><i class="fas fa-terminal"></i><span data-i18n="hero.cta1">اكتشف مهاراتي</span></a>
-        <a href="#contact" class="btn btn-outline"><i class="fas fa-satellite-dish"></i><span data-i18n="hero.cta2">تواصل معايا</span></a>
+        <a href="#contact" class="btn outline"><i class="fas fa-satellite-dish"></i><span data-i18n="hero.cta2">تواصل معايا</span></a>
       </div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>SCROLL</span>
+    <div class="line"></div>
+  </div>
+</section>
+
+<!-- ================= STATS ================= -->
+<section style="padding-top:20px" id="stats">
+  <div class="stats-strip">
+    <div class="stat-card reveal">
+      <div class="icon"><i class="fas fa-certificate"></i></div>
+      <div><span class="num" data-count="24">0</span><span class="num-suffix">+</span></div>
+      <div class="lbl" data-i18n="stats.certs">شهادة برمجة</div>
+    </div>
+    <div class="stat-card reveal">
+      <div class="icon"><i class="fas fa-code"></i></div>
+      <div><span class="num" data-count="6">0</span><span class="num-suffix">+</span></div>
+      <div class="lbl" data-i18n="stats.skills">مهارة تقنية</div>
+    </div>
+    <div class="stat-card reveal">
+      <div class="icon"><i class="fas fa-language"></i></div>
+      <div><span class="num" data-count="3">0</span></div>
+      <div class="lbl" data-i18n="stats.langs">لغات مدعومة</div>
+    </div>
+    <div class="stat-card reveal">
+      <div class="icon"><i class="fas fa-calendar-check"></i></div>
+      <div><span class="num" data-count="365">0</span><span class="num-suffix">+</span></div>
+      <div class="lbl" data-i18n="stats.days">يوم تعلم</div>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
+<!-- ================= ABOUT ================= -->
 <section id="about">
   <div class="section-head reveal">
     <span class="tag">// 01. whoami</span>
     <h2 data-i18n="about.title">عني</h2>
   </div>
   <div class="about-wrap">
-    <div class="about-card reveal">
-      <p data-i18n="about.p1">طالب مصري، من مواليد 14 فبراير 2010، حلمي إني أبقى خبير أمن سيبراني عالمي. معنديش خبرة كافية لسه، لكن بتعلم كل يوم وبطوّر من نفسي خطوة بخطوة.</p>
+    <div class="about-card reveal-l">
+      <div class="about-terminal">
+        <div class="ln"><span class="prompt">$</span> whoami</div>
+        <div class="ln out">amjad_abd_ellatif</div>
+        <div class="ln"><span class="prompt">$</span> cat mission.txt</div>
+        <div class="ln out" data-i18n="about.mission">"أصبح خبير أمن سيبراني عالمي — خطوة بخطوة كل يوم"</div>
+      </div>
+      <p data-i18n="about.p1">طالب مصري من مواليد 14 فبراير 2010، حلمي إني أبقى خبير أمن سيبراني عالمي. معنديش خبرة كافية لسه، لكن بتعلم كل يوم وبطوّر من نفسي خطوة بخطوة.</p>
+      <p data-i18n="about.p2">بحب اكتشاف الثغرات، وحل المشكلات، وبناء أدوات صغيرة تساعدني أفهم إزاي الأنظمة بتشتغل من جوا. عندي شغف حقيقي بمجال الأمن السيبراني، وكل شهادة بحصل عليها بتدفعني أتعلم أكتر.</p>
+
       <div class="info-grid">
         <div class="info-item">
           <div class="ic"><i class="fas fa-map-marker-alt"></i></div>
@@ -739,18 +1156,43 @@ footer .heart{color:var(--neon-green);animation:beat 1.2s infinite}
         </div>
         <div class="info-item">
           <div class="ic"><i class="fas fa-language"></i></div>
-          <div><div class="lbl" data-i18n="about.lang.l">LANGUAGES</div><div class="val" data-i18n="about.lang.v">العربية + الإنجليزية</div></div>
+          <div><div class="lbl" data-i18n="about.lang.l">LANGUAGES</div><div class="val" data-i18n="about.lang.v">عربية + إنجليزية</div></div>
         </div>
+      </div>
+    </div>
+
+    <div class="about-side">
+      <div class="hex-card reveal-r">
+        <h3><i class="fas fa-crosshairs"></i> <span data-i18n="about.focus">مجالات اهتمامي</span></h3>
+        <ul class="focus-list">
+          <li>
+            <i class="fas fa-bug"></i>
+            <div><b data-i18n="focus1.t">Ethical Hacking</b><span data-i18n="focus1.d">اختبار الاختراق الأخلاقي</span></div>
+          </li>
+          <li>
+            <i class="fas fa-network-wired"></i>
+            <div><b data-i18n="focus2.t">Network Security</b><span data-i18n="focus2.d">أمن الشبكات والبروتوكولات</span></div>
+          </li>
+          <li>
+            <i class="fab fa-linux"></i>
+            <div><b data-i18n="focus3.t">Linux Systems</b><span data-i18n="focus3.d">أوامر وإدارة أنظمة Linux</span></div>
+          </li>
+          <li>
+            <i class="fas fa-code"></i>
+            <div><b data-i18n="focus4.t">Web Development</b><span data-i18n="focus4.d">بناء تطبيقات ويب آمنة</span></div>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SKILLS -->
+<!-- ================= SKILLS ================= -->
 <section id="skills">
   <div class="section-head reveal">
     <span class="tag">// 02. skills.json</span>
     <h2 data-i18n="skills.title">المهارات</h2>
+    <p class="sub" data-i18n="skills.sub">مهاراتي بتطور باستمرار — دي النسبة الحالية لكل مهارة</p>
   </div>
   <div class="skills-wrap">
     <div class="skill reveal" data-pct="75">
@@ -778,23 +1220,80 @@ footer .heart{color:var(--neon-green);animation:beat 1.2s infinite}
       <div class="skill-bar"><span></span></div>
     </div>
   </div>
+
+  <!-- TECH STACK MARQUEE -->
+  <div class="tech-marquee reveal">
+    <div class="marquee-track" id="marqueeTrack">
+      <div class="tech-item"><i class="fab fa-html5" style="color:#e34c26"></i> HTML5</div>
+      <div class="tech-item"><i class="fab fa-css3-alt" style="color:#264de4"></i> CSS3</div>
+      <div class="tech-item"><i class="fab fa-js" style="color:#f7df1e"></i> JavaScript</div>
+      <div class="tech-item"><i class="fab fa-python" style="color:#3776ab"></i> Python</div>
+      <div class="tech-item"><i class="fab fa-linux" style="color:#fcc624"></i> Linux</div>
+      <div class="tech-item"><i class="fab fa-git-alt" style="color:#f34f29"></i> Git</div>
+      <div class="tech-item"><i class="fab fa-github" style="color:#fff"></i> GitHub</div>
+      <div class="tech-item"><i class="fas fa-shield-halved" style="color:#00ff88"></i> Kali</div>
+      <div class="tech-item"><i class="fas fa-network-wired" style="color:#00d4ff"></i> Wireshark</div>
+      <div class="tech-item"><i class="fas fa-terminal" style="color:#00ff88"></i> Bash</div>
+    </div>
+  </div>
 </section>
 
-<!-- CERTIFICATES -->
+<!-- ================= SERVICES ================= -->
+<section id="services">
+  <div class="section-head reveal">
+    <span class="tag">// 03. what_i_do</span>
+    <h2 data-i18n="services.title">خدماتي ومجالاتي</h2>
+    <p class="sub" data-i18n="services.sub">المجالات اللي بحب أشتغل فيها وأطور نفسي من خلالها</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon"><i class="fas fa-shield-halved"></i></div>
+      <h3 data-i18n="srv1.t">أساسيات الأمن السيبراني</h3>
+      <p data-i18n="srv1.d">تعلم مبادئ الحماية، تشفير البيانات، وأمن المعلومات بشكل نظري وعملي.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon"><i class="fas fa-user-secret"></i></div>
+      <h3 data-i18n="srv2.t">اختبار الاختراق</h3>
+      <p data-i18n="srv2.d">استكشاف بيئات الاختبار الأخلاقي وتعلم أدوات مثل Kali Linux وWireshark.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon"><i class="fas fa-code"></i></div>
+      <h3 data-i18n="srv3.t">تطوير الويب</h3>
+      <p data-i18n="srv3.d">بناء صفحات ويب تفاعلية بـ HTML وCSS وJavaScript مع مراعاة أفضل ممارسات الأمان.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon"><i class="fas fa-terminal"></i></div>
+      <h3 data-i18n="srv4.t">Linux & Bash</h3>
+      <p data-i18n="srv4.d">إدارة أنظمة Linux، كتابة سكربتات Bash، والتعامل مع سطر الأوامر باحتراف.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon"><i class="fas fa-network-wired"></i></div>
+      <h3 data-i18n="srv5.t">أساسيات الشبكات</h3>
+      <p data-i18n="srv5.d">فهم بروتوكولات TCP/IP، DNS، HTTP وكيفية تأمين الاتصالات.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon"><i class="fas fa-bug"></i></div>
+      <h3 data-i18n="srv6.t">حل المشكلات التقنية</h3>
+      <p data-i18n="srv6.d">تفكير منطقي لحل المشاكل البرمجية والتفكير بشكل هجومي للدفاع ضد الثغرات.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CERTIFICATES ================= -->
 <section id="certs">
   <div class="section-head reveal">
-    <span class="tag">// 03. achievements.db</span>
+    <span class="tag">// 04. achievements.db</span>
     <h2 data-i18n="certs.title">الشهادات</h2>
   </div>
   <div style="text-align:center" class="reveal">
-    <div class="certs-badge"><i class="fas fa-award"></i><span data-i18n="certs.badge">+24 شهادة في البرمجة على مدار دراستي</span></div>
+    <div class="certs-badge"><i class="fas fa-award"></i><span data-i18n="certs.badge">+24 شهادة برمجة على مدار دراستي</span></div>
   </div>
   <div class="certs-grid">
     <div class="cert-card reveal" data-img="https://i.ibb.co/yFwtXJNP/certificate-0019dd9ae7db563a236bda20762e68d35.png">
       <div class="cert-img-wrap"><img class="cert-img" loading="lazy" src="https://i.ibb.co/yFwtXJNP/certificate-0019dd9ae7db563a236bda20762e68d35.png" alt="JS Certificate" /></div>
       <div class="cert-body">
         <h4 data-i18n="cert1.title">شهادة JavaScript Level 1</h4>
-        <p data-i18n="cert1.desc">موثقة من منصة أس بريكس اليابانية + وزارة التربية والتعليم المصرية + جامعة هيروشيما اليابانية</p>
+        <p data-i18n="cert1.desc">موثقة من منصة أس بريكس اليابانية + وزارة التربية والتعليم المصرية + جامعة هيروشيما</p>
         <span class="cert-view"><i class="fas fa-expand"></i> <span data-i18n="cert.view">عرض الشهادة</span></span>
       </div>
     </div>
@@ -818,7 +1317,7 @@ footer .heart{color:var(--neon-green);animation:beat 1.2s infinite}
       <div class="cert-img-wrap"><img class="cert-img" loading="lazy" src="https://i.ibb.co/7tMf0qvK/Picsart-26-10-07-19-47-45-565.png" alt="Director Certificate" /></div>
       <div class="cert-body">
         <h4 data-i18n="cert4.title">شهادة مدير المدرسة — الأولى في مسابقة الحاسب الآلي</h4>
-        <p data-i18n="cert4.desc">موقعة من مدرسة الحاسب + المدير + مدرس IT</p>
+        <p data-i18n="cert4.desc">موقّعة من مدرسة الحاسب + المدير + مدرس IT</p>
         <span class="cert-view"><i class="fas fa-expand"></i> <span data-i18n="cert.view">عرض الشهادة</span></span>
       </div>
     </div>
@@ -826,44 +1325,142 @@ footer .heart{color:var(--neon-green);animation:beat 1.2s infinite}
 </section>
 
 <!-- MODAL -->
-<div class="modal" id="certModal">
+<div class="modal" id="certModal" role="dialog" aria-label="Certificate">
   <div class="modal-content">
-    <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
+    <button class="modal-close" id="modalClose" aria-label="Close"><i class="fas fa-times"></i></button>
     <img id="modalImg" src="" alt="certificate" />
   </div>
 </div>
 
-<!-- JOURNEY -->
+<!-- ================= PROJECTS ================= -->
+<section id="projects">
+  <div class="section-head reveal">
+    <span class="tag">// 05. side_projects</span>
+    <h2 data-i18n="projects.title">مشاريعي الحالية</h2>
+    <p class="sub" data-i18n="projects.sub">مشاريع صغيرة بشتغل عليها لتحسين مهاراتي</p>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <div class="project-head">
+        <div class="icon"><i class="fas fa-globe"></i></div>
+        <div>
+          <h3 data-i18n="prj1.t">Personal Portfolio</h3>
+          <span class="stage">● IN PROGRESS</span>
+        </div>
+      </div>
+      <p data-i18n="prj1.d">موقع بورتفوليو احترافي بأسلوب Cyberpunk لعرض مهاراتي وشهاداتي.</p>
+      <div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-head">
+        <div class="icon"><i class="fas fa-terminal"></i></div>
+        <div>
+          <h3 data-i18n="prj2.t">Mini CLI Tools</h3>
+          <span class="stage" style="color:#00d4ff">● LEARNING</span>
+        </div>
+      </div>
+      <p data-i18n="prj2.d">أدوات بسيطة بسطر الأوامر بأسلوب Bash وPython لتعلم أساسيات الأتمتة.</p>
+      <div class="project-tags"><span>Bash</span><span>Python</span><span>Linux</span></div>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-head">
+        <div class="icon"><i class="fas fa-shield-halved"></i></div>
+        <div>
+          <h3 data-i18n="prj3.t">CTF Writeups</h3>
+          <span class="stage" style="color:#ffbd2e">● PLANNED</span>
+        </div>
+      </div>
+      <p data-i18n="prj3.d">حل تحديات CTF وتوثيق خطوات الحل لتعلم التفكير الأمني.</p>
+      <div class="project-tags"><span>CTF</span><span>Forensics</span><span>Web</span></div>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-head">
+        <div class="icon"><i class="fab fa-youtube"></i></div>
+        <div>
+          <h3 data-i18n="prj4.t">Mousa Code Channel</h3>
+          <span class="stage">● ACTIVE</span>
+        </div>
+      </div>
+      <p data-i18n="prj4.d">قناة يوتيوب أشارك فيها رحلتي في التعلم وأبسّط مفاهيم البرمجة.</p>
+      <div class="project-tags"><span>YouTube</span><span>Content</span><span>Education</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= JOURNEY ================= -->
 <section id="journey">
   <div class="section-head reveal">
-    <span class="tag">// 04. journey.log</span>
+    <span class="tag">// 06. journey.log</span>
     <h2 data-i18n="journey.title">رحلتي</h2>
   </div>
   <div class="timeline">
     <div class="tl-item reveal">
-      <div class="tl-card"><div class="tl-year">2010</div><p data-i18n="tl.1">ولدت في مصر 🇪🇬 — بداية الحكاية</p></div>
+      <div class="tl-card">
+        <div class="tl-year">2010</div>
+        <p data-i18n="tl.1">ولدت في مصر 🇪🇬 — بداية الحكاية</p>
+        <span class="tl-tag">origin</span>
+      </div>
       <div class="tl-dot"></div>
     </div>
     <div class="tl-item reveal">
-      <div class="tl-card"><div class="tl-year" data-i18n="tl.2y">أولى إعدادي</div><p data-i18n="tl.2">بدأت رحلتي في البرمجة وحصلت على أولى شهاداتي</p></div>
+      <div class="tl-card">
+        <div class="tl-year" data-i18n="tl.2y">أولى إعدادي</div>
+        <p data-i18n="tl.2">بدأت رحلتي في البرمجة وحصلت على أولى شهاداتي</p>
+        <span class="tl-tag">first step</span>
+      </div>
       <div class="tl-dot"></div>
     </div>
     <div class="tl-item reveal">
-      <div class="tl-card"><div class="tl-year">2025+</div><p data-i18n="tl.3">أول شهادة JavaScript موثقة دولياً من اليابان ومصر</p></div>
+      <div class="tl-card">
+        <div class="tl-year">2025+</div>
+        <p data-i18n="tl.3">أول شهادة JavaScript موثقة دولياً من اليابان ومصر</p>
+        <span class="tl-tag">international</span>
+      </div>
       <div class="tl-dot"></div>
     </div>
     <div class="tl-item reveal">
-      <div class="tl-card"><div class="tl-year" data-i18n="tl.4y">المستقبل</div><p data-i18n="tl.4">خبير أمن سيبراني 🎯</p></div>
+      <div class="tl-card">
+        <div class="tl-year" data-i18n="tl.4y">المستقبل</div>
+        <p data-i18n="tl.4">خبير أمن سيبراني عالمي 🎯</p>
+        <span class="tl-tag">next target</span>
+      </div>
       <div class="tl-dot"></div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- ================= FAQ ================= -->
+<section id="faq">
+  <div class="section-head reveal">
+    <span class="tag">// 07. faq</span>
+    <h2 data-i18n="faq.title">أسئلة متكررة</h2>
+  </div>
+  <div class="faq-wrap">
+    <div class="faq-item reveal">
+      <button class="faq-q"><span data-i18n="faq1.q">إزاي بدأت في مجال الأمن السيبراني؟</span><i class="fas fa-chevron-down"></i></button>
+      <div class="faq-a"><p data-i18n="faq1.a">بدأت من فضول شخصي — حبيت أعرف إزاي الأنظمة بتتأمن وإزاي الثغرات بتتكتشف. بدأت بتعلم الأساسيات من خلال كورسات مجانية وتطبيقات عملية، وكل يوم بضيف معلومة جديدة.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q"><span data-i18n="faq2.q">إيه أفضل طريقة لتعلم الأمن السيبراني كمبتدئ؟</span><i class="fas fa-chevron-down"></i></button>
+      <div class="faq-a"><p data-i18n="faq2.a">ابدأ من الأساسيات: الشبكات، Linux، ثم أساسيات البرمجة. بعدها اتعلم مفاهيم الأمن والتشفير، وطبّق على منصات تدريب آمنة مثل TryHackMe وHackTheBox.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q"><span data-i18n="faq3.q">هل يمكنني التواصل معك للتعاون؟</span><i class="fas fa-chevron-down"></i></button>
+      <div class="faq-a"><p data-i18n="faq3.a">أكيد! أنا دايماً منفتح للتعلم والتعاون. تواصل معايا على LinkedIn أو من خلال قناة YouTube.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q"><span data-i18n="faq4.q">إيه اللي بتطمح ليه في المستقبل؟</span><i class="fas fa-chevron-down"></i></button>
+      <div class="faq-a"><p data-i18n="faq4.a">حلمي إني أبقى خبير أمن سيبراني عالمي، أشتغل في شركة كبيرة، وأساعد في حماية الأنظمة من الهجمات. وهدفي كمان أشارك معرفتي مع الجيل الجديد.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
 <section id="contact">
   <div class="section-head reveal">
-    <span class="tag">// 05. connect</span>
+    <span class="tag">// 08. connect</span>
     <h2 data-i18n="contact.title">تواصل معايا</h2>
+    <p class="sub" data-i18n="contact.sub">منفتح على التعاون والتبادل المعرفي — اختار الطريقة الأنسب ليك</p>
   </div>
   <div class="contact-grid">
     <a class="contact-card reveal" href="https://www.linkedin.com/in/amgadqu123" target="_blank" rel="noopener">
@@ -874,27 +1471,50 @@ footer .heart{color:var(--neon-green);animation:beat 1.2s infinite}
     </a>
     <a class="contact-card reveal" href="https://youtube.com/@mousacode" target="_blank" rel="noopener">
       <div class="icon"><i class="fab fa-youtube"></i></div>
-      <h4>YouTube — Mousa Code</h4>
-      <span>@mousacode</span>
+      <h4>YouTube</h4>
+      <span>Mousa Code · @mousacode</span>
       <div class="arrow" data-i18n="contact.visit">زيارة القناة ←</div>
     </a>
   </div>
+
+  <!-- CTA BANNER -->
+  <div class="cta-banner reveal" style="margin-top:60px">
+    <h3 data-i18n="cta.title">جاهز تبدأ رحلة تعلم معايا؟</h3>
+    <p data-i18n="cta.desc">"Never Stop Learning" — دي فلسفتي، وكل يوم فرصة جديدة نتعلم حاجة جديدة</p>
+    <div class="btns">
+      <a href="https://www.linkedin.com/in/amgadqu123" target="_blank" rel="noopener" class="btn primary"><i class="fab fa-linkedin"></i><span data-i18n="cta.btn1">تواصل على LinkedIn</span></a>
+      <a href="https://youtube.com/@mousacode" target="_blank" rel="noopener" class="btn outline"><i class="fab fa-youtube"></i><span data-i18n="cta.btn2">اتفرج على القناة</span></a>
+    </div>
+  </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <div data-i18n="footer">Built with 💚 from Egypt | Never Stop Learning</div>
+  <div class="footer-socials">
+    <a href="https://www.linkedin.com/in/amgadqu123" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://youtube.com/@mousacode" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+    <a href="#home" aria-label="Top"><i class="fas fa-arrow-up"></i></a>
+  </div>
+  <div class="footer-line">
+    <span data-i18n="footer.1">Built with</span> <span class="heart">💚</span> <span data-i18n="footer.2">from Egypt | Never Stop Learning</span>
+  </div>
+  <div class="footer-copy">© <span id="year"></span> Amjad Abd El-Latif — All rights reserved.</div>
 </footer>
 
+<!-- BACK TO TOP -->
+<button id="backTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+
 <!-- TERMINAL EASTER EGG -->
-<button id="terminal-btn" title="Terminal"><i class="fas fa-terminal"></i></button>
+<button id="terminal-btn" aria-label="Terminal"><i class="fas fa-terminal"></i></button>
 <div class="terminal" id="terminal">
   <div class="terminal-box">
     <div class="terminal-head">
       <div class="td r"></div><div class="td y"></div><div class="td g"></div>
-      <span>amjad@secure-terminal:~$</span>
+      <span>amjad@secure-shell:~$</span>
     </div>
     <div class="terminal-body" id="termBody">
-      <div class="line prompt">Type 'help' to see available commands.</div>
+      <div class="line ok">[✓] Secure connection established.</div>
+      <div class="line">Type <span class="prompt">help</span> to see available commands.</div>
     </div>
     <div class="terminal-input">
       <span>➜</span>
@@ -909,93 +1529,209 @@ footer .heart{color:var(--neon-green);animation:beat 1.2s infinite}
 ========================================================= */
 const i18n = {
   ar: {
-    "nav.home":"الرئيسية","nav.about":"عني","nav.skills":"المهارات","nav.certs":"الشهادات","nav.journey":"رحلتي","nav.contact":"تواصل",
-    "badge":"متاح للتعلم والتعاون",
+    "nav.home":"الرئيسية","nav.about":"عني","nav.skills":"المهارات","nav.services":"خدماتي",
+    "nav.certs":"الشهادات","nav.projects":"مشاريعي","nav.journey":"رحلتي","nav.contact":"تواصل",
+    "badge":"متاح للتعلم",
     "hero.greet":"> HELLO_WORLD",
     "heroName":"أمجد عبد اللطيف الدسوقي<br/>حسن محمد موسى",
     "role":"Cybersecurity Enthusiast | Ethical Hacker in Progress",
-    "age.label":"LIVE_AGE_COUNTER","age.y":"سنة","age.m":"شهر","age.d":"يوم","age.h":"ساعة","age.mi":"دقيقة","age.s":"ثانية",
+    "age.label":"LIVE_AGE_COUNTER",
+    "age.y":"سنة","age.m":"شهر","age.d":"يوم","age.h":"ساعة","age.mi":"دقيقة","age.s":"ثانية",
     "hero.cta1":"اكتشف مهاراتي","hero.cta2":"تواصل معايا",
+    "stats.certs":"شهادة برمجة","stats.skills":"مهارة تقنية","stats.langs":"لغات مدعومة","stats.days":"يوم تعلم",
     "about.title":"عني",
-    "about.p1":"طالب مصري، من مواليد 14 فبراير 2010، حلمي إني أبقى خبير أمن سيبراني عالمي. معنديش خبرة كافية لسه، لكن بتعلم كل يوم وبطوّر من نفسي خطوة بخطوة.",
+    "about.mission":"\"أصبح خبير أمن سيبراني عالمي — خطوة بخطوة كل يوم\"",
+    "about.p1":"طالب مصري من مواليد 14 فبراير 2010، حلمي إني أبقى خبير أمن سيبراني عالمي. معنديش خبرة كافية لسه، لكن بتعلم كل يوم وبطوّر من نفسي خطوة بخطوة.",
+    "about.p2":"بحب اكتشاف الثغرات، وحل المشكلات، وبناء أدوات صغيرة تساعدني أفهم إزاي الأنظمة بتشتغل من جوا. عندي شغف حقيقي بمجال الأمن السيبراني، وكل شهادة بحصل عليها بتدفعني أتعلم أكتر.",
     "about.country.l":"COUNTRY","about.country.v":"مصر 🇪🇬",
     "about.spec.l":"SPECIALTY","about.spec.v":"الأمن السيبراني",
-    "about.status.l":"STATUS","about.status.v":"بتعلم كل يوم — خطوة بخطوة",
-    "about.lang.l":"LANGUAGES","about.lang.v":"العربية (الأم) + الإنجليزية",
+    "about.status.l":"STATUS","about.status.v":"بتعلم كل يوم",
+    "about.lang.l":"LANGUAGES","about.lang.v":"عربية + إنجليزية",
+    "about.focus":"مجالات اهتمامي",
+    "focus1.t":"Ethical Hacking","focus1.d":"اختبار الاختراق الأخلاقي",
+    "focus2.t":"Network Security","focus2.d":"أمن الشبكات والبروتوكولات",
+    "focus3.t":"Linux Systems","focus3.d":"أوامر وإدارة أنظمة Linux",
+    "focus4.t":"Web Development","focus4.d":"بناء تطبيقات ويب آمنة",
     "skills.title":"المهارات",
+    "skills.sub":"مهاراتي بتطور باستمرار — دي النسبة الحالية لكل مهارة",
     "skill.cyber":"أساسيات الأمن السيبراني","skill.net":"أساسيات الشبكات","skill.linux":"أساسيات Linux","skill.ps":"حل المشكلات",
-    "certs.title":"الشهادات","certs.badge":"+24 شهادة في البرمجة على مدار دراستي",
-    "cert1.title":"شهادة JavaScript Level 1","cert1.desc":"موثقة من منصة أس بريكس اليابانية + وزارة التربية والتعليم المصرية + جامعة هيروشيما اليابانية",
+    "services.title":"خدماتي ومجالاتي",
+    "services.sub":"المجالات اللي بحب أشتغل فيها وأطور نفسي من خلالها",
+    "srv1.t":"أساسيات الأمن السيبراني","srv1.d":"تعلم مبادئ الحماية، تشفير البيانات، وأمن المعلومات بشكل نظري وعملي.",
+    "srv2.t":"اختبار الاختراق","srv2.d":"استكشاف بيئات الاختبار الأخلاقي وتعلم أدوات مثل Kali Linux وWireshark.",
+    "srv3.t":"تطوير الويب","srv3.d":"بناء صفحات ويب تفاعلية بـ HTML وCSS وJavaScript مع مراعاة أفضل ممارسات الأمان.",
+    "srv4.t":"Linux & Bash","srv4.d":"إدارة أنظمة Linux، كتابة سكربتات Bash، والتعامل مع سطر الأوامر باحتراف.",
+    "srv5.t":"أساسيات الشبكات","srv5.d":"فهم بروتوكولات TCP/IP، DNS، HTTP وكيفية تأمين الاتصالات.",
+    "srv6.t":"حل المشكلات التقنية","srv6.d":"تفكير منطقي لحل المشاكل البرمجية والتفكير بشكل هجومي للدفاع ضد الثغرات.",
+    "certs.title":"الشهادات","certs.badge":"+24 شهادة برمجة على مدار دراستي",
+    "cert1.title":"شهادة JavaScript Level 1","cert1.desc":"موثقة من منصة أس بريكس اليابانية + وزارة التربية والتعليم المصرية + جامعة هيروشيما",
     "cert2.title":"شهادة تقدير من مُدرسة البرمجة","cert2.desc":"أولى إعدادي — تقدير على التفوق في مسار البرمجة",
     "cert3.title":"شهادة ثانية من مُدرسة البرمجة","cert3.desc":"أولى إعدادي — إنجاز إضافي في مسار البرمجة",
-    "cert4.title":"شهادة مدير المدرسة — الأولى في مسابقة الحاسب الآلي","cert4.desc":"موقعة من مدرسة الحاسب + المدير + مدرس IT",
+    "cert4.title":"شهادة مدير المدرسة — الأولى في مسابقة الحاسب","cert4.desc":"موقّعة من مدرسة الحاسب + المدير + مدرس IT",
     "cert.view":"عرض الشهادة",
+    "projects.title":"مشاريعي الحالية","projects.sub":"مشاريع صغيرة بشتغل عليها لتحسين مهاراتي",
+    "prj1.t":"Personal Portfolio","prj1.d":"موقع بورتفوليو احترافي بأسلوب Cyberpunk لعرض مهاراتي وشهاداتي.",
+    "prj2.t":"Mini CLI Tools","prj2.d":"أدوات بسيطة بسطر الأوامر بأسلوب Bash وPython لتعلم أساسيات الأتمتة.",
+    "prj3.t":"CTF Writeups","prj3.d":"حل تحديات CTF وتوثيق خطوات الحل لتعلم التفكير الأمني.",
+    "prj4.t":"Mousa Code Channel","prj4.d":"قناة يوتيوب أشارك فيها رحلتي في التعلم وأبسّط مفاهيم البرمجة.",
     "journey.title":"رحلتي",
     "tl.1":"ولدت في مصر 🇪🇬 — بداية الحكاية","tl.2y":"أولى إعدادي",
     "tl.2":"بدأت رحلتي في البرمجة وحصلت على أولى شهاداتي",
-    "tl.3":"أول شهادة JavaScript موثقة دولياً من اليابان ومصر","tl.4y":"المستقبل","tl.4":"خبير أمن سيبراني 🎯",
-    "contact.title":"تواصل معايا","contact.visit":"زيارة الحساب ←",
-    "footer":"Built with 💚 from Egypt | Never Stop Learning",
+    "tl.3":"أول شهادة JavaScript موثقة دولياً من اليابان ومصر","tl.4y":"المستقبل","tl.4":"خبير أمن سيبراني عالمي 🎯",
+    "faq.title":"أسئلة متكررة",
+    "faq1.q":"إزاي بدأت في مجال الأمن السيبراني؟",
+    "faq1.a":"بدأت من فضول شخصي — حبيت أعرف إزاي الأنظمة بتتأمن وإزاي الثغرات بتتكتشف. بدأت بتعلم الأساسيات من خلال كورسات مجانية وتطبيقات عملية، وكل يوم بضيف معلومة جديدة.",
+    "faq2.q":"إيه أفضل طريقة لتعلم الأمن السيبراني كمبتدئ؟",
+    "faq2.a":"ابدأ من الأساسيات: الشبكات، Linux، ثم أساسيات البرمجة. بعدها اتعلم مفاهيم الأمن والتشفير، وطبّق على منصات تدريب آمنة مثل TryHackMe وHackTheBox.",
+    "faq3.q":"هل يمكنني التواصل معك للتعاون؟",
+    "faq3.a":"أكيد! أنا دايماً منفتح للتعلم والتعاون. تواصل معايا على LinkedIn أو من خلال قناة YouTube.",
+    "faq4.q":"إيه اللي بتطمح ليه في المستقبل؟",
+    "faq4.a":"حلمي إني أبقى خبير أمن سيبراني عالمي، أشتغل في شركة كبيرة، وأساعد في حماية الأنظمة من الهجمات. وهدفي كمان أشارك معرفتي مع الجيل الجديد.",
+    "contact.title":"تواصل معايا",
+    "contact.sub":"منفتح على التعاون والتبادل المعرفي — اختار الطريقة الأنسب ليك",
+    "contact.visit":"زيارة الحساب ←",
+    "cta.title":"جاهز تبدأ رحلة تعلم معايا؟",
+    "cta.desc":"\"Never Stop Learning\" — دي فلسفتي، وكل يوم فرصة جديدة نتعلم حاجة جديدة",
+    "cta.btn1":"تواصل على LinkedIn","cta.btn2":"اتفرج على القناة",
+    "footer.1":"Built with","footer.2":"from Egypt | Never Stop Learning",
     "loaderTitle":"INITIALIZING SECURE CONNECTION..."
   },
   en: {
-    "nav.home":"Home","nav.about":"About","nav.skills":"Skills","nav.certs":"Certificates","nav.journey":"Journey","nav.contact":"Contact",
-    "badge":"Available for Learning & Collaboration",
+    "nav.home":"Home","nav.about":"About","nav.skills":"Skills","nav.services":"Services",
+    "nav.certs":"Certificates","nav.projects":"Projects","nav.journey":"Journey","nav.contact":"Contact",
+    "badge":"Available for Learning",
     "hero.greet":"> HELLO_WORLD",
-    "heroName":"Amjad Abd El-Latif<br/>El-Desouky Hassan Mohamed Mousa",
+    "heroName":"Amjad Abd El-Latif El-Desouky<br/>Hassan Mohamed Mousa",
     "role":"Cybersecurity Enthusiast | Ethical Hacker in Progress",
-    "age.label":"LIVE_AGE_COUNTER","age.y":"Years","age.m":"Months","age.d":"Days","age.h":"Hours","age.mi":"Min","age.s":"Sec",
+    "age.label":"LIVE_AGE_COUNTER",
+    "age.y":"Years","age.m":"Months","age.d":"Days","age.h":"Hours","age.mi":"Min","age.s":"Sec",
     "hero.cta1":"Explore My Skills","hero.cta2":"Contact Me",
+    "stats.certs":"Programming Certs","stats.skills":"Technical Skills","stats.langs":"Languages","stats.days":"Learning Days",
     "about.title":"About Me",
-    "about.p1":"An Egyptian student, born on February 14, 2010. My dream is to become a world-class cybersecurity expert. I don't have enough experience yet, but I'm learning every day, step by step.",
+    "about.mission":"\"Become a world-class cybersecurity expert — one step at a time, every day\"",
+    "about.p1":"An Egyptian student born on February 14, 2010. My dream is to become a world-class cybersecurity expert. I don't have enough experience yet, but I'm learning every day, step by step.",
+    "about.p2":"I love finding vulnerabilities, solving problems, and building small tools that help me understand how systems work from the inside. I have a real passion for cybersecurity, and every certificate I earn pushes me to learn more.",
     "about.country.l":"COUNTRY","about.country.v":"Egypt 🇪🇬",
     "about.spec.l":"SPECIALTY","about.spec.v":"Cybersecurity",
-    "about.status.l":"STATUS","about.status.v":"Learning every day — step by step",
-    "about.lang.l":"LANGUAGES","about.lang.v":"Arabic (Native) + English",
+    "about.status.l":"STATUS","about.status.v":"Learning every day",
+    "about.lang.l":"LANGUAGES","about.lang.v":"Arabic + English",
+    "about.focus":"My Focus Areas",
+    "focus1.t":"Ethical Hacking","focus1.d":"Ethical penetration testing",
+    "focus2.t":"Network Security","focus2.d":"Network & protocols security",
+    "focus3.t":"Linux Systems","focus3.d":"Linux commands & administration",
+    "focus4.t":"Web Development","focus4.d":"Building secure web apps",
     "skills.title":"Skills",
+    "skills.sub":"My skills keep evolving — here's my current level for each",
     "skill.cyber":"Cybersecurity Basics","skill.net":"Networking Basics","skill.linux":"Linux Basics","skill.ps":"Problem Solving",
-    "certs.title":"Certificates","certs.badge":"+24 Programming Certificates throughout my studies",
+    "services.title":"What I Do",
+    "services.sub":"The areas I enjoy working in and developing myself through",
+    "srv1.t":"Cybersecurity Basics","srv1.d":"Learning protection principles, encryption, and infosec both theoretically and practically.",
+    "srv2.t":"Penetration Testing","srv2.d":"Exploring ethical testing environments and tools like Kali Linux and Wireshark.",
+    "srv3.t":"Web Development","srv3.d":"Building interactive web pages with HTML, CSS, JavaScript following best security practices.",
+    "srv4.t":"Linux & Bash","srv4.d":"Managing Linux systems, writing Bash scripts, and mastering the command line.",
+    "srv5.t":"Networking Basics","srv5.d":"Understanding TCP/IP, DNS, HTTP protocols and how to secure connections.",
+    "srv6.t":"Problem Solving","srv6.d":"Logical thinking to solve programming problems and think offensively to defend against vulnerabilities.",
+    "certs.title":"Certificates","certs.badge":"+24 programming certificates throughout my studies",
     "cert1.title":"JavaScript Level 1 Certificate","cert1.desc":"Verified by Asprox Japanese platform + Egyptian Ministry of Education + Hiroshima University",
     "cert2.title":"Appreciation Certificate from Programming School","cert2.desc":"Grade 7 — Recognition for excellence in the programming track",
     "cert3.title":"Second Certificate from Programming School","cert3.desc":"Grade 7 — Additional achievement in the programming track",
-    "cert4.title":"School Principal Certificate — 1st Place in Computer Competition","cert4.desc":"Signed by the Computer School + Principal + IT Teacher",
+    "cert4.title":"School Principal Certificate — 1st in Computer Competition","cert4.desc":"Signed by the Computer School + Principal + IT Teacher",
     "cert.view":"View Certificate",
+    "projects.title":"Current Projects","projects.sub":"Small projects I'm building to improve my skills",
+    "prj1.t":"Personal Portfolio","prj1.d":"A professional Cyberpunk-style portfolio showcasing my skills and certificates.",
+    "prj2.t":"Mini CLI Tools","prj2.d":"Small command-line tools in Bash and Python to learn automation basics.",
+    "prj3.t":"CTF Writeups","prj3.d":"Solving CTF challenges and documenting solution steps to build security mindset.",
+    "prj4.t":"Mousa Code Channel","prj4.d":"A YouTube channel sharing my learning journey and simplifying programming concepts.",
     "journey.title":"My Journey",
     "tl.1":"Born in Egypt 🇪🇬 — the story begins","tl.2y":"Grade 7",
     "tl.2":"Started my programming journey and earned my first certificates",
-    "tl.3":"First internationally verified JavaScript certificate from Japan & Egypt","tl.4y":"The Future","tl.4":"Cybersecurity Expert 🎯",
-    "contact.title":"Contact Me","contact.visit":"Visit Profile →",
-    "footer":"Built with 💚 from Egypt | Never Stop Learning",
+    "tl.3":"First internationally verified JavaScript certificate from Japan & Egypt",
+    "tl.4y":"The Future","tl.4":"World-class Cybersecurity Expert 🎯",
+    "faq.title":"FAQ",
+    "faq1.q":"How did you start in cybersecurity?",
+    "faq1.a":"I started with personal curiosity — I wanted to know how systems are secured and how vulnerabilities are discovered. I began by learning the basics through free courses and hands-on practice.",
+    "faq2.q":"What's the best way to learn cybersecurity as a beginner?",
+    "faq2.a":"Start with fundamentals: networking, Linux, then programming basics. Then learn security and encryption concepts, and practice on safe training platforms like TryHackMe and HackTheBox.",
+    "faq3.q":"Can I contact you for collaboration?",
+    "faq3.a":"Absolutely! I'm always open to learning and collaboration. Reach out on LinkedIn or through my YouTube channel.",
+    "faq4.q":"What are your aspirations for the future?",
+    "faq4.a":"My dream is to become a world-class cybersecurity expert, work at a major company, and help protect systems from attacks. I also want to share my knowledge with the next generation.",
+    "contact.title":"Contact Me",
+    "contact.sub":"Open to collaboration and knowledge exchange — pick the way that suits you",
+    "contact.visit":"Visit Profile →",
+    "cta.title":"Ready to start a learning journey with me?",
+    "cta.desc":"\"Never Stop Learning\" — that's my philosophy, and every day is a new chance to learn something new",
+    "cta.btn1":"Connect on LinkedIn","cta.btn2":"Watch the Channel",
+    "footer.1":"Built with","footer.2":"from Egypt | Never Stop Learning",
     "loaderTitle":"INITIALIZING SECURE CONNECTION..."
   },
   pl: {
-    "nav.home":"Start","nav.about":"O mnie","nav.skills":"Umiejętności","nav.certs":"Certyfikaty","nav.journey":"Moja podróż","nav.contact":"Kontakt",
-    "badge":"Dostępny do nauki i współpracy",
+    "nav.home":"Start","nav.about":"O mnie","nav.skills":"Umiejętności","nav.services":"Usługi",
+    "nav.certs":"Certyfikaty","nav.projects":"Projekty","nav.journey":"Podróż","nav.contact":"Kontakt",
+    "badge":"Dostępny do nauki",
     "hero.greet":"> CZEŚĆ_ŚWIECIE",
-    "heroName":"Amjad Abd El-Latif<br/>El-Desouky Hassan Mohamed Mousa",
+    "heroName":"Amjad Abd El-Latif El-Desouky<br/>Hassan Mohamed Mousa",
     "role":"Entuzjasta cyberbezpieczeństwa | Etyczny haker w trakcie nauki",
-    "age.label":"LICZNIK_WIEKU_NA_ŻYWO","age.y":"Lat","age.m":"Mies.","age.d":"Dni","age.h":"Godz.","age.mi":"Min","age.s":"Sek",
-    "hero.cta1":"Poznaj moje umiejętności","hero.cta2":"Skontaktuj się",
+    "age.label":"LICZNIK_WIEKU_NA_ŻYWO",
+    "age.y":"Lat","age.m":"Mies.","age.d":"Dni","age.h":"Godz.","age.mi":"Min","age.s":"Sek",
+    "hero.cta1":"Poznaj umiejętności","hero.cta2":"Skontaktuj się",
+    "stats.certs":"Certyfikatów","stats.skills":"Umiejętności","stats.langs":"Języki","stats.days":"Dni nauki",
     "about.title":"O mnie",
-    "about.p1":"Egipski uczeń, urodzony 14 lutego 2010. Moim marzeniem jest zostać światowej klasy ekspertem ds. cyberbezpieczeństwa. Nie mam jeszcze wystarczającego doświadczenia, ale uczę się każdego dnia, krok po kroku.",
+    "about.mission":"\"Zostać światowej klasy ekspertem cyberbezpieczeństwa — krok po kroku, każdego dnia\"",
+    "about.p1":"Egipski uczeń urodzony 14 lutego 2010. Moim marzeniem jest zostać światowej klasy ekspertem cyberbezpieczeństwa. Nie mam jeszcze wystarczającego doświadczenia, ale uczę się każdego dnia, krok po kroku.",
+    "about.p2":"Uwielbiam odkrywać podatności, rozwiązywać problemy i budować małe narzędzia, które pomagają mi zrozumieć, jak działają systemy od środka. Mam prawdziwą pasję do cyberbezpieczeństwa.",
     "about.country.l":"KRAJ","about.country.v":"Egipt 🇪🇬",
     "about.spec.l":"SPECJALIZACJA","about.spec.v":"Cyberbezpieczeństwo",
-    "about.status.l":"STATUS","about.status.v":"Uczę się codziennie — krok po kroku",
-    "about.lang.l":"JĘZYKI","about.lang.v":"Arabski (ojczysty) + Angielski",
+    "about.status.l":"STATUS","about.status.v":"Uczę się codziennie",
+    "about.lang.l":"JĘZYKI","about.lang.v":"Arabski + Angielski",
+    "about.focus":"Moje obszary zainteresowań",
+    "focus1.t":"Etyczny hacking","focus1.d":"Etyczne testy penetracyjne",
+    "focus2.t":"Bezpieczeństwo sieci","focus2.d":"Bezpieczeństwo sieci i protokołów",
+    "focus3.t":"Systemy Linux","focus3.d":"Polecenia i administracja Linux",
+    "focus4.t":"Tworzenie stron","focus4.d":"Budowanie bezpiecznych aplikacji webowych",
     "skills.title":"Umiejętności",
+    "skills.sub":"Moje umiejętności stale się rozwijają — oto aktualny poziom każdej z nich",
     "skill.cyber":"Podstawy cyberbezpieczeństwa","skill.net":"Podstawy sieci","skill.linux":"Podstawy Linux","skill.ps":"Rozwiązywanie problemów",
+    "services.title":"Co robię",
+    "services.sub":"Obszary, w których lubię pracować i rozwijać się",
+    "srv1.t":"Podstawy cyberbezpieczeństwa","srv1.d":"Nauka zasad ochrony, szyfrowania i bezpieczeństwa informacji teoretycznie i praktycznie.",
+    "srv2.t":"Testy penetracyjne","srv2.d":"Poznawanie środowisk testowych i narzędzi takich jak Kali Linux i Wireshark.",
+    "srv3.t":"Tworzenie stron","srv3.d":"Budowanie interaktywnych stron z HTML, CSS, JavaScript z zachowaniem najlepszych praktyk bezpieczeństwa.",
+    "srv4.t":"Linux i Bash","srv4.d":"Zarządzanie systemami Linux, pisanie skryptów Bash i opanowanie wiersza poleceń.",
+    "srv5.t":"Podstawy sieci","srv5.d":"Zrozumienie protokołów TCP/IP, DNS, HTTP oraz zabezpieczania połączeń.",
+    "srv6.t":"Rozwiązywanie problemów","srv6.d":"Logiczne myślenie do rozwiązywania problemów programistycznych i obrona przed podatnościami.",
     "certs.title":"Certyfikaty","certs.badge":"+24 certyfikaty programistyczne zdobyte podczas nauki",
     "cert1.title":"Certyfikat JavaScript Level 1","cert1.desc":"Zweryfikowany przez japońską platformę Asprox + egipskie Ministerstwo Edukacji + Uniwersytet w Hiroszimie",
     "cert2.title":"Certyfikat uznania od szkoły programowania","cert2.desc":"Klasa 7 — wyróżnienie za doskonałość w programowaniu",
     "cert3.title":"Drugi certyfikat od szkoły programowania","cert3.desc":"Klasa 7 — dodatkowe osiągnięcie w programowaniu",
     "cert4.title":"Certyfikat dyrektora szkoły — 1. miejsce w konkursie komputerowym","cert4.desc":"Podpisany przez szkołę komputerową + dyrektora + nauczyciela IT",
     "cert.view":"Zobacz certyfikat",
+    "projects.title":"Aktualne projekty","projects.sub":"Małe projekty, które tworzę, aby rozwijać swoje umiejętności",
+    "prj1.t":"Portfolio osobiste","prj1.d":"Profesjonalne portfolio w stylu Cyberpunk prezentujące moje umiejętności i certyfikaty.",
+    "prj2.t":"Mini narzędzia CLI","prj2.d":"Małe narzędzia wiersza poleceń w Bash i Python do nauki automatyzacji.",
+    "prj3.t":"CTF Writeups","prj3.d":"Rozwiązywanie wyzwań CTF i dokumentowanie kroków rozwiązań.",
+    "prj4.t":"Kanał Mousa Code","prj4.d":"Kanał YouTube, na którym dzielę się moją nauką i upraszczam koncepcje programowania.",
     "journey.title":"Moja podróż",
     "tl.1":"Urodziłem się w Egipcie 🇪🇬 — początek historii","tl.2y":"Klasa 7",
     "tl.2":"Rozpocząłem przygodę z programowaniem i zdobyłem pierwsze certyfikaty",
-    "tl.3":"Pierwszy międzynarodowy certyfikat JavaScript z Japonii i Egiptu","tl.4y":"Przyszłość","tl.4":"Ekspert cyberbezpieczeństwa 🎯",
-    "contact.title":"Kontakt","contact.visit":"Odwiedź profil →",
-    "footer":"Zbudowane z 💚 z Egiptu | Nigdy nie przestawaj się uczyć",
+    "tl.3":"Pierwszy międzynarodowy certyfikat JavaScript z Japonii i Egiptu",
+    "tl.4y":"Przyszłość","tl.4":"Światowej klasy ekspert cyberbezpieczeństwa 🎯",
+    "faq.title":"FAQ",
+    "faq1.q":"Jak zacząłeś w cyberbezpieczeństwie?",
+    "faq1.a":"Zacząłem od osobistej ciekawości — chciałem wiedzieć, jak zabezpiecza się systemy i jak odkrywa się podatności. Zacząłem od podstaw dzięki darmowym kursom i praktyce.",
+    "faq2.q":"Jaki jest najlepszy sposób nauki cyberbezpieczeństwa dla początkujących?",
+    "faq2.a":"Zacznij od podstaw: sieci, Linux, potem programowanie. Następnie poznaj koncepcje bezpieczeństwa i szyfrowania, ćwicz na platformach takich jak TryHackMe i HackTheBox.",
+    "faq3.q":"Czy mogę się z tobą skontaktować w sprawie współpracy?",
+    "faq3.a":"Jasne! Zawsze jestem otwarty na naukę i współpracę. Napisz na LinkedIn lub przez kanał YouTube.",
+    "faq4.q":"Jakie są twoje aspiracje na przyszłość?",
+    "faq4.a":"Moim marzeniem jest zostać światowej klasy ekspertem cyberbezpieczeństwa, pracować w dużej firmie i pomagać chronić systemy przed atakami. Chcę też dzielić się wiedzą z następnym pokoleniem.",
+    "contact.title":"Kontakt",
+    "contact.sub":"Otwarty na współpracę i wymianę wiedzy — wybierz wygodną formę",
+    "contact.visit":"Odwiedź profil →",
+    "cta.title":"Gotowy na wspólną podróż nauki?",
+    "cta.desc":"\"Never Stop Learning\" — to moja filozofia, każdy dzień to nowa szansa na naukę",
+    "cta.btn1":"Połącz na LinkedIn","cta.btn2":"Obejrzyj kanał",
+    "footer.1":"Zbudowane z","footer.2":"z Egiptu | Nigdy nie przestawaj się uczyć",
     "loaderTitle":"INICJALIZACJA BEZPIECZNEGO POŁĄCZENIA..."
   }
 };
@@ -1003,18 +1739,17 @@ const i18n = {
 let currentLang = 'ar';
 
 function applyLang(lang){
+  if(!i18n[lang]) return;
   currentLang = lang;
   const t = i18n[lang];
-  const html = document.documentElement;
-  html.lang = lang;
-  html.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
 
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const k = el.getAttribute('data-i18n');
     if(t[k] !== undefined) el.innerHTML = t[k];
   });
 
-  // Hero name (glitch data-text)
   const hn = document.getElementById('heroName');
   if(hn){
     hn.innerHTML = t['heroName'];
@@ -1023,9 +1758,8 @@ function applyLang(lang){
 
   document.getElementById('langLabel').textContent = lang.toUpperCase();
 
-  // Retrigger typing
   startTyping();
-  // Loader title (if visible)
+
   const lt = document.getElementById('loaderTitle');
   if(lt) lt.textContent = t['loaderTitle'];
 }
@@ -1047,6 +1781,7 @@ document.addEventListener('click', ()=> document.getElementById('langMenu').clas
 ========================================================= */
 const loaderFill = document.getElementById('loaderFill');
 const loaderStatus = document.getElementById('loaderStatus');
+const loaderPct = document.getElementById('loaderPct');
 const statusMsgs = [
   "> Booting kernel modules",
   "> Loading encryption keys",
@@ -1056,16 +1791,20 @@ const statusMsgs = [
 ];
 let lProg = 0, sIdx = 0;
 const loaderInterval = setInterval(()=>{
-  lProg += Math.random()*12 + 4;
-  if(lProg >= 100){ lProg = 100; }
+  lProg += Math.random()*13 + 5;
+  if(lProg >= 100) lProg = 100;
   loaderFill.style.width = lProg + '%';
+  loaderPct.textContent = Math.floor(lProg) + '%';
   const newIdx = Math.floor(lProg/21);
-  if(newIdx !== sIdx && statusMsgs[newIdx]){ sIdx = newIdx; loaderStatus.textContent = statusMsgs[newIdx]; }
+  if(newIdx !== sIdx && statusMsgs[newIdx]){
+    sIdx = newIdx;
+    loaderStatus.textContent = statusMsgs[newIdx];
+  }
   if(lProg === 100){
     clearInterval(loaderInterval);
     setTimeout(()=> document.getElementById('loader').classList.add('hide'), 500);
   }
-}, 160);
+}, 150);
 
 /* =========================================================
    MATRIX RAIN
@@ -1074,7 +1813,8 @@ const loaderInterval = setInterval(()=>{
   const canvas = document.getElementById('matrix-canvas');
   const ctx = canvas.getContext('2d');
   let w, h, cols, drops;
-  const chars = 'アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>{}[]/\\';
+  const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>{}[]/\\*#$@!';
+  let last = 0;
   function resize(){
     w = canvas.width = window.innerWidth;
     h = canvas.height = window.innerHeight;
@@ -1083,38 +1823,47 @@ const loaderInterval = setInterval(()=>{
   }
   resize();
   window.addEventListener('resize', resize);
-  function draw(){
-    ctx.fillStyle = 'rgba(0,3,8,0.08)';
-    ctx.fillRect(0,0,w,h);
-    ctx.fillStyle = '#00ff88';
-    ctx.font = '15px "JetBrains Mono", monospace';
-    for(let i=0;i<cols;i++){
-      const ch = chars[Math.floor(Math.random()*chars.length)];
-      ctx.fillText(ch, i*16, drops[i]*16);
-      if(drops[i]*16 > h && Math.random() > 0.975) drops[i] = 0;
-      drops[i]++;
+  function draw(now){
+    if(now - last > 55){
+      last = now;
+      ctx.fillStyle = 'rgba(0,2,5,0.09)';
+      ctx.fillRect(0,0,w,h);
+      ctx.fillStyle = '#00ff88';
+      ctx.font = '15px "JetBrains Mono", monospace';
+      for(let i=0;i<cols;i++){
+        const ch = chars[Math.floor(Math.random()*chars.length)];
+        ctx.fillText(ch, i*16, drops[i]*16);
+        if(drops[i]*16 > h && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+      }
     }
+    requestAnimationFrame(draw);
   }
-  setInterval(draw, 55);
+  requestAnimationFrame(draw);
 })();
 
 /* =========================================================
    CUSTOM CURSOR
 ========================================================= */
-const dot = document.querySelector('.cursor-dot');
-const ring = document.querySelector('.cursor-ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove', e=>{
-  mx = e.clientX; my = e.clientY;
-  dot.style.left = mx+'px'; dot.style.top = my+'px';
-});
-function follow(){
-  rx += (mx-rx)*0.16;
-  ry += (my-ry)*0.16;
-  ring.style.left = rx+'px'; ring.style.top = ry+'px';
-  requestAnimationFrame(follow);
-}
-follow();
+(function cursor(){
+  const dot = document.querySelector('.cursor-dot');
+  const ring = document.querySelector('.cursor-ring');
+  if(!dot || window.matchMedia('(hover:none)').matches) return;
+  let mx = window.innerWidth/2, my = window.innerHeight/2, rx = mx, ry = my;
+  document.addEventListener('mousemove', e=>{
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx+'px'; dot.style.top = my+'px';
+  });
+  document.addEventListener('mousedown', ()=> ring.classList.add('click'));
+  document.addEventListener('mouseup', ()=> ring.classList.remove('click'));
+  function follow(){
+    rx += (mx-rx)*0.16;
+    ry += (my-ry)*0.16;
+    ring.style.left = rx+'px'; ring.style.top = ry+'px';
+    requestAnimationFrame(follow);
+  }
+  follow();
+})();
 
 /* =========================================================
    TYPING EFFECT
@@ -1123,6 +1872,7 @@ let typingTimer;
 function startTyping(){
   clearTimeout(typingTimer);
   const el = document.getElementById('typed');
+  if(!el) return;
   const text = i18n[currentLang]['role'];
   el.textContent = '';
   let i = 0;
@@ -1132,7 +1882,6 @@ function startTyping(){
       i++;
       typingTimer = setTimeout(type, 45);
     } else {
-      // pause then restart
       typingTimer = setTimeout(()=>{ el.textContent=''; i=0; type(); }, 3500);
     }
   }
@@ -1142,7 +1891,7 @@ function startTyping(){
 /* =========================================================
    LIVE AGE COUNTER (born Feb 14, 2010)
 ========================================================= */
-const BIRTH = new Date(2010, 1, 14, 0, 0, 0); // Feb = index 1
+const BIRTH = new Date(2010, 1, 14, 0, 0, 0);
 function getAge(){
   const now = new Date();
   let years = now.getFullYear() - BIRTH.getFullYear();
@@ -1162,15 +1911,16 @@ function getAge(){
   if(months < 0){ months += 12; years--; }
   return { years, months, days, hours, minutes, seconds };
 }
-function pad(n){ return n<10 ? '0'+n : n; }
+const pad = n => n < 10 ? '0'+n : ''+n;
 function updateAge(){
   const a = getAge();
-  document.getElementById('ageY').textContent = a.years;
-  document.getElementById('ageM').textContent = a.months;
-  document.getElementById('ageD').textContent = a.days;
-  document.getElementById('ageH').textContent = pad(a.hours);
-  document.getElementById('ageMi').textContent = pad(a.minutes);
-  document.getElementById('ageS').textContent = pad(a.seconds);
+  const set = (id, v) => { const el = document.getElementById(id); if(el) el.textContent = v; };
+  set('ageY', a.years);
+  set('ageM', a.months);
+  set('ageD', a.days);
+  set('ageH', pad(a.hours));
+  set('ageMi', pad(a.minutes));
+  set('ageS', pad(a.seconds));
 }
 setInterval(updateAge, 1000);
 updateAge();
@@ -1182,7 +1932,6 @@ const io = new IntersectionObserver((entries)=>{
   entries.forEach(en=>{
     if(en.isIntersecting){
       en.target.classList.add('in');
-      // Trigger skill bars
       if(en.target.classList.contains('skill')){
         const bar = en.target.querySelector('.skill-bar span');
         const pct = en.target.dataset.pct;
@@ -1191,8 +1940,34 @@ const io = new IntersectionObserver((entries)=>{
       io.unobserve(en.target);
     }
   });
-},{threshold:.15});
-document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+},{threshold:.12, rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal, .reveal-l, .reveal-r').forEach(el=> io.observe(el));
+
+/* =========================================================
+   COUNTER ANIMATION FOR STATS
+========================================================= */
+function animateCounter(el){
+  const target = +el.dataset.count;
+  const dur = 1800;
+  const start = performance.now();
+  function tick(now){
+    const p = Math.min((now-start)/dur, 1);
+    const eased = 1 - Math.pow(1-p, 3);
+    el.textContent = Math.floor(eased * target);
+    if(p < 1) requestAnimationFrame(tick);
+    else el.textContent = target;
+  }
+  requestAnimationFrame(tick);
+}
+const statIO = new IntersectionObserver((entries)=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      animateCounter(en.target);
+      statIO.unobserve(en.target);
+    }
+  });
+},{threshold:.5});
+document.querySelectorAll('.stat-card .num').forEach(el=> statIO.observe(el));
 
 /* =========================================================
    CERTIFICATE MODAL
@@ -1203,16 +1978,21 @@ document.querySelectorAll('.cert-card').forEach(card=>{
   card.addEventListener('click', ()=>{
     modalImg.src = card.dataset.img;
     modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
   });
 });
-document.getElementById('modalClose').addEventListener('click', ()=> modal.classList.remove('open'));
-modal.addEventListener('click', (e)=>{ if(e.target === modal) modal.classList.remove('open'); });
-document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') modal.classList.remove('open'); });
+function closeModal(){
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('modalClose').addEventListener('click', closeModal);
+modal.addEventListener('click', e=>{ if(e.target === modal) closeModal(); });
+document.addEventListener('keydown', e=>{ if(e.key === 'Escape') closeModal(); });
 
 /* =========================================================
-   RIPPLE EFFECT ON BUTTONS
+   RIPPLE EFFECT
 ========================================================= */
-document.querySelectorAll('.btn, .contact-card, .lang-btn').forEach(b=>{
+document.querySelectorAll('.btn, .contact-card, .lang-btn, .faq-q').forEach(b=>{
   b.addEventListener('click', function(e){
     const r = document.createElement('span');
     r.className = 'ripple';
@@ -1227,11 +2007,71 @@ document.querySelectorAll('.btn, .contact-card, .lang-btn').forEach(b=>{
 });
 
 /* =========================================================
+   FAQ ACCORDION
+========================================================= */
+document.querySelectorAll('.faq-item').forEach(item=>{
+  const q = item.querySelector('.faq-q');
+  q.addEventListener('click', ()=>{
+    const open = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=> i.classList.remove('open'));
+    if(!open) item.classList.add('open');
+  });
+});
+
+/* =========================================================
    MOBILE MENU
 ========================================================= */
 const nav = document.getElementById('nav');
 document.getElementById('menuToggle').addEventListener('click', ()=> nav.classList.toggle('open'));
 document.querySelectorAll('nav a').forEach(a=> a.addEventListener('click', ()=> nav.classList.remove('open')));
+
+/* =========================================================
+   NAV ACTIVE STATE ON SCROLL
+========================================================= */
+const sections = [...document.querySelectorAll('section[id]')];
+const navLinks = [...document.querySelectorAll('nav a')];
+const navIO = new IntersectionObserver((entries)=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      const id = en.target.id;
+      navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#'+id));
+    }
+  });
+},{threshold:.35});
+sections.forEach(s => navIO.observe(s));
+
+/* =========================================================
+   HEADER SCROLL
+========================================================= */
+const header = document.getElementById('header');
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', ()=>{
+  if(window.scrollY > 40) header.classList.add('scrolled'); else header.classList.remove('scrolled');
+  if(window.scrollY > 400) backTop.classList.add('show'); else backTop.classList.remove('show');
+});
+backTop.addEventListener('click', ()=> window.scrollTo({top:0,behavior:'smooth'}));
+
+/* =========================================================
+   PARALLAX ON HERO
+========================================================= */
+const heroAvatar = document.querySelector('.hero-avatar');
+const heroContent = document.querySelector('.hero-content');
+let lastScroll = 0;
+window.addEventListener('scroll', ()=>{
+  const y = window.scrollY;
+  if(y > window.innerHeight) return;
+  if(heroAvatar) heroAvatar.style.transform = `translateY(${y*0.15}px)`;
+  if(heroContent) heroContent.style.transform = `translateY(${y*0.08}px)`;
+});
+
+/* =========================================================
+   TECH MARQUEE (duplicate for infinite scroll)
+========================================================= */
+(function marquee(){
+  const track = document.getElementById('marqueeTrack');
+  if(!track) return;
+  track.innerHTML += track.innerHTML;
+})();
 
 /* =========================================================
    TERMINAL EASTER EGG
@@ -1242,9 +2082,15 @@ const termInput = document.getElementById('termInput');
 
 document.getElementById('terminal-btn').addEventListener('click', ()=>{
   term.classList.add('open');
-  termInput.focus();
+  document.body.style.overflow = 'hidden';
+  setTimeout(()=> termInput.focus(), 100);
 });
-term.addEventListener('click', (e)=>{ if(e.target === term) term.classList.remove('open'); });
+term.addEventListener('click', (e)=>{
+  if(e.target === term){
+    term.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
 
 function addLine(text, cls=''){
   const div = document.createElement('div');
@@ -1256,50 +2102,67 @@ function addLine(text, cls=''){
 
 function runCmd(cmd){
   cmd = cmd.trim().toLowerCase();
-  addLine('<span class="prompt">➜</span> ' + cmd);
+  if(cmd === 'clear'){
+    termBody.innerHTML = '';
+    return;
+  }
+  if(cmd !== '') addLine('<span class="prompt">➜</span> ' + cmd);
   switch(cmd){
     case 'help':
-      addLine('Available commands:');
-      addLine('  <span style="color:#00d4ff">whoami</span>   - About Amjad');
-      addLine('  <span style="color:#00d4ff">age</span>      - Live age');
-      addLine('  <span style="color:#00d4ff">skills</span>   - List skills');
-      addLine('  <span style="color:#00d4ff">certs</span>    - Certificates count');
-      addLine('  <span style="color:#00d4ff">quote</span>    - Motivational quote');
-      addLine('  <span style="color:#00d4ff">contact</span>  - Contact info');
-      addLine('  <span style="color:#00d4ff">clear</span>    - Clear terminal');
+      addLine('Available commands:', 'ok');
+      addLine('  <span class="prompt">whoami</span>   — About Amjad');
+      addLine('  <span class="prompt">age</span>      — Live age');
+      addLine('  <span class="prompt">skills</span>   — List skills');
+      addLine('  <span class="prompt">certs</span>    — Certificates count');
+      addLine('  <span class="prompt">contact</span>  — Contact info');
+      addLine('  <span class="prompt">quote</span>    — Motivational quote');
+      addLine('  <span class="prompt">sudo</span>     — Try it 😉');
+      addLine('  <span class="prompt">clear</span>    — Clear terminal');
+      addLine('  <span class="prompt">exit</span>     — Close terminal');
       break;
     case 'whoami':
-      addLine('Amjad Abd El-Latif — Egyptian cybersecurity enthusiast 🛡️');
+      addLine('amjad_abd_ellatif', 'ok');
+      addLine('Egyptian cybersecurity enthusiast 🛡️');
       addLine('Born: 14 Feb 2010 | Learning every day, step by step.');
       break;
     case 'age': {
       const a = getAge();
-      addLine(`Age: ${a.years}y ${a.months}m ${a.days}d ${pad(a.hours)}h ${pad(a.minutes)}m ${pad(a.seconds)}s`);
+      addLine(`Age: ${a.years}y ${a.months}m ${a.days}d ${pad(a.hours)}h ${pad(a.minutes)}m ${pad(a.seconds)}s`, 'ok');
       break;
     }
     case 'skills':
-      addLine('→ JavaScript, HTML/CSS, Cybersecurity Basics');
-      addLine('→ Networking, Linux, Problem Solving');
+      addLine('→ JavaScript (75%)', 'ok');
+      addLine('→ Cybersecurity Basics (65%)', 'ok');
+      addLine('→ HTML/CSS (85%)', 'ok');
+      addLine('→ Networking Basics (55%)', 'ok');
+      addLine('→ Linux Basics (60%)', 'ok');
+      addLine('→ Problem Solving (80%)', 'ok');
       break;
     case 'certs':
-      addLine('🎖️ 24+ programming certificates');
-      addLine('Top: JavaScript Level 1 (Asprox 🇯🇵 + Hiroshima Univ + Egyptian MoE)');
-      break;
-    case 'quote':
-      addLine('"The quieter you become, the more you are able to hear."');
-      addLine('"Never stop learning — the hacker\'s journey has no end." 🚀');
+      addLine('🎖️ 24+ programming certificates', 'ok');
+      addLine('★ JavaScript Level 1 (Asprox 🇯🇵 + Hiroshima Univ + Egyptian MoE)');
+      addLine('★ School principal — 1st place computer competition');
       break;
     case 'contact':
-      addLine('LinkedIn: https://www.linkedin.com/in/amgadqu123');
-      addLine('YouTube:  https://youtube.com/@mousacode');
+      addLine('LinkedIn: https://www.linkedin.com/in/amgadqu123', 'ok');
+      addLine('YouTube:  https://youtube.com/@mousacode', 'ok');
       break;
-    case 'clear':
-      termBody.innerHTML = '';
+    case 'quote':
+      addLine('"The quieter you become, the more you are able to hear."', 'warn');
+      addLine('"Never stop learning — the hacker\'s journey has no end." 🚀', 'warn');
+      break;
+    case 'sudo':
+      addLine('Permission denied: nice try 😏', 'warn');
+      addLine('This incident has been logged.', 'warn');
+      break;
+    case 'exit':
+      term.classList.remove('open');
+      document.body.style.overflow = '';
       break;
     case '':
       break;
     default:
-      addLine(`command not found: ${cmd}. Type 'help'`, '');
+      addLine(`command not found: ${cmd}. Type 'help'`, 'warn');
   }
 }
 termInput.addEventListener('keydown', (e)=>{
@@ -1310,13 +2173,32 @@ termInput.addEventListener('keydown', (e)=>{
 });
 
 /* =========================================================
+   FOOTER YEAR
+========================================================= */
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* =========================================================
    INIT
 ========================================================= */
 applyLang('ar');
 
-/* Set video speed slightly slower for atmosphere */
+/* Slow the background video slightly */
 const vid = document.getElementById('bg-video');
-vid.addEventListener('loadeddata', ()=> { vid.playbackRate = 0.85; });
+if(vid){
+  vid.addEventListener('loadeddata', ()=> { try { vid.playbackRate = 0.85; } catch(e){} });
+}
+
+/* =========================================================
+   KONAMI / KEYBOARD SHORTCUTS
+========================================================= */
+document.addEventListener('keydown', (e)=>{
+  // Press "T" to open terminal
+  if(e.key.toLowerCase() === 't' && !term.classList.contains('open') && document.activeElement.tagName !== 'INPUT'){
+    term.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(()=> termInput.focus(), 100);
+  }
+});
 </script>
 </body>
-                                                              </html>
+  </html>
